@@ -1,0 +1,10 @@
+<% content_for :jsload do %>
+	functions.profile.ajax.append_behaviour();
+  functions.posts.ajax.append_behaviour();
+  functions.posts.more.append_behaviour();
+  //$("#text").val(decodeURI(String(window.location).split("/s/")[1]));
+<% end %>
+
+<div style="padding:20px;">
+<%= render @posts %>
+</div>

@@ -1,0 +1,33 @@
+<h1>Listing relations</h1>
+
+<table border='1' cellpadding='5' width='90%'>
+  <tr>
+    <th>User2</th>
+    <th>Is follower</th>
+    <th>Is followed</th>
+    <% if false %>
+    <th>User</th>
+    <th>Is follow requester</th>
+    <th>Is follow requested</th>
+    <th>Is status requester</th>
+    <th>Is status requested</th>
+    <th>Status request args</th>
+    <% end %>
+  </tr>
+
+<% @relations.each do |relation| %>
+  <tr>
+    <td><%= link_to relation.user2.u_, profile_path(relation.user2.username) %></td>
+    <td><%= 'YES' if relation.is_follower %></td>
+    <td><%= 'YES' if relation.is_followed %></td>
+    <% if false %>
+    <td><%= relation.user.u_ %></td>
+    <td><%= relation.is_follow_requester %></td>
+    <td><%= relation.is_follow_requested %></td>
+    <td><%= relation.is_status_requester %></td>
+    <td><%= relation.is_status_requested %></td>
+    <td><%= relation.status_request_args %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

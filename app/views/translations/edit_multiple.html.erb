@@ -1,0 +1,20 @@
+<h1>Editing translations</h1>
+
+<p><%= link_to 'index', :translations %></p>
+<br/>
+
+<%= form_tag :translations, :method=>:post do %>
+
+
+  <% @translations.each do |translation| %>
+    <%= fields_for 'translations[]', translation do |f| %>
+      <h2><%= translation.locale %></h2>
+      <div class="field">
+        <%= f.label :text %><br />
+        <%= f.text_area :text, :rows=>2, :style=>'width:100%' %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= submit_tag %>
+<% end %>
+

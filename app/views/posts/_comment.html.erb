@@ -1,0 +1,27 @@
+<% user = @users_hash[comment.user_id] %>
+<div class="comment">
+  <div class="comment-left">
+    <%= my_image_tag user.p_, :dimensions=>32 %>
+  </div>
+  <div class="comment-right">
+    <div class="comment-text">
+      <%= link_to user.fullname, profile_path(user.username), :class=>'comment-fullname' %>
+      <%= my_post_links comment.body %>
+    </div>
+    <div class="comment-actions">
+      <%= content_tag :span, l(comment.created_at, :format => :long), :class=>'comment-time' %>
+      <% if current_user %>
+        <%= post_actions_link T.t('page.post.actions.like'),
+                              post_like_path(comment),
+                              'les',
+                              :remote=>true, :'data-method'=>:post, :class=>'like_it' %>
+        <%= post_actions_link T.t('page.post.actions.trash'),
+                              comment,
+                              'comme',
+                              :class=>'delete-comment', :remote=>true, :confirm => 'Are you sure?', :method => :delete if [comment.user_id, comment.post.user_id].include? cu_ro.id %>
+     <% end %>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+</div>

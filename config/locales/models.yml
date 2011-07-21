@@ -1,0 +1,20 @@
+"pt-br":
+  activerecord:
+    attributes:
+      user:
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        username: "Usuario"
+        password: "Senha"
+        sex: "Sexo"
+        born_at: "Nascimento"
+"es":
+  activerecord:
+    attributes:
+      user:
+        first_name: "Nombre"
+        last_name: "Apellido"
+        username: "Usuario"
+        password: "Contraseña"
+        sex: "Sexo"
+        born_at: "Nacimiento"

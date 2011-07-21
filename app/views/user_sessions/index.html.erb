@@ -1,0 +1,27 @@
+<h1>Listing user_sessions</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>auth user</th>
+    <th>auth session</th>
+    <th>last activity</th>
+    <% if false %>
+    <th></th>
+    <% end %>
+  </tr>
+
+<% @user_sessions.each do |user_session| %>
+  <tr>
+    <td><%= link_to user_session.user.username_at, profile_path(user_session.user.username), :target=>'_blank' %></td>
+    <td><%= user_session.user.email %></td>
+    <td><%= user_session.user.authentication_token[0..5] %>...</td>
+    <td><%= user_session.authentication_token[0..5] %>...</td>
+    <td><%= l user_session.updated_at, :format => :short %></td>
+    <% if false %>
+    <td><%#= link_to 'Destroy', user_session, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

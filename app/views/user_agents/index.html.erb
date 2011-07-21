@@ -1,0 +1,21 @@
+<h1>Listing user_agents</h1>
+
+<table width="100%">
+  <tr>
+    <th>ID</th>
+    <th>User Agent</th>
+    <th>Count</th>
+    <th>Created</th>
+    <th>Updated</th>
+  </tr>
+
+<% @user_agents.each do |user_agent| %>
+  <tr>
+    <td><%= user_agent.id %></td>
+    <td><%= user_agent.key %></td>
+    <td><%= user_agent.count %></td>
+    <td><%= l user_agent.created_at %></td>
+    <td><%= l user_agent.updated_at %></td>
+  </tr>
+<% end %>
+</table>

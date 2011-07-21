@@ -1,0 +1,56 @@
+<% @users.each do |user| %>
+
+<div data-user-id="<%= user.id %>" class="post">
+  <div class="post-left">
+    <%= my_image_tag user.p_, :dimensions=>64 %>
+  </div>
+  <div class="post-right">
+    <div class="who">
+      <%= link_to user.fullname, profile_path(user.username), :class=>'fullname' %>
+      <%= link_to user.username_at, profile_path(user.username), :class=>'mention' %>
+    </div>
+    <div class="text">
+      <%= content_tag :span, '', :class=>'icon-color profile-birth-date' %>
+      <%= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(Date.today, :format=>:long)) %>
+    </div>
+
+    <% if false %>
+    
+    <div class="actions">
+      <%= post_actions_link l(post.created_at, :format => :short),
+                            url_for(post),
+                            'source-site',
+                            :class=>'time', :'data-time'=>post.created_at.to_i %>
+      <% if current_user %>
+      <%= post_actions_link T.t('page.post.actions.like').capitalize,
+                            post_like_path(post),
+                            'action-like',
+                            :remote=>true, :'data-method'=>:post, :class=>'like_it' %>
+                            <%# and !current_user.likes?(post.id) %>
+      <%= post_actions_link T.t('page.post.actions.repost').capitalize,
+                            '#',
+                            'action-repost',
+                            :class=>'toggle_comment' if can_comment?(post) %>
+      <%= post_actions_link T.t('page.post.actions.comment').capitalize,
+                            '#',
+                            'action-comment',
+                            :class=>'toggle_comment' if can_comment?(post) %>
+      <%= post_actions_link T.t('page.post.actions.trash').capitalize,
+                            post,
+                            'action-delete',
+                            :class=>'delete-post',
+                            :remote=>true,
+                            :confirm => T.t('page.post.actions.trash_confirm').capitalize,
+                            :method => :delete if post.user_id == current_user.id %>
+      <% end %>
+    </div>
+    
+    <% end %>
+    
+    
+  </div>
+  <div class="clear">
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Listing likes</h1>
+
+<table>
+  <tr>
+    <th>Post</th>
+    <th>User</th>
+  </tr>
+
+<% @likes.each do |like| %>
+  <tr>
+    <td><%= like.post.id %></td>
+    <td><%= link_to like.user.username_at, profile_path(like.user.username) %></td>
+  </tr>
+<% end %>
+</table>

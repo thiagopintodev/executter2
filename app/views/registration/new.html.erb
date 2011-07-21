@@ -1,0 +1,126 @@
+<div class="new-user" style="margin-bottom:20px">
+
+
+<div class="left panel">
+  <h1><%= T.t('page.registration.new.left.title') %></h1>
+  <%= image_tag "http://s3.amazonaws.com/of7_production/ex1-production/banners/imgs/000/000/001/1_original_out_1.jpg?1288462423", :width=>400, :height=>250 %>
+</div>
+<div class="right panel">
+
+
+  <h2><%= T.t('page.registration.new.right.title') %></h2>
+  <h3><%= T.t('page.registration.new.right.subtitle') %></h3>
+  
+<%= form_for(@user, :url=>:r_new) do |f| %>
+
+  <table cellspacing="0">
+    <tbody>
+
+      <tr>
+        <td class="label">
+          <%= f.label :first_name %>:
+        </td>
+        <td class="field">
+          <%= f.text_field :first_name, :class=>"restrict_name" %>
+          <%= content_tag :span, @user.errors[:first_name].first, :class=>'my_error_msg'  if @user.errors[:first_name].first %>
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td class="label">
+          <%= f.label :last_name %>:
+        </td>
+        <td class="field">
+          <%= f.text_field :last_name, :class=>"restrict_name" %>
+          <%= content_tag :span, @user.errors[:last_name].first, :class=>'my_error_msg'  if @user.errors[:last_name].first %>
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td class="label">
+          <%= f.label :username %>:
+        </td>
+        <td class="field">
+          <%= f.text_field :username, :class=>"restrict_username" %>
+          <%= content_tag :span, @user.errors[:username].first, :class=>'my_error_msg'  if @user.errors[:username].first %>
+        </td>
+      </tr>
+      
+<% if false %>
+      <tr>
+        <td class="label">
+          <%= f.label :city %>:
+        </td>
+        <td class="field">
+          <%= f.text_field :city %>
+          <%= content_tag :span, @user.errors[:city].first, :class=>'my_error_msg'  if @user.errors[:city].first %>
+        </td>
+      </tr>
+<% end %>
+
+      <tr>
+        <td class="label">
+          <%= f.label :email %>:
+        </td>
+        <td class="field">
+          <%= f.text_field :email %>
+          <%= content_tag :span, @user.errors[:email].first, :class=>'my_error_msg'  if @user.errors[:email].first %>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td class="label">
+          <%= f.label :password %>:
+        </td>
+        <td class="field">
+          <%= f.password_field :password %>
+          <%= content_tag :span, @user.errors[:password].first, :class=>'my_error_msg'  if @user.errors[:password].first %>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">
+          <%= f.label :sex %>:
+        </td>
+        <td class="field">
+          <%= f.select :sex, [0,1] %>
+          <%= content_tag :span, @user.errors[:sex].first, :class=>'my_error_msg'  if @user.errors[:sex].first %>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td class="label">
+          <%= f.label :born_at %>:
+        </td>
+        <td class="field">
+          <%= f.date_select :born_at, :start_year => 1906, :end_year=>2011 %>
+          <%= content_tag :span, @user.errors[:born_at].first, :class=>'my_error_msg'  if @user.errors[:born_at].first %>
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td class="label">
+        </td>
+        <td class="field">
+          <%= f.submit "Sign Up", :class=>"ui-button" %>
+        </td>
+      </tr>
+
+      
+    
+    </tbody>
+  </table>
+
+<% end %>
+
+
+</div>
+
+<div class="clear"></div>
+
+</div>

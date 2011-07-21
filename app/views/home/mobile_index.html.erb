@@ -1,0 +1,12 @@
+<%= form_tag create_post_posts_url, :multipart=>true, :class=>'new_topic' do %>
+  <div class="field">
+    <%= text_area_tag :body, '', :rows=>3, :maxlength=>196 %>
+    <span class="chars">196</span>
+    <%= submit_tag "Executter" %>
+    <div class="clear">
+    </div>
+  </div>
+  
+<% end %>
+
+<%= render @posts %>

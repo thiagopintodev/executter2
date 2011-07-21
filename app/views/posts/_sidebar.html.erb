@@ -1,0 +1,13 @@
+<%= background_image @user if @user %>
+  <div class="in">  
+    <div class="title no-link-decoration">
+      <span class="icon-color action-reposta"></span>
+      <%= link_to "Conta Verificada", profile_path(@user.username) %>
+      <div class="clear">
+      </div>
+    </div>
+    
+    <%= content_tag :p, raw("#{content_tag(:strong, "User")} #{@user.username}") %>
+    <%= content_tag :p, raw("#{content_tag(:strong, "Bio")} #{@user.bio}") %>
+    <%= content_tag :p, raw("#{content_tag(:strong, "Web")} #{link_to @user.website_dots, @user.website, :target=>'_blank'}") %>
+  </div>

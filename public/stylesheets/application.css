@@ -1,0 +1,819 @@
+@charset "UTF-8";
+ul, li, p {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px; }
+
+div.anchor.hover {
+  cursor: pointer; }
+
+textarea {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc; }
+
+a img {
+  border: none; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+.strong {
+  font-weight: bold; }
+
+.no-link-decoration a, .no-link-decoration a:hover {
+  text-decoration: none; }
+
+.clear {
+  clear: both; }
+
+.c-edit .label {
+  float: left;
+  display: inline-block;
+  margin: 30px 5px 20px 0;
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  color: #999; }
+.c-edit .field {
+  float: left;
+  display: inline-block;
+  margin: 20px 0; }
+.c-edit .line {
+  border-bottom: #ccc solid 1px; }
+.c-edit .input-value {
+  border: #D0D2E1 solid 1px;
+  font-size: 15px;
+  height: 32px;
+  padding: 0 5px; }
+.c-edit select {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 5px; }
+.c-edit .actions {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 18px;
+  padding: 20px; }
+  .c-edit .actions .ui-button {
+    color: #ff9900; }
+
+/*flavour*/
+a *, a:hover * {
+  color: #ff9900; }
+
+/*icons begin*/
+.icon-color.post-text {
+  background-position: 0 -112px; }
+  .icon-color.post-text.selected {
+    background-position: 0 -96px; }
+.icon-color.post-image {
+  background-position: -16px -112px; }
+  .icon-color.post-image.selected {
+    background-position: -16px -96px; }
+.icon-color.post-audio {
+  background-position: -32px -112px; }
+  .icon-color.post-audio.selected {
+    background-position: -32px -96px; }
+.icon-color.post-file {
+  background-position: -48px -112px; }
+  .icon-color.post-file.selected {
+    background-position: -48px -96px; }
+.icon-color.post-likes {
+  background-position: -64px -112px; }
+  .icon-color.post-likes.selected {
+    background-position: -64px -96px; }
+.icon-color.post-follow {
+  background-position: -80px -112px; }
+  .icon-color.post-follow.selected {
+    background-position: -80px -96px; }
+.icon-color.action-repost {
+  background-position: 0 -128px; }
+.icon-color.action-comment {
+  background-position: -16px -128px; }
+.icon-color.action-delete {
+  background-position: -32px -128px; }
+.icon-color.action-like {
+  background-position: -48px -128px; }
+.icon-color.source-site {
+  background-position: 0 -144px; }
+.icon-color.profile-birth-date {
+  background-position: 0 -160px; }
+.icon-color.profile-birth-place {
+  background-position: -16px -160px; }
+.icon-color.profile-current-place {
+  background-position: -32px -160px; }
+.icon-color.profile-relationship {
+  background-position: -48px -160px; }
+.icon-color.profile-language {
+  background-position: -64px -160px; }
+.icon-color.profile-professional {
+  background-position: -80px -160px; }
+
+/*icons end*/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+/*********   LAYOUT   *********   LAYOUT   *********   LAYOUT   *********/
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: Arial; }
+
+.wrapper {
+  width: 840px;
+  margin: 0 auto; }
+
+/*header begin*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 40px; }
+  .header .wrapper {
+    padding: 4px 0;
+    position: relative; }
+    .header .wrapper .left {
+      float: left; }
+      .header .wrapper .left #bell-holder {
+        float: left;
+        margin-right: 5px;
+        width: 32px;
+        height: 32px; }
+      .header .wrapper .left #logo, .header .wrapper .left #bell, .header .wrapper .left #searchbox {
+        display: inline-block;
+        float: left;
+        margin-right: 5px;
+        width: 32px;
+        height: 32px; }
+      .header .wrapper .left #logo {
+        width: 128px;
+        /*position:absolute;left:0;top:4px;*/
+        background-color: #fff;
+        background-position: 0 0; }
+        .header .wrapper .left #logo:hover {
+          background-position: 0 -32px; }
+      .header .wrapper .left #bell {
+        /*position:absolute;left:0;top:4px;*/
+        background-color: #fff;
+        background-position: -128px 0;
+        display: none;
+        position: relative;
+        z-index: 10; }
+        .header .wrapper .left #bell:hover {
+          background-position: -128px -32px;
+          text-decoration: none; }
+        .header .wrapper .left #bell.selected {
+          background-position: -128px -64px; }
+        .header .wrapper .left #bell span {
+          background: #090;
+          color: #fff;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 2px 4px;
+          border-radius: 2px 4px;
+          position: absolute;
+          top: 0;
+          right: 0; }
+      .header .wrapper .left #searchbox {
+        width: 256px;
+        /*position:absolute;left:164px;top:4px;*/
+        background-position: -192px 0; }
+        .header .wrapper .left #searchbox #text, .header .wrapper .left #searchbox #search {
+          display: inline-block;
+          float: left; }
+        .header .wrapper .left #searchbox #text {
+          width: 216px;
+          border: none;
+          font-size: 12px;
+          line-height: 22px;
+          margin: 4px;
+          background: transparent;
+          outline: none;
+          color: #fff; }
+        .header .wrapper .left #searchbox #search {
+          width: 32px;
+          height: 32px; }
+      .header .wrapper .left #bellbox {
+        width: 300px;
+        background: #fff;
+        color: darkblue;
+        border: 1px solid #666;
+        /*border-width: 0px 2px 1px 0px;*/
+        position: absolute;
+        top: 35px;
+        left: 133px;
+        display: none; }
+        .header .wrapper .left #bellbox div.anchor {
+          background: #fff;
+          padding: 10px;
+          display: inline-block; }
+          .header .wrapper .left #bellbox div.anchor img, .header .wrapper .left #bellbox div.anchor span {
+            float: left; }
+          .header .wrapper .left #bellbox div.anchor span {
+            width: 230px;
+            margin-left: 5px;
+            color: #999999; }
+          .header .wrapper .left #bellbox div.anchor strong {
+            color: #ff9900; }
+          .header .wrapper .left #bellbox div.anchor .time {
+            color: #999999; }
+          .header .wrapper .left #bellbox div.anchor a {
+            display: inline-block;
+            margin-right: 5px;
+            position: relative;
+            height: 12px;
+            padding: 10px 0 4px;
+            text-indent: 20px; }
+            .header .wrapper .left #bellbox div.anchor a span {
+              display: block;
+              width: 16px;
+              height: 16px;
+              position: absolute;
+              top: 8px;
+              left: 0px; }
+          .header .wrapper .left #bellbox div.anchor.hover {
+            background: #ff9900; }
+            .header .wrapper .left #bellbox div.anchor.hover strong, .header .wrapper .left #bellbox div.anchor.hover span, .header .wrapper .left #bellbox div.anchor.hover a {
+              color: #fff; }
+    .header .wrapper .right {
+      float: right;
+      font-size: 15px; }
+      .header .wrapper .right ul {
+        height: 32px;
+        margin: 0; }
+        .header .wrapper .right ul li {
+          display: inline-block;
+          float: left;
+          height: 32px; }
+          .header .wrapper .right ul li a {
+            padding: 6px 10px 0;
+            color: #fff;
+            display: block;
+            height: 32px;
+            text-decoration: none; }
+            .header .wrapper .right ul li a.hover {
+              color: #fff; }
+
+/*header end*/
+/*subheader begin*/
+.subheader {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  z-index: 5;
+  background: #069;
+  width: 100%;
+  height: 80px; }
+  .subheader .wrapper {
+    padding: 4px 0;
+    position: relative; }
+    .subheader .wrapper .left {
+      float: left; }
+      .subheader .wrapper .left table {
+        margin-top: 5px; }
+        .subheader .wrapper .left table tr, .subheader .wrapper .left table td {
+          width: 160px; }
+        .subheader .wrapper .left table td {
+          padding-right: 5px; }
+        .subheader .wrapper .left table label {
+          color: #fff;
+          font-weight: bold; }
+        .subheader .wrapper .left table .input-type-text {
+          width: 160px;
+          height: 24px;
+          padding: 5px;
+          border-width: 1px; }
+        .subheader .wrapper .left table .input-type-text {
+          width: 150px;
+          height: 14px;
+          padding: 5px;
+          border-width: 1px; }
+        .subheader .wrapper .left table .input-button {
+          height: 28px; }
+        .subheader .wrapper .left table a {
+          font-size: 10px;
+          color: #fff; }
+    .subheader .wrapper .right {
+      float: right; }
+      .subheader .wrapper .right a.ui-button {
+        margin-top: 17px;
+        background: #fff none; }
+        .subheader .wrapper .right a.ui-button span {
+          color: #069;
+          font-weight: bold;
+          font-size: 18px; }
+
+/*subheader end*/
+/*body begin*/
+body.logged-in .body {
+  margin: 40px auto 0; }
+
+body.not-logged-in .body {
+  margin: 120px auto 0; }
+
+.body {
+  border: #efefef solid 0px;
+  position: relative; }
+  .body .in-v {
+    margin: 20px 0; }
+  .body .in-h {
+    margin: 0 20px; }
+  .body .in {
+    margin: 20px; }
+  .body .content-in, .body .sidebar-in {
+    margin-top: 30px; }
+  .body .content {
+    float: left;
+    background: #ffffff;
+    width: 600px;
+    min-height: 1200px; }
+  .body .sidebar, .body .sidebar-back {
+    width: 239px;
+    height: 100%;
+    position: absolute;
+    left: 600px;
+    top: 0; }
+  .body .sidebar-back {
+    background: #ffffff;
+    opacity: 0.8; }
+  .body .sidebar {
+    border-left: #ccc solid 1px; }
+
+/*body end*/
+/*footer begin*/
+.footer {
+  margin: 0 auto 20px;
+  border-top: #ccc solid 1px;
+  padding: 5px 0;
+  background: #fff; }
+  .footer .left {
+    float: left; }
+  .footer .right {
+    float: right; }
+  .footer span {
+    color: #999999; }
+  .footer a {
+    margin-left: 10px; }
+
+/*footer end*/
+.body .content a.more {
+  width: 560px;
+  text-indent: 0; }
+
+.body .sidebar {
+  /*
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#ui-tabs-1">all posts (1)</a></li>
+    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-2">status (0)</a></li>
+    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-3">images ()</a></li>
+    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-4">audios ()</a></li>
+    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-5">files ()</a></li>
+    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-6">@e2DYt1exIC (0)</a></li>
+  </ul>
+  
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+      <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#ui-tabs-1">all posts <span class="icon-color action-like"><em>Loading…</em></span> <strong>1</strong></a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-2">status <span class="icon-color post-text"></span> <strong>0</strong></a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-3">images <span class="icon-color post-image"></span> <strong></strong></a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-4">audios <span class="icon-color post-audio"></span> <strong></strong></a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-5">files <span class="icon-color post-file"></span> <strong></strong></a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-6">@e2DYt1exIC <span class="icon-color post-file"></span> <strong>0</strong></a></li>
+    </ul>
+  */ }
+  .body .sidebar .title {
+    margin-bottom: 5px; }
+    .body .sidebar .title span {
+      display: block;
+      float: left;
+      width: 24px;
+      height: 24px; }
+    .body .sidebar .title a {
+      display: block;
+      float: left;
+      padding: 5px;
+      font-size: 15px;
+      font-weight: bold;
+      color: darkblue; }
+      .body .sidebar .title a:hover {
+        color: #ff9900; }
+  .body .sidebar p {
+    margin: 5px 0;
+    color: darkblue; }
+  .body .sidebar .line {
+    margin-bottom: 10px;
+    border-bottom: #fff solid 1px; }
+  .body .sidebar a.list-title {
+    display: block;
+    margin-bottom: 10px; }
+  .body .sidebar .user {
+    font-size: 12px; }
+    .body .sidebar .user a.photo {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px; }
+    .body .sidebar .user span {
+      color: darkblue;
+      margin-bottom: 10px; }
+  .body .sidebar ul.ui-tabs-nav li {
+    background: none transparent;
+    border: none; }
+    .body .sidebar ul.ui-tabs-nav li a {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 18px;
+      padding: 10px 0 4px;
+      text-indent: 40px;
+      font-size: 12px; }
+      .body .sidebar ul.ui-tabs-nav li a span {
+        display: block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 10px;
+        left: 20px; }
+        .body .sidebar ul.ui-tabs-nav li a span em {
+          display: none; }
+      .body .sidebar ul.ui-tabs-nav li a strong {
+        float: right;
+        margin-right: 20px; }
+    .body .sidebar ul.ui-tabs-nav li:hover, .body .sidebar ul.ui-tabs-nav li.ui-tabs-selected {
+      background: #fff; }
+    .body .sidebar ul.ui-tabs-nav li.selected, .body .sidebar ul.ui-tabs-nav li.selected strong {
+      color: darkblue;
+      font-weight: bold; }
+  .body .sidebar ul.list {
+    margin-top: 10px; }
+  .body .sidebar ul.list li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 18px;
+    padding: 10px 0 4px;
+    text-indent: 40px;
+    font-size: 12px; }
+    .body .sidebar ul.list li a span {
+      display: block;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 10px;
+      left: 20px; }
+    .body .sidebar ul.list li a strong {
+      float: right;
+      margin-right: 20px; }
+    .body .sidebar ul.list li a:hover, .body .sidebar ul.list li a.selected {
+      background: #fff; }
+    .body .sidebar ul.list li a.selected, .body .sidebar ul.list li a.selected strong {
+      color: darkblue;
+      font-weight: bold; }
+  .body .sidebar ul.table li {
+    list-style: none;
+    float: left;
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    margin-right: 9px; }
+    .body .sidebar ul.table li:last-child {
+      margin: 0; }
+    .body .sidebar ul.table li a {
+      display: block;
+      width: 100%;
+      height: 40px;
+      font-size: 12px; }
+      .body .sidebar ul.table li a strong, .body .sidebar ul.table li a span {
+        display: block;
+        text-align: center; }
+      .body .sidebar ul.table li a strong {
+        font-size: 15px;
+        color: darkblue; }
+      .body .sidebar ul.table li a span {
+        font-size: 10px; }
+
+body.c-home.a-index .body .content #home-form-tabs {
+  border: none !important; }
+body.c-home.a-index .body .content #home-form-tabs ul li {
+  border: none;
+  background: none;
+  font-weight: bold; }
+body.c-home.a-index .body .content #home-form-tabs ul li a {
+  color: #ff9900; }
+body.c-home.a-index .body .content #home-form-tabs ul li.ui-tabs-selected a {
+  color: darkblue; }
+body.c-home.a-index .body .content #home-form-tabs ul li.disabled {
+  color: #999999 !important;
+  cursor: text;
+  padding: 6px 13px 6px 0; }
+body.c-home.a-index .body .content #home-form-tabs ul li a {
+  padding-left: 0; }
+body.c-home.a-index .body .content #home-form-tabs ul li span {
+  float: left;
+  margin-right: 5px; }
+body.c-home.a-index .body .content #home-form-tabs .ui-tabs-panel {
+  padding: 0;
+  margin-top: 10px; }
+body.c-home.a-index .body .content #home-form-tabs .field {
+  width: 550px; }
+body.c-home.a-index .body .content #home-form-tabs textarea {
+  width: 100%; }
+body.c-home.a-index .body .content #home-form-tabs .chars {
+  font-size: 24px;
+  color: #ccc;
+  margin-top: 5px; }
+body.c-home.a-index .body .content #home-form-tabs .ui-button {
+  float: right;
+  margin-right: 0;
+  font-weight: bold;
+  color: #666;
+  font-size: 15px; }
+body.c-home.a-index .body .content #home-post-tabs {
+  margin-top: 50px;
+  border: none; }
+
+body.c-users.a-show .body .content .card img#photo {
+  float: left;
+  margin-right: 15px; }
+body.c-users.a-show .body .content .card .about {
+  float: left;
+  width: 400px; }
+  body.c-users.a-show .body .content .card .about h1 {
+    font-size: 18px;
+    margin: 0;
+    color: darkblue; }
+  body.c-users.a-show .body .content .card .about .relate_panel {
+    height: 40px;
+    padding-top: 10px; }
+    body.c-users.a-show .body .content .card .about .relate_panel a {
+      color: darkblue; }
+    body.c-users.a-show .body .content .card .about .relate_panel .jqbutton {
+      background: #efefef none; }
+    body.c-users.a-show .body .content .card .about .relate_panel .jqbutton span {
+      color: #666 !important;
+      font-weight: bold; }
+    body.c-users.a-show .body .content .card .about .relate_panel strong {
+      color: #666; }
+  body.c-users.a-show .body .content .card .about p {
+    font-size: 12px;
+    line-height: 20px; }
+    body.c-users.a-show .body .content .card .about p span.icon-color {
+      display: inline-block;
+      width: 16px;
+      height: 13px; }
+    body.c-users.a-show .body .content .card .about p span {
+      color: #999999; }
+
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
+/*
+body.c-site.a-search a.more,
+body.c-users.a-show a.more { margin: 20px; }
+*/
+body.c-site.a-search a.more {
+  margin: 20px; }
+
+body.c-registration .new-user .panel {
+  display: inline-block;
+  width: 400px;
+  margin-top: 20px; }
+  body.c-registration .new-user .panel h1 {
+    color: #069;
+    font-size: 18px;
+    margin: 0 0 10px 0; }
+  body.c-registration .new-user .panel h2 {
+    color: #069;
+    font-size: 24px;
+    margin: 0 0 3px 0; }
+  body.c-registration .new-user .panel h3 {
+    color: #069;
+    font-size: 15px;
+    margin: 0 0 3px 0;
+    font-weight: normal;
+    border-bottom: #efefef solid 1px;
+    padding-bottom: 5px; }
+  body.c-registration .new-user .panel.left {
+    float: left; }
+  body.c-registration .new-user .panel.right {
+    float: right; }
+    body.c-registration .new-user .panel.right .field_with_errors {
+      display: inline; }
+    body.c-registration .new-user .panel.right .my_error_msg {
+      color: #f30;
+      padding-left: 20px;
+      font-size: 15px;
+      margin-bottom: 10px;
+      display: block;
+      background: url(/images/icons/icon_error.gif) no-repeat; }
+    body.c-registration .new-user .panel.right table {
+      width: 100%; }
+      body.c-registration .new-user .panel.right table tr td {
+        padding: 5px 3px 0px; }
+        body.c-registration .new-user .panel.right table tr td.label {
+          text-align: right;
+          width: 100px; }
+          body.c-registration .new-user .panel.right table tr td.label label {
+            font-size: 15px;
+            color: #333; }
+        body.c-registration .new-user .panel.right table tr td.field .input-type-text {
+          font-weight: bold;
+          padding: 5px;
+          border-width: 1px;
+          font-size: 15px;
+          line-height: 22px;
+          margin-bottom: 5px;
+          width: 100%;
+          color: #212121; }
+        body.c-registration .new-user .panel.right table tr td.field .input-type-select {
+          padding: 5px;
+          border-width: 1px;
+          font-size: 15px;
+          line-height: 22px; }
+body.c-registration .new-user center {
+  margin: 47px auto; }
+body.c-registration .new-user .ui-button {
+  width: 100% !important;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ff9900 !important; }
+
+/*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
+/*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
+/*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
+/*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
+/*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
+/*flavour begin*/
+.icon-color {
+  background: no-repeat 0 0;
+  background-image: url("/images/sprite_orange.png?a") !important; }
+
+a, a:hover {
+  color: #ff9900; }
+
+.header {
+  background: #ff9900; }
+  .header .wrapper .right li.hover {
+    background: #ffaa33; }
+
+.body .sidebar ul.table li a:hover strong {
+  color: #ff9900; }
+
+.body .sidebar a.user {
+  color: #999999; }
+
+/*flavour end*/
+body.c-posts.a-show .post {
+  padding: 20px; }
+
+body.c-search .post,
+body.c-users.a-show .post,
+body.c-home.a-index .post {
+  border-top: #ccc solid 1px;
+  padding: 20px 0; }
+
+.post {
+  font-size: 15px; }
+  .post a {
+    color: #ff9900; }
+  .post .post-left {
+    display: inline-block;
+    float: left;
+    width: 64px;
+    margin-right: 10px; }
+  .post .post-right {
+    display: inline-block;
+    float: left;
+    width: 480px; }
+  .post .who .fullname {
+    font-weight: bold; }
+  .post .who .user {
+    color: #999999; }
+  .post .text {
+    color: darkblue;
+    line-height: 20px; }
+  .post .actions {
+    font-size: 12px; }
+    .post .actions .time {
+      color: #999999; }
+  .post .actions a {
+    display: none;
+    margin-right: 5px;
+    position: relative;
+    height: 12px;
+    padding: 10px 0 4px;
+    text-indent: 20px; }
+  .post .actions a span {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 8px;
+    left: 0px; }
+  .post.hover .actions a, .post .actions a.time {
+    display: inline-block; }
+  .post .line-files,
+  .post .line-reposts {
+    border-bottom: #efefef solid 1px;
+    margin: 10px 0; }
+  .post .line-last {
+    border-bottom: #efefef solid 1px;
+    margin: 10px 0 2px; }
+  .post .repost {
+    font-size: 12px; }
+  .post .repost .repost-time {
+    color: #999999;
+    font-size: 10px; }
+  .post .repost .repost-text {
+    color: darkblue; }
+  .post .file {
+    font-size: 12px; }
+  .post .file-name {
+    color: darkblue; }
+  .post .file-name span {
+    color: #999999; }
+  .post .file-get {
+    color: #999999;
+    font-size: 10px;
+    margin-top: 3px; }
+  .post .file-get a {
+    margin-left: 5px; }
+  .post a.thumbnail img {
+    border: #ccc solid 1px;
+    padding: 10px;
+    max-width: 200px; }
+  .post .info_box {
+    margin-top: 30px;
+    font-size: 12px;
+    color: darkblue; }
+    .post .info_box .info {
+      background: #fafafa;
+      padding: 5px 10px;
+      margin-bottom: 2px;
+      border-top: #efefef solid 1px; }
+      .post .info_box .info small {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px; }
+      .post .info_box .info p {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 3px; }
+  .post .comment {
+    font-size: 12px;
+    background: #fafafa;
+    padding: 5px 10px;
+    margin: 2px 0;
+    border-top: #efefef solid 1px; }
+    .post .comment .comment-left,
+    .post .comment .comment-right {
+      float: left;
+      display: inline-block; }
+    .post .comment .comment-left {
+      margin-right: 8px; }
+    .post .comment .comment-right {
+      width: 420px; }
+      .post .comment .comment-right .comment-fullname {
+        font-size: 12px;
+        font-weight: bold; }
+      .post .comment .comment-right .comment-text {
+        color: darkblue;
+        line-height: 15px; }
+      .post .comment .comment-right .comment-time {
+        color: #999999;
+        font-size: 10px; }
+      .post .comment .comment-right .comment-actions span, .post .comment .comment-right .comment-actions a {
+        margin-right: 10px; }
+      .post .comment .comment-right form label {
+        color: #999999; }
+        .post .comment .comment-right form label.checked {
+          color: #ff9900; }
+      .post .comment .comment-right form .counter {
+        float: right;
+        color: #999999;
+        font-weight: bold; }
+  .post .comment textarea {
+    width: 90%;
+    border-color: #ccc;
+    font-size: 12px;
+    padding: 5px;
+    color: #222; }
+  .post .comment-state-before textarea {
+    color: #ccc; }

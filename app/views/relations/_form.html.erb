@@ -1,0 +1,53 @@
+<%= form_for(@relation) do |f| %>
+  <% if @relation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relation.errors.count, "error") %> prohibited this relation from being saved:</h2>
+
+      <ul>
+      <% @relation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user2_id %><br />
+    <%= f.text_field :user2_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_follower %><br />
+    <%= f.check_box :is_follower %>
+  </div>
+  <div class="field">
+    <%= f.label :is_followed %><br />
+    <%= f.check_box :is_followed %>
+  </div>
+  <div class="field">
+    <%= f.label :is_follow_requester %><br />
+    <%= f.check_box :is_follow_requester %>
+  </div>
+  <div class="field">
+    <%= f.label :is_follow_requested %><br />
+    <%= f.check_box :is_follow_requested %>
+  </div>
+  <div class="field">
+    <%= f.label :is_status_requester %><br />
+    <%= f.check_box :is_status_requester %>
+  </div>
+  <div class="field">
+    <%= f.label :is_status_requested %><br />
+    <%= f.check_box :is_status_requested %>
+  </div>
+  <div class="field">
+    <%= f.label :status_request_args %><br />
+    <%= f.text_field :status_request_args %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

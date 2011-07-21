@@ -1,0 +1,32 @@
+<% content_for :jsload do %>
+  functions.posts.ajax.append_behaviour();
+  functions.posts.more.append_behaviour();
+  <%= "mention_username = ':mention';".gsub(':mention', params[:mention]) if params[:mention] %>
+<% end %>
+
+<% if cu_ro.admin? %>
+  <div class="in">
+  <%= request.user_agent %>
+  </div>
+<% end %>
+  
+  <div  id="home-form-tabs-holder"
+        data-ajaxload-event="load"
+        data-ajaxload-url="<%= h_forms_path %>"
+        data-ajaxload-nocache="true"
+        data-ajaxload-target="#home-form-tabs-holder"
+        >
+  </div>
+
+  <div id="home-post-tabs" style="display:none">
+    <ul class="in-h">
+      <li><%= link_to T.t('page.home.post_tabs.home'),          :h_posts_followings_all %></li>
+      <li><%= link_to T.t('page.home.post_tabs.status'),        :h_posts_followings_status %></li>
+      <li><%= link_to T.t('page.home.post_tabs.image'),         :h_posts_followings_image %></li>
+      <li><%= link_to T.t('page.home.post_tabs.audio'),         :h_posts_followings_audio %></li>
+      <li><%= link_to T.t('page.home.post_tabs.file'),          :h_posts_followings_other %></li>
+      <li><%= link_to "@ #{@user.pch[:mentions]}",              user_ajax_posts_mention_url(cu_ro) %></li>
+      <li><%= link_to T.t('page.home.post_tabs.my_followers'),  :h_posts_followers %></li>
+    </ul>
+  </div>
+

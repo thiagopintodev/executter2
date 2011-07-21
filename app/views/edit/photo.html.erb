@@ -1,0 +1,28 @@
+<%= form_for UserPhoto.new, :url=>request.url, :html=>{:multipart=>true} do |f| %>
+
+  <div class="label">
+  </div>
+  <div class="field">
+    <%= my_image_tag current_user.p_, :dimensions=>128 %>
+  </div>
+  <div class="clear line">
+  </div>
+
+
+  <div class="label">
+    <%= f.label :user_photo %>
+  </div>
+  <div class="field">
+    <%= file_field_tag :image %>
+  </div>
+  <div class="clear line">
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'save', :class=>'ui-button' %>
+  </div>
+  
+<% end %>
+
+    

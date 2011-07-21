@@ -1,0 +1,34 @@
+<% cache [:ajax_notifications, @pun_list.map(&:id).join('-'), :unread_count, @pun_list_unread_count] do  %>
+
+<script type="text/javascript">
+functions.application.notification.append_behaviour();
+<% if @pun_list_unread_count > 0 %>
+  //document.title="Executter (<%= @pun_list_unread_count %>)";
+  $('#bell').html("<span><%= @pun_list_unread_count %></span>");
+  $title2 = "NEW (<%= @pun_list_unread_count %>)";
+<% end%>
+</script>
+
+
+<% if @pun_list.size > 0 %>
+
+  <% users_from = ajax_notifications_users_from_hash %>
+  <% @pun_list.each do |pun| %>
+    <% user_from = users_from[pun.user_id_from] %>
+    <% pun_path_to = pun.post_id ? post_path(pun.post_id) : profile_path(user_from.username) %>
+    <div class="anchor" href="<%= pun_path_to %>">
+      <%= image_tag user_from.p_, :width=>45, :height=>45 %>
+      <% reason = T.t "notifications.simple.trigger_#{pun.reason_trigger}_why_#{pun.reason_why}" %>
+      <span>
+      <%= raw "<strong>#{user_from.fn_}</strong> #{reason}" %>
+      <br/>
+      <%= post_actions_link l(pun.created_at, :format => :short),
+                            pun_path_to,
+                            'source-site',
+                            :class=>'time', :'data-time'=>pun.created_at.to_i %>
+      </span>
+    </div>
+  <% end %>
+<% end %>
+
+<% end %>

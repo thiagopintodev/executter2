@@ -1,0 +1,167 @@
+<% if false %>
+<%# content_for :jsload do %>
+$("#city_born").tokenInput("/cities");
+<% end %>
+
+<%= form_for @user, :url=>request.url do |f| %>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<div class="label">
+  <%= f.label :first_name %>
+</div>
+<div class="field">
+  <%= f.text_field :first_name, :class=>"restrict_name" %>
+</div>
+<div class="clear">
+</div>
+
+<div class="label">
+  <%= f.label :last_name %>
+</div>
+<div class="field">
+  <%= f.text_field :last_name, :class=>"restrict_name" %>
+</div>
+<div class="clear line">
+</div>
+
+
+
+<div class="label">
+  <%= f.label :born_at %>
+</div>
+<div class="field">
+  <%= f.date_select :born_at %>
+</div>
+<div class="clear line">
+</div>
+
+
+
+<div class="label">
+  <%= f.label :sex %>
+</div>
+<div class="field">
+  <%= f.select :sex, ['Menino', 'Menina'] %>
+</div>
+<div class="clear line">
+</div>
+
+
+  <% if false %>
+  <br/>
+  <%= f.select :id, ['a a a a a a a a a a a a a a a a a', 'a a a a a a a a a a a a a a a a a'] %>
+  <% end %>
+  <% if false %>
+  <%= f.check_box :sex_policy %>
+  <%= f.label :sex_policy %>
+  <% end %>
+
+  <% if false %>
+<div class="label">
+  interessam-me:
+</div>
+<div class="field">
+  <%= f.check_box :likes_male %>
+  <%= f.label :likes_male %>
+  <br/>
+  <%= f.check_box :likes_female %>
+  <%= f.label :likes_female %>
+</div>
+<div class="clear line">
+</div>
+  <% end %>
+
+
+<% if false %>
+<div class="label">
+  <%= f.label :gender %>:
+  <br/>
+  <%= f.label :gender %>:
+</div>
+<div class="field">
+  <%= f.text_field :username %>
+  <br/>
+  <%= f.text_field :username %>
+</div>
+<div class="clear line">
+</div>
+<% end %>
+    
+
+<div class="label">
+  <%= f.label :website %>
+</div>
+<div class="field">
+  <%= f.text_field :website %>
+</div>
+<div class="clear line">
+</div>
+
+
+
+
+<% if false %>
+<div class="label">
+  i speak:
+</div>
+<div class="field">
+  <%= f.check_box :gender %>
+  <%= f.label :gender, 'english' %>
+  <br/>
+  <%= f.check_box :gender %>
+  <%= f.label :gender, 'portuguese' %>
+  <br/>
+  <%= f.check_box :gender %>
+  <%= f.label :gender, 'english' %>
+  <br/>
+  <%= f.check_box :gender %>
+  <%= f.label :gender, 'portuguese' %>  
+</div>
+<div class="clear line">
+</div>
+    
+
+<div class="label">
+  <%= f.label :gender %>
+  <br/>
+  <%= f.label :gender %>
+</div>
+<div class="field">
+  <%= f.text_field :username, :id=>"city_born" %>city nasceu
+  <br/>
+  <%= f.text_field :username, :id=>"city_current" %>city atual
+</div>
+<div class="clear line">
+</div>
+<% end %>
+
+
+
+<div class="label">
+  <%= f.label :bio %>
+</div>
+<div class="field">
+  <%= f.text_area :bio, :rows=>3 %>
+</div>
+<div class="clear line">
+</div>
+
+    
+
+<div class="actions">
+  <%= f.submit 'save', :class=>'ui-button' %>
+</div>
+      
+
+<% end %>

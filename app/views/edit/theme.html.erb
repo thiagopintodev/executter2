@@ -1,0 +1,131 @@
+<style>
+#red, #green, #blue {
+	float: left;
+	clear: left;
+	width: 300px;
+	margin: 15px;
+}
+#swatch {
+	width: 120px;
+	height: 100px;
+	margin-top: 18px;
+	margin-left: 350px;
+	background-image: none;
+}
+#red .ui-slider-range { background: #ef2929; }
+#red .ui-slider-handle { border-color: #ef2929; }
+#green .ui-slider-range { background: #8ae234; }
+#green .ui-slider-handle { border-color: #8ae234; }
+#blue .ui-slider-range { background: #729fcf; }
+#blue .ui-slider-handle { border-color: #729fcf; }
+#demo-frame > div.demo { padding: 10px !important; };
+</style>
+<script>
+
+function d2h(d) {return d.toString(16);}
+function h2d(h) {return parseInt(h,16);}
+
+function hexFromRGB(r, g, b) {
+	var hex = [ d2h(r), d2h(g), d2h(b) ];
+	$.each( hex, function( nr, val ) {
+		if ( val.length === 1 ) {
+			hex[ nr ] = "0" + val;
+		}
+	});
+	return '#'+hex.join( "" ).toUpperCase();
+}
+function hexToRGB(hex) {
+  return [
+    h2d(hex.substr(1,2)),
+    h2d(hex.substr(3,2)),
+    h2d(hex.substr(5,2))
+    ];
+}
+function refreshSwatch() {
+	var red = $( "#red" ).slider( "value" ),
+		green = $( "#green" ).slider( "value" ),
+		blue = $( "#blue" ).slider( "value" ),
+		hex = hexFromRGB( red, green, blue );
+		
+	$( "body, #swatch" ).css( "background-color", hex );
+	$("#user_theme_background_color").val( hex );
+}
+
+$(function() {
+	$( "#red, #green, #blue" ).slider({
+		orientation: "horizontal",
+		range: "min",
+		max: 255,
+		value: 127,
+		slide: refreshSwatch,
+		change: refreshSwatch
+	});
+	$("#user_theme_background_color").change(function(){
+	  var s = $(this).val();
+	  if (s.length == 7) {
+      var rgb = hexToRGB(s);
+	    $( "#red" ).slider(   "value", rgb[0] );
+	    $( "#green" ).slider( "value", rgb[1] );
+	    $( "#blue" ).slider(  "value", rgb[2] );
+	  } else {
+	    alert( s );
+	  }
+	});
+	$("#user_theme_background_color").change();
+});
+</script>
+
+
+
+<div class="in-h">
+<%= form_for @user_theme, :url=>request.url, :html=>{:multipart=>true, :method=>:post} do |f| %>
+
+  <% if @user_theme.image? %>
+    <div class="label">
+    </div>
+    <div class="field">
+      <%= image_tag @user_theme.image.url, :'max-width'=>500 %>
+    </div>
+    <div class="clear">
+    </div>
+  
+  <% end %>
+
+  <div class="label">
+    <%= f.label :image %>
+  </div>
+  <div class="field">
+    <%= f.file_field :image %>
+  </div>
+  <div class="clear line">
+  </div>
+
+  <div class="label">
+    <%= f.label :background_color %>
+  </div>
+  <div class="field">
+    <%= f.text_field :background_color %>
+  </div>
+
+  <div class="clear">
+  </div>
+  
+  <div class="in-v">
+    <div id="red"></div>
+    <div id="green"></div>
+    <div id="blue"></div>
+
+    <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+  </div>
+  
+    
+  <div class="clear line">
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'save', :class=>'ui-button' %>
+  </div>
+  
+<% end %>
+</div>

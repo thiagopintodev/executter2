@@ -1,0 +1,33 @@
+<% content_for :jsload do %>
+
+$("#check_all").live('change', function() {
+  $("input[type='checkbox']").attr('checked', $(this).attr('checked'));
+});
+
+<% end %>
+
+<h1>Translations</h1>
+
+<p><%= link_to 'index', :translations %></p>
+<br/>
+<%= form_tag :translations, :method=>:put do %>
+  <table cellpadding="5" border="1" width="100%">
+    <tr>
+      <th><%= check_box_tag "check_all" %></th>
+      <th>Locale</th>
+      <th>Key</th>
+      <th>Text / Edit</th>
+    </tr>
+
+  <% @translations.each do |translation| %>
+    <tr>
+      <td><%= check_box_tag 'translation_ids[]', translation.id %></td>
+      <td><%= link_to translation.locale, :locale=>translation.locale %></td>
+      <td><%= link_to translation.key, :key => translation.key %></td>
+      <td><%= link_to translation.text[0..100], edit_translation_path(translation) %></td>
+    </tr>
+  <% end %>
+  </table>
+  <p><%= submit_tag "Edit Checked" %></p>
+  
+<% end %>

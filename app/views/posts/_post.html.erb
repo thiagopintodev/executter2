@@ -1,0 +1,227 @@
+<% user = @users_hash[post.user_id] %>
+<% original_post = post.post || post %>
+
+              <%#= raw "<span style='color:#fff;font-weight:bold;'>R</span>" if comment.repost? %>
+
+<div data-post-id="<%= post.id %>" class="post">
+  <div class="post-left">
+    <%= my_image_tag user.p_, :dimensions=>64 %>
+  </div>
+  <div class="post-right">
+    <div class="who">
+      <%= link_to user.fullname, profile_path(user.username), :class=>'fullname' %>
+      <%= link_to_username(user.username) %>
+    </div>
+    <div class="text">
+      <%= my_post_links post.body %>
+    </div>
+
+    <% if post.post %>
+      <% user = @users_hash[post.post.user_id] %>
+      <div class="line-reposts">
+      </div>
+
+      <div class="repost">
+        <div style="float:left;width:32px;margin-right:5px;">
+          <%= my_image_tag user.p_, :dimensions=>32 %>
+        </div>
+        <div style="float:left;width:440px;">
+          <div class="repost-text">
+            <%= my_post_links post.post.body %>
+          </div>
+          <div>
+            <%= link_to user.fullname, profile_path(user.username) %>
+            <%= content_tag :span, l(post.created_at, :format => :long), :class=>'repost-time' %>
+          </div>
+        </div>
+        <div class="clear">
+        </div>
+      </div>
+
+    <% end %>
+
+
+<%#  YOUTUBE IS EQUAL TO POST FILES   %>
+
+
+<% youtube(original_post.body).each do |iframe| %>
+
+  <div class="line-files">
+  </div>
+  <%= raw iframe %>
+  
+  <div class="line-last">
+  </div>
+    
+<% end %>
+
+<%#  YOUTUBE IS EQUAL TO POST FILES   %>
+    
+
+    <% if original_post.post_files.size > 0 %>
+    <% original_post.post_files.each do |pf| %>
+      <div class="line-files">
+      </div>
+      <% if pf.image? %>
+        <%= link_to image_tag(pf.image.url), pf.image.url, :class=>'thumbnail', :rel=>'thumbnail' %>
+        <div class="file-get">
+          <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
+          <%= link_to T.t('page.post.file.download').downcase, pf.image.url, :target=>'_blank' %>
+          <%= link_to T.t('page.post.file.view_all').downcase, '/' %>
+        </div>
+      <% elsif pf.audio? || pf.other? %>
+        <% other = pf.audio || pf.other %>
+        <% other_size = pf.audio.try(:size) || pf.other.try(:size) %>
+        <div class="file">
+          <div style="float:left;width:32px;margin-right:5px;">
+            <img width="32" height="32" src="http://ogas.com.my/Image/pdf-icon.png"/>
+          </div>
+          <div style="float:left;width:440px;">
+            <div class="file-name">
+              <%= pf.filename %>
+              <%= content_tag :span, "(#{number_to_human_size other_size})" %>
+            </div>
+            <div class="file-get">
+              <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
+              <%= link_to T.t('page.post.file.download').downcase, other.url, :target=>'_blank' %>
+            </div>
+          </div>
+          <div class="clear">
+          </div>
+        </div>
+      <% else %>
+        UNESPECTED
+      <% end %>
+      
+    <% end %>
+      <div class="line-last">
+      </div>
+    <% end %>
+
+    
+    
+    
+    <div class="actions">
+      <%= post_actions_link l(post.created_at, :format => :short),
+                            url_for(post),
+                            'source-site',
+                            :class=>'time', :'data-time'=>post.created_at.to_i %>
+      <% if current_user %>
+      <%= post_actions_link T.t('page.post.actions.like').capitalize,
+                            post_like_path(post),
+                            'action-like',
+                            :remote=>true, :'data-method'=>:post, :class=>'like_it' %>
+                            <%# and !current_user.likes?(post.id) %>
+      <%= post_actions_link T.t('page.post.actions.repost').capitalize,
+                            '#',
+                            'action-repost',
+                            :class=>'toggle_comment' if can_comment?(post) %>
+      <%= post_actions_link T.t('page.post.actions.comment').capitalize,
+                            '#',
+                            'action-comment',
+                            :class=>'toggle_comment' if can_comment?(post) %>
+      <%= post_actions_link T.t('page.post.actions.trash').capitalize,
+                            post,
+                            'action-delete',
+                            :class=>'delete-post',
+                            :remote=>true,
+                            :confirm => T.t('page.post.actions.trash_confirm').capitalize,
+                            :method => :delete if post.user_id == current_user.id %>
+      <% end %>
+    </div>
+    <% condition_1 = post.likes.size > 0 %>
+    <% condition_2 = post.posts.size > 0 %>
+    <% condition_3 = post.posts.size > Post::DEFAULT_COMMENT_LIMIT %>
+    <% if condition_1 || condition_2 || condition_3 %>
+    <div class="info_box">
+      <% if condition_1 %>
+      <div class="info">
+        <%= content_tag :small, '', :class=>'icon-color action-like' %>
+        <%= content_tag :p do %>
+          <%= link_to "#{post.likes.size} #{T.t('page.post.details.user_s')}", post_likes_path(post) %>
+          <%= T.t('page.post.details.liked_this') %>
+        <% end %>
+      </div>
+      <% end %>
+      <% if condition_2 and false %>
+      <div class="info">
+        <%= content_tag :small, '', :class=>'icon-color action-repost' %>
+        <% content_link = link_to "#{post.posts.size} #{T.t('page.post.details.repost_s')}", post %>
+        <%= content_tag :p do %>
+          <%= raw "#{T.t('page.post.details.received')} #{content_link}" %>
+        <% end %>
+      </div>
+      <% end %>
+      <% if condition_3 %>
+      
+      <div class="info">
+        <%= content_tag :small, '', :class=>'icon-color action-comment' %>
+        <% content_link = link_to T.t('page.post.details.show_all_x_comments', :count=>post.posts.size), post %>
+        <%= content_tag :p do %>
+          <a href="#" rel="post-comments-loader"
+            data-url="<%= post_ajax_comments_path(post) %>"
+            data-target="#post-<%= post.id %>-comments"
+            >
+            <%= T.t('page.post.details.show_all_x_comments', :count=>post.posts.size) %>
+          </a>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+
+    <% if post.posts.size > 0 %>
+      <div id="post-<%= post.id %>-comments" class="comments">
+        <%= render :partial => "/posts/comment", :collection => @comments_hash[post.id] %>
+      </div>
+    <% end %>
+    
+
+    <% if can_comment?(post) %>
+    <div class="comment"<%= " style='display:none'" if post.posts.size == 0 %>>
+    
+      <div class="comment-state-before">
+        <%= text_area_tag '', T.t('page.post.actions.write_a_comment'), :rows=>1 %>
+      </div>
+      
+      <div class="comment-state-during" style="display:none">
+        <div class="comment-left">
+          <%= my_image_tag current_user.p_, :dimensions=>32 %>
+        </div>
+        <div class="comment-right">
+          
+          <%= form_for post.posts.build, :url=>:create_comment_posts, :remote=>true, :html=>{:class=>'new_comment'} do |f| %>
+            <%= f.hidden_field :post_id %>
+            <%= f.text_area :body, :rows=>2 %>
+            <div style="width:90%;">
+              <%= f.check_box :is_repost, :id=>"post_is_repost_of_#{post.id}" %>
+              <%= f.label :is_repost, "re-executter", :for=>"post_is_repost_of_#{post.id}" %>
+              <%#= f.submit %>
+              <%= content_tag :span, 196, :class=>"counter" %>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="clear">
+        </div>
+      </div>
+      
+      <div class="comment-state-after" style="display:none">
+        <div class="comment-left">
+          <%= my_image_tag user.p_, :dimensions=>32 %>
+        </div>
+        <div class="comment-right">
+          <div class="comment-text">
+          </div>
+        </div>
+        <div class="clear">
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  <div class="clear">
+  </div>
+</div>

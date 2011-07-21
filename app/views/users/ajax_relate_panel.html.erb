@@ -1,0 +1,15 @@
+<% cache [:ajax_relate_panel, current_user.id, @user.id, current_user.is_following?(@user)] do %>
+<script type="text/javascript">
+  $('.jqbutton').button().removeClass('ui-corner-all');
+</script>
+<% if current_user.is_following? @user %>
+
+  <%= link_to "- UNFOLLOW", user_ajax_relate_path(@user, :relation_type=>:unfollow), :class=>'jqbutton do_it', :remote=>true, :method=>:put %>
+  <strong>is following</strong>
+  
+<% else %>
+
+  <%= link_to "+ FOLLOW",   user_ajax_relate_path(@user, :relation_type=>:follow),  :class=>'jqbutton do_it', :remote=>true, :method=>:put %>
+  
+<% end %>
+<% end %>

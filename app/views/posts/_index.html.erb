@@ -1,0 +1,34 @@
+<%= render @posts %>
+
+<% if @posts.length == Post::DEFAULT_LIMIT %>
+<% more_url = url_for params.merge({:before=>@posts.last.id}) %>
+<%= link_to "MORE", "#", :class=>'more ui-button', :'data-url'=>more_url %>
+<% end %>
+
+<script type="text/javascript">
+make_button();
+make_colorbox();
+registerContextMenu();
+</script>
+
+  <% if false %>
+    <p>
+      <%= pluralize post.likes_count, "like" %>
+      <%= pluralize post.posts_count, "reposts" %>
+    </p>
+    <p><%= post.user_id %></p>
+    <p><%= post.post_id %></p>
+    <p><%= post.user_photo_url %></p>
+    <p><%= post.shows_this_photo %></p>
+    <p><%= post.is_repost %></p>
+    <p><%= post.is_repost %></p>
+    <p><%= post.is_automatic %></p>
+    <p><%= post.body %></p>
+    
+    <p><%= link_to pluralize(post.likes_count, "like"), post_likes_path(post) %></p>
+    <p><%= link_to pluralize(post.posts_count, "reposts"), post_reposts_path(post) %></p>
+    
+    <p><%= link_to 'Show', post %></p>
+    <p><%= link_to 'Edit', edit_post_path(post) %></p>
+    <p><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></p>
+    <% end %>

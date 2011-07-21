@@ -1,0 +1,13 @@
+<% content_for :jsload do %>
+	functions.profile.ajax.append_behaviour();
+  functions.posts.ajax.append_behaviour();
+  functions.posts.more.append_behaviour();
+  $("#text").val(decodeURI(String(window.location).split("/s/")[1]));
+<% end %>
+
+<div  id="searchresult" style="padding:20px;"
+                        data-ajaxload-event="load"
+                        data-ajaxload-url="<%= search_posts_url(:all, params[:text]) %>"
+                        data-ajaxload-nocache="false"
+                        data-ajaxload-target="#searchresult">
+</div>

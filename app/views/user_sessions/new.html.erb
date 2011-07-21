@@ -1,0 +1,39 @@
+<style>
+  #inside .input-type-text { font-size:14px;line-height:18px;padding:3px;border: #ccc solid 1px;margin-bottom:10px }
+  #inside label { font-size:16px;color:#333; }
+  #inside .ui-button { font-weight:bold; }
+</style>
+
+<div id="inside" style="display:inline-block;width:100%;">
+<div style="width:600px;margin:100px auto;display:block;background:#fff;border-radius:20px;padding:20px">
+
+  <%= form_for(@user_session, :html=>{:style=>"margin:0 auto"}) do |f| %>
+    <% if @user_session.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% @user_session.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :username, "#{T.t('subheader.login.field1')}:" %><br />
+      <%= f.text_field :key %>
+      <% if @user_session_found %>
+        <%= link_to "Send My Password to My E-mail Address", send_password_path(Base64.urlsafe_encode64(@user_session.key)), :class=>"ui-button" %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :password, "#{T.t('subheader.login.field2')}:" %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Sign Up", :class=>"ui-button" %>
+    </div>
+  <% end %>
+
+
+</div>
+</div>

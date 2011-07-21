@@ -1,0 +1,96 @@
+<%# cache user_cache_key do %>
+<% content_for :jsload do %>
+	functions.profile.ajax.append_behaviour();
+  functions.posts.ajax.append_behaviour();
+  functions.posts.more.append_behaviour();
+<% end %>
+
+<div class="card in">
+
+  <%= my_image_tag @user.p_, :dimensions=>128, :id=>:photo %>
+  
+  <div class="about">
+  
+    <%= content_tag :h1, @user.fullname %>
+    
+    <% if current_user_is_not_user %>
+    <div id="relatepanel" class="relate_panel"
+                          data-ajaxload-event="load"
+                          data-ajaxload-url="<%= user_ajax_relate_panel_url(@user) %>"
+                          data-ajaxload-nocache="true"
+                          data-ajaxload-target="#relatepanel">
+    </div>
+    <% end %>
+    
+    <p>
+      <%= content_tag :span, '', :class=>'icon-color profile-birth-date' %>
+      <%= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(Date.today, :format=>:long)) %>
+      
+      <% if false %>
+      <%= content_tag :span, '', :class=>'icon-color profile-birth-place' %>
+      <%= content_tag :span, T.t('page.user.show.profile.birth_city') %>
+      <%= link_to @user.fullname, profile_path(@user.username) %>
+      
+      <%= content_tag :span, '', :class=>'icon-color profile-current-place' %>
+      <%= content_tag :span, T.t('page.user.show.profile.current_city') %>
+      <%= link_to @user.fullname, profile_path(@user.username) %>
+
+
+
+      
+        <%= content_tag :span, '', :class=>'icon-color profile-relationship' %>
+        <%= content_tag :span, "Está em um relacionamento sério com" %>
+        <%= link_to @user.fullname, profile_path(@user.username) %>
+        
+        <%= content_tag :span, '', :class=>'icon-color profile-language' %>
+        <%= content_tag :span, "Fala #{@user.username_at}" %>
+      <% end %>
+    </p>
+    
+  </div>
+  <div style="clear:both">
+  </div>
+</div>
+
+<div id="user-post-tabs" style="display:none">
+  <ul>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.all'),
+                            @user.pch[:all],
+                            user_ajax_posts_all_url(@user),    
+                            'action-like' %>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.status'),
+                            @user.pch[:status],
+                            user_ajax_posts_status_url(@user),
+                            'post-text' %>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.image'),
+                            @user.pch[:image],
+                            user_ajax_posts_image_url(@user),
+                            'post-image' %>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.audio'),
+                            @user.pch[:audio],
+                            user_ajax_posts_audio_url(@user),
+                            'post-audio' %>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.file'),
+                            @user.pch[:other],
+                            user_ajax_posts_other_url(@user),
+                            'post-file' %>
+    <%= user_post_tabs_item @user.u_,
+                            @user.pch[:mentions],
+                            user_ajax_posts_mention_url(@user),
+                            'post-file' %>
+                            
+    <%= user_post_tabs_item T.t('page.user.sidebar.columns.followings'),
+                            @user.rch[:followings],
+                            user_ajax_relations_following_url(@user),
+                            'post-follow' %>
+    <%= user_post_tabs_item T.t('page.user.sidebar.columns.followers'),
+                            @user.rch[:followers],
+                            user_ajax_relations_follower_url(@user), 
+                            'post-follow' %>
+    <%= user_post_tabs_item T.t('page.user.sidebar.columns.friends'),
+                            @user.rch[:friends],
+                            user_ajax_relations_friend_url(@user), 
+                            'post-follow' %>
+  </ul>
+</div>
+<%# end %>

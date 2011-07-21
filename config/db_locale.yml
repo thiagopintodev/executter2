@@ -1,0 +1,129 @@
+test: "value :)"
+header:
+  menu:
+    home: "Home"
+    profile: "Profile"
+    #find: "Find Friends"
+    edit: "Settings"
+    out: "Sign Out"
+    in: "Sign In"
+    new: "Sign Up"
+subheader:
+  register: "Start Right Now"
+  login:
+    field1: "Username or Email"
+    field2: "Password"
+    forgot1: "Forgot Password?"
+    button: "Connect"
+footer:
+  who: "Meet The Team"
+  suggest: "Suggest Something"
+page:
+  registration:
+    new:
+      left:
+        title: "Com o Executter você compartilha arquivos e atualizações pessoais com as pessoas que são mais importantes para você."
+      right:
+        title: "Cadastre-se"
+        subtitle: "É grátis e todos podem participar."
+  user:
+    sidebar:
+      email_verified: "email verified"
+      user: "user"
+      bio: "bio"
+      web: "web"
+      columns:
+        followings: "followings"
+        followers: "followers"
+        friends: "friends"
+    show:
+      relation_panel:
+        a: "aaaaaaaaaaa"
+      profile:
+        birth_date: "Born on %{date}"
+        birth_city: "Originally from"
+        current_city: "Lives in"
+        #relationship: "Is in a relationship with %"
+        #speaks: "Fala"
+      post_tabs:
+        all: "all posts"
+        status: "status"
+        image: "images"
+        audio: "audios"
+        file: "files"
+  post:
+    more: "more"
+    file:
+      views: "views"
+      downloads: "downloads"
+      download: "download"
+      view_all: "view all"
+    details:
+      user_s: "user(s)"
+      liked_this: "liked this"
+      received: "received"
+      repost_s: "re-executt(s)"
+      show_all_x_comments: "Show all %{count} comments"
+    actions:
+      like: "like it"
+      repost: "re-executter"
+      comment: "comment"
+      trash: "trash"
+      trash_confirm: "are you sure?"
+      write_a_comment: "write a comment..."
+  edit:
+    sidebar:
+      change_basic: "change basic"
+      change_username: "change username"
+      change_email: "change email"
+      change_password: "change password"
+      change_photo: "change photo"
+      change_theme: "change theme"
+  home:
+    sidebar:
+      edit_profile: "edit profile"
+    #index:
+    #notifications:
+    form_tabs:
+      share: "share"
+      status: "status"
+      image: "image"
+      audio: "audio"
+      file: "file"
+    post_tabs:
+      home: "home"
+      status: "status"
+      image: "image"
+      audio: "audio"
+      file: "file"
+      #mention: ""
+      my_followers: "my followers"
+notifications:
+  simple:
+    trigger_new_follower_why_new_follower: "is now following you."
+    
+    trigger_created_why_mentioned:    "mentioned you on this post."
+    
+    trigger_commented_why_mentioned:  "commented this post you were mentioned at."
+    trigger_commented_why_created:    "commented this post you created."
+    trigger_commented_why_liked:      "commented this post you liked."
+    trigger_commented_why_commented:  "commented this post you commented."
+    trigger_commented_why_reposted:   "commented this post you re-executted."
+    
+    trigger_reposted_why_mentioned:   "re-executted this post you were mentioned at."
+    trigger_reposted_why_created:     "re-executted this post you created."
+    trigger_reposted_why_liked:       "re-executted this post you liked."
+    trigger_reposted_why_commented:   "re-executted this post you commented."
+    trigger_reposted_why_reposted:    "re-executted this post you re-executted."
+    
+    trigger_liked_why_mentioned:      "liked this post you were mentioned at."
+    trigger_liked_why_created:        "liked this post you created."
+    trigger_liked_why_liked:          "liked this post you liked."
+    trigger_liked_why_commented:      "liked this post you commented"
+    trigger_liked_why_reposted:       "liked this post you re-executted."
+  
+#model:
+#  errormessage:
+#    a: "aaaaaaaaaaaa"
+#  fieldname:
+#    a: "aaaaaaaaaaa"

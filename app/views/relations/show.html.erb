@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @relation.user_id %>
+</p>
+
+<p>
+  <b>User2:</b>
+  <%= @relation.user2_id %>
+</p>
+
+<p>
+  <b>Is follower:</b>
+  <%= @relation.is_follower %>
+</p>
+
+<p>
+  <b>Is followed:</b>
+  <%= @relation.is_followed %>
+</p>
+
+<p>
+  <b>Is follow requester:</b>
+  <%= @relation.is_follow_requester %>
+</p>
+
+<p>
+  <b>Is follow requested:</b>
+  <%= @relation.is_follow_requested %>
+</p>
+
+<p>
+  <b>Is status requester:</b>
+  <%= @relation.is_status_requester %>
+</p>
+
+<p>
+  <b>Is status requested:</b>
+  <%= @relation.is_status_requested %>
+</p>
+
+<p>
+  <b>Status request args:</b>
+  <%= @relation.status_request_args %>
+</p>
+
+
+<%= link_to 'Edit', edit_relation_path(@relation) %> |
+<%= link_to 'Back', relations_path %>

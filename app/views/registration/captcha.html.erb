@@ -1,0 +1,37 @@
+<div class="new-user" style="margin-bottom:20px">
+
+
+<div class="left panel">
+  <h1><%= T.t('page.registration.new.left.title') %></h1>
+  <%= image_tag "http://s3.amazonaws.com/of7_production/ex1-production/banners/imgs/000/000/001/1_original_out_1.jpg?1288462423", :width=>400, :height=>250 %>
+</div>
+<div class="right panel">
+
+
+  <h2><%= T.t('page.registration.new.right.title') %></h2>
+  <h3><%= T.t('page.registration.new.right.subtitle') %></h3>
+
+  <%= form_for(@user, :url=>:r_captcha) do |f| %>
+
+    <%= f.hidden_field :first_name %>
+    <%= f.hidden_field :last_name %>
+    <%= f.hidden_field :username %>
+    <%= f.hidden_field :city %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :password %>
+    <%= f.hidden_field :sex %>
+    <%= f.hidden_field :born_at %>
+    
+    <% if MyF.production? %>
+        <center><%= raw recaptcha_tags %></center>
+    <% end %>
+    
+    <%= f.submit "Sign Up", :class=>"ui-button" %>
+
+  <% end %>
+
+</div>
+
+<div class="clear"></div>
+
+</div>

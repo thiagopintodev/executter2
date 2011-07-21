@@ -1,0 +1,19 @@
+<h1>Listing suggestions</h1>
+
+<table cellpadding="5" border="1" width="100%">
+  <tr>
+    <th>User</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @suggestions.each do |suggestion| %>
+  <tr>
+    <td><%= link_to suggestion.user.u_, profile_path(suggestion.user.username) if suggestion.user %></td>
+    <td><%= suggestion.text %></td>
+    <td><%= link_to 'Show', suggestion %></td>
+    <td><%= link_to 'Destroy', suggestion, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

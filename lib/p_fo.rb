@@ -1,0 +1,2 @@
+class PFo < PostFollower
+end

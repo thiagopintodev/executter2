@@ -1,0 +1,20 @@
+<div class="footer wrapper" style="width:839px">
+  <div class="left" style="margin:5px 20px;">
+    <%= content_tag :span,    "Executter 2011 #{I18n.locale}" %>
+    <%= link_to "Portugues",  :locale => 'pt-br' %>
+    <%= link_to "English",    :locale => 'en' %>
+    <%#= link_to "Español",    :locale => 'es' %>
+  </div>
+  <div class="right" style="margin:5px 20px;">
+    <%= link_to "Blog", 'http://executter-pt.blogspot.com/' %>
+    <%#= link_to T.t('footer.suggest'), :s_suggest %>
+    <%#= link_to T.t('footer.who'), :s_who %>
+  </div>
+  <div class="clear">
+  </div>
+</div>
+<% if Rails.env.development? %>
+<div class="footer wrapper" style="color:#F90">
+<%= debug request.env %>
+</div>
+<% end %>

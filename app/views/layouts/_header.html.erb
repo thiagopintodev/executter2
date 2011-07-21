@@ -1,0 +1,57 @@
+<div class="header">
+  <div class="wrapper">
+    <div class="left">
+      <a id="logo" class="icon-color" href="<%= cu_ro ? '/' : new_path %>"></a>
+
+
+      
+      <div id="bell-holder">
+        <% if cu_ro %>
+        
+          <a id="bell" class="icon-color" href="#">
+          </a>
+          <div id="bellbox"
+            class="no-link-decoration"
+            data-ajaxload-event="load"
+            data-ajaxload-url="<%= h_ajax_notifications_path %>"
+            data-ajaxload-nocache="true"
+            data-ajaxload-target="#bellbox"
+            data-ajaxload-interval="<%= bell_timeout %>"
+            >
+          </div>
+          
+        <% end %>
+      </div>
+
+
+        
+      
+      <div id="searchbox" class="icon-color">
+        <%= text_field_tag :text %>
+        
+        <%= link_to '', :s, :id=>'search' %>
+      </div>
+    </div>
+    <div class="right">
+      <ul>
+        <% if false %>
+          <% if mobile_device? %>
+            <li><%= link_to "W", :mobile=>false %></li>
+          <% else %>
+            <li><%= link_to "M", :mobile=>true %></li>
+          <% end %>
+        <% end %>
+<% if cu_ro %>
+  <%= li link_to T.t('header.menu.home').capitalize,    :root %>
+  <%= li link_to T.t('header.menu.profile').capitalize, profile_url(cu_ro.username) %>
+  <%#= li link_to T.t('header.menu.find').capitalize,    :e_basic %>
+  <%= li link_to T.t('header.menu.edit').capitalize,    :e_basic %>
+  <%= li link_to T.t('header.menu.out').capitalize,     :out %>
+<% else %>
+  <%= li link_to T.t('header.menu.new').capitalize,     :new %>
+  <%= li link_to T.t('header.menu.in').capitalize,      :in %>
+<% end %>
+      </ul>
+    </div>
+  </div>
+</div>

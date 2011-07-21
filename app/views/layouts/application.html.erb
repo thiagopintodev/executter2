@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Executter</title>
+  <%= csrf_meta_tag %>
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+<%= stylesheet_link_tag 'smoothness/jquery-ui',
+                        'ContextMenu', 'colorbox', 'token-input',
+                        'application' %>
+
+<%= javascript_include_tag  'jquery-1.4.4.min',
+                            'jquery-ui.min',
+                            'rails',
+                            'jquery.tokeninput',
+                            'jquery.form',
+                            'jquery.colorbox-min',
+                            'ContextMenu',
+                            'executter.custom.functions',
+                            'executter.custom.instructions' %>
+
+
+  <% if !['registration', 'user_sessions'].include?(controller.controller_name) and @user %>
+  <style>
+      body {
+        background-color: <%= @user.theme.background_color %>;
+        <% if @user.theme.image? %>
+        background-image: url(<%= @user.theme.image.url %>);
+        <% end %>
+      }
+  </style>
+  <% end %>
+  
+</head>
+<body <%= page_css_ref %>>
+
+<% if cu_ro %>
+  <% cache [:header, I18n.locale, :user_id, cu_ro.id] do %>
+    <%= render '/layouts/header' %>
+  <% end %>
+<% else %>
+  <% cache [:header, I18n.locale, :logged_out] do %>
+    <%= render '/layouts/header' %>
+  <% end %>
+  <%= render '/layouts/subheader' %>
+<% end %>
+
+
+<div class="body wrapper">
+  <%= yield_with_sub_layout(yield) %>
+  <div class="clear">
+  </div>
+</div>
+
+<%= render '/layouts/footer' %>
+
+</body>
+<script type="text/javascript">
+  CONTROLLER = "<%= controller.controller_name %>";
+  ACTION = "<%= controller.action_name %>";
+  
+  $(function() {
+	  <%= yield :jsload %>
+  });
+</script>
+</html>
