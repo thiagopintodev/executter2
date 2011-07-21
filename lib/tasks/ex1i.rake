@@ -120,7 +120,7 @@ namespace :ex1i do
         unless p["url"]
           puts "post #{p1.id} :)"
         else
-          #begin
+          begin
           
             filename = p["filename"]
             url = URI.escape(p["url"])
@@ -151,13 +151,11 @@ namespace :ex1i do
             end
             p1.update_attribute :files_categories, pf.category
             #
-          #rescue NoMethodError => e
-          #  puts "post #{p1.id} no method"
-          #  #p1.update_attribute :has_status,true
-          #rescue => e
-          #  puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
-          #  #p1.update_attribute :has_status,true
-          #end
+          rescue NoMethodError => e
+            puts "post #{p1.id} no method"
+          rescue => e
+            puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
+          end
         end
       end
     end
