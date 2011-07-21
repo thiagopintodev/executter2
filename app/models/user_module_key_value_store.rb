@@ -15,7 +15,7 @@ module UserModuleKeyValueStore
 
     def kv_find_id(id)
       return nil unless id
-      puts "****** USER '#{id}' from KEY VALUE STORE"
+      #puts "****** USER '#{id}' from KEY VALUE STORE"
       Rails.cache.read("user_kv/id/#{id}") || (x = find(id) and x.try(:kv_save) and x)
       find(id)
     end
@@ -25,7 +25,7 @@ module UserModuleKeyValueStore
   def kv_save
     #Marshal throws error when recounting posts
     Rails.cache.write("user_kv/id/#{self.id}", self) rescue true
-    puts "****** USER '#{self.id}' saved in KEY VALUE STORE"
+    #puts "****** USER '#{self.id}' saved in KEY VALUE STORE"
     true
   end
   

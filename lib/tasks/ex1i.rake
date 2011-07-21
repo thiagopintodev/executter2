@@ -1,5 +1,6 @@
 namespace :ex1i do
 
+  desc "brings users from executter.com ex0"
   task :users => :environment do
     count = User.count
     1000.times do |i|
@@ -17,14 +18,14 @@ namespace :ex1i do
         u2 = User.new :username => u['username'],
                       :email    => u['email'],
                       :password_salt      => u['password_salt'],
-                      :password_encrypted => u['encrypted_password'],
+                      :password_digest => u['encrypted_password'],
                       :sex      => u['gender'],
                       :born_at  => u['birth'],
                       :bio      => bio,
                       :created_at => u['created_at'],
                       :authentication_token => 'imported_from_ex1',
-                      :locale     => u['locale'],
-                      :time_zone  => u['time_zone'],
+                      :locale     => u['locale'].try(:downcase),
+                      #:time_zone  => u['time_zone'],
                       :website    => website
         names = u['full_name'].split(' ')
         u2.first_name = names.first || "Nome"
@@ -35,6 +36,7 @@ namespace :ex1i do
     puts 'done'
   end
 
+  desc "brings user photos from executter.com ex0"
   task :photos => :environment do
     count = Relation.count
     1000.times do |i|
@@ -65,6 +67,7 @@ namespace :ex1i do
     puts 'done'
   end
   
+  desc "brings user relations from executter.com ex0"
   task :relations => :environment do
     count = Relation.count
     1000.times do |i|
@@ -92,6 +95,7 @@ namespace :ex1i do
     puts 'done'
   end
 
+  desc "brings user posts from executter.com ex0"
   task :posts => :environment do
     1000.times do |i|
       puts url = "http://executter.com/pure/posts?last_post_id=#{Post.last.try(:post_id) || 0}"
@@ -103,53 +107,63 @@ namespace :ex1i do
         p = post["post"]
         u = User.findu(p["user_username"])
         next unless u
+
         p1 = u.posts.new  :remote_ip  => p["remote_ip"],
-                          :is_comment => true,
+                          #:is_comment => true,
                           :body       => p["body"],
                           :post_id    => p["id"],
-                          :created_at => p["created_at"]
+                          :created_at => p["created_at"],
+                          :files_categories => Post::CATEGORY_STATUS
+                          
         p1.save
           puts "post #{p1.id} :)"
-=begin
         unless p["url"]
           puts "post #{p1.id} :)"
         else
-          begin
+          #begin
+          
+            filename = p["filename"]
             url = URI.escape(p["url"])
-            #filename = p["filename"]
+            
+            files_extensions = filename.split('.').last
             
             file = open(url)
             #
-            if ["jpg", 'gif','png','bmp'].include? url.split('.').last
-              pf = p1.post_files.new(:image => file)
-              #pf.image_file_name=filename
+            pf=nil
+            if ["jpg", 'gif','png','bmp'].include? files_extensions
+              pf = p1.post_files.new( :image => file,
+                                      :category=>Post::CATEGORY_IMAGE,
+                                      :extension=>files_extensions,
+                                      :filename=>filename)
               puts "post #{p1.id}:#{pf.save} image #{u.username_at}"
-              p1.update_attribute :has_image,true
-            elsif url.ends_with? ".mp3"
-              pf = p1.post_files.new(:audio => file)
-              #pf.audio_file_name=filename
+            elsif ["mp3"].include? files_extensions
+              pf = p1.post_files.new( :audio => file,
+                                      :category=>Post::CATEGORY_AUDIO,
+                                      :extension=>files_extensions,
+                                      :filename=>filename)
               puts "post #{p1.id}:#{pf.save} audio #{u.username_at}"
-              p1.update_attribute :has_audio,true
             else
-              pf = p1.post_files.new(:other => file)
-              #pf.other_file_name=filename
+              pf = p1.post_files.new( :other => file,
+                                      :category=>Post::CATEGORY_OTHER,
+                                      :extension=>files_extensions,
+                                      :filename=>filename)
               puts "post #{p1.id}:#{pf.save} other #{u.username_at} #{url}"
-              p1.update_attribute :has_other,true
             end
+            p1.update_attribute :files_categories, pf.category
             #
-          rescue NoMethodError => e
-            puts "post #{p1.id} no method"
-            p1.update_attribute :has_status,true
-          rescue => e
-            puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
-            p1.update_attribute :has_status,true
-          end
+          #rescue NoMethodError => e
+          #  puts "post #{p1.id} no method"
+          #  #p1.update_attribute :has_status,true
+          #rescue => e
+          #  puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
+          #  #p1.update_attribute :has_status,true
+          #end
         end
-=end
       end
     end
     puts 'done'
-    puts Post.update_all(:post_id=>nil,:is_comment=>false)
+    puts Post.update_all(:post_id=>nil)
+    Post.all.map &:create_words
   end
 
 end
