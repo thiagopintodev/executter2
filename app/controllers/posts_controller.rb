@@ -71,6 +71,7 @@ class PostsController < ApplicationController
     @comments = post.try(:posts) || []
     @users_hash = {}
     if @comments.size > 0
+      @comments.reverse!
       users_id = @comments.map(&:user_id)
       users = User.select([:id, :username, :first_name, :last_name, :user_photo_id])
                   .where(:id=>users_id.uniq)

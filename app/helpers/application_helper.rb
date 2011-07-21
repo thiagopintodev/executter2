@@ -22,5 +22,9 @@ module ApplicationHelper
   def background_image(user)
     raw "<style>body{background-image: url(#{user.theme.image.url}) !important;}</style>" if user.theme.image?
   end
+  
+  def bitly
+    raw "<script>bitly();</script>" if MyF.production?
+  end
 
 end

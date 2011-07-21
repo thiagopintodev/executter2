@@ -1,5 +1,10 @@
 mention_username=false;
 
+function bitly() {
+  $('.bitly').remove();
+  $('body').append("<img class='bitly' src='http://bit.ly/executter' style='display:none'/>");
+}
+
 function make_colorbox() {
   $("a[rel='thumbnail']").colorbox({transition:"elastic", speed: 500});
 }
