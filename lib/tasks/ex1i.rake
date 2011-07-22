@@ -85,7 +85,6 @@ namespace :ex1i do
                             :user2_id => u2.id,
                             :is_follower => r["is_follower"],
                             :is_followed => r["is_followed"]
-                     
         puts "#{r2.save} \t @#{r['user1_username']} \t\t @#{r['user2_username']}"
         
       end
