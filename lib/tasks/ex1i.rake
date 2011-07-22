@@ -116,9 +116,9 @@ namespace :ex1i do
                           :files_categories => Post::CATEGORY_STATUS
                           
         p1.save
-          puts "post #{p1.id} :)"
+        #puts "post #{p1.id} :)"
         unless p["url"]
-          puts "post #{p1.id} :)"
+          #puts "post #{p1.id} :)"
         else
           begin
           
@@ -135,19 +135,22 @@ namespace :ex1i do
                                       :category=>Post::CATEGORY_IMAGE,
                                       :extension=>files_extensions,
                                       :filename=>filename)
-              puts "post #{p1.id}:#{pf.save} image #{u.username_at}"
+              #puts "post #{p1.id}:#{pf.save} image #{u.username_at}"
+              pf.save
             elsif ["mp3"].include? files_extensions
               pf = p1.post_files.new( :audio => file,
                                       :category=>Post::CATEGORY_AUDIO,
                                       :extension=>files_extensions,
                                       :filename=>filename)
-              puts "post #{p1.id}:#{pf.save} audio #{u.username_at}"
+              #puts "post #{p1.id}:#{pf.save} audio #{u.username_at}"
+              pf.save
             else
               pf = p1.post_files.new( :other => file,
                                       :category=>Post::CATEGORY_OTHER,
                                       :extension=>files_extensions,
                                       :filename=>filename)
-              puts "post #{p1.id}:#{pf.save} other #{u.username_at} #{url}"
+              #puts "post #{p1.id}:#{pf.save} other #{u.username_at} #{url}"
+              pf.save
             end
             p1.update_attribute :files_categories, pf.category
             #
