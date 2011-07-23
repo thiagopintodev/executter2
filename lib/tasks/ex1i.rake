@@ -39,29 +39,25 @@ namespace :ex1i do
   desc "brings user photos from executter.com ex0"
   task :photos => :environment do
     count = Relation.count
-    1000.times do |i|
-      skip = i*1000
-      #next if skip < count #must be a sequence
-      puts url = "http://executter.com/pure/photos?skip=#{skip}"
-      content = open(url).read
-      photos = JSON.load(content)
-      break if photos.empty?
-      photos.each do |photo|
-        p = photo["photo"]
-        u = User.findu(p["user_username"])
-        next unless u
-        begin
-          url = URI.escape(p['url'])
-          file = open(url)
-          p1 = u.user_photos.new :image => file
-          p1.image_file_name=p['filename']
-          
-          u.update_attribute(:user_photo_id, p1.id) if p1.save
-          
-          puts "#{p1.id} \t @#{u.username}"
-        rescue
-          puts "error \t @#{u.username}"
-        end
+    
+    puts url = "http://linode.oficina7.com/ex1/all_photos.json"
+    content = open(url).read
+    photos = JSON.load(content)
+    photos.each do |photo|
+      p = photo["photo"]
+      u = User.findu(p["user_username"])
+      next unless u
+      begin
+        url = URI.escape(p['url'])
+        file = open(url)
+        p1 = u.user_photos.new :image => file
+        p1.image_file_name=p['filename']
+        
+        u.update_attribute(:user_photo_id, p1.id) if p1.save
+        
+        puts "#{p1.id} \t @#{u.username}"
+      rescue
+        puts "error \t @#{u.username}"
       end
     end
     puts 'done'
@@ -96,8 +92,9 @@ namespace :ex1i do
 
   desc "brings user posts from executter.com ex0"
   task :posts => :environment do
-    1000.times do |i|
-      puts url = "http://executter.com/pure/posts?last_post_id=#{Post.last.try(:post_id) || 0}"
+    29.times do |i|
+      j=i+1
+      puts url = "http://linode.oficina7.com/ex1/all_posts/#{j}.json"
       content = open(url).read
       posts = JSON.load(content)
       break if posts.empty?
@@ -108,9 +105,7 @@ namespace :ex1i do
         next unless u
 
         p1 = u.posts.new  :remote_ip  => p["remote_ip"],
-                          #:is_comment => true,
                           :body       => p["body"],
-                          :post_id    => p["id"],
                           :created_at => p["created_at"],
                           :files_categories => Post::CATEGORY_STATUS
                           
@@ -162,7 +157,6 @@ namespace :ex1i do
       end
     end
     puts 'done'
-    puts Post.update_all(:post_id=>nil)
     Post.all.map &:create_words
   end
 
