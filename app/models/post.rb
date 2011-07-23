@@ -207,7 +207,7 @@ class Post < ActiveRecord::Base
     
     words = text.split(' ')+filenames.split(/[\s.]/)
     words.uniq!
-    
+=begin
     if MyF.pg?
       inserts = []
       words.each { |word| inserts.push(Post.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
@@ -216,8 +216,9 @@ class Post < ActiveRecord::Base
       connection.execute(sql)
       #INSERT INTO "post_words" ("post_id", "word") VALUES (3, 'aaaaaaaaaaaaaaa')
     else
+=end
       words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
-    end
+    #end
     true
   end
 
