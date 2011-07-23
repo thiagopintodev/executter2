@@ -63,7 +63,7 @@ class Post < ActiveRecord::Base
   
 
   #CONSTANTS
-  DEFAULT_LIMIT = 5
+  DEFAULT_LIMIT = 25
   DEFAULT_COMMENT_LIMIT = 3
   #WORD_REGEX_NOT = /[^\w@#$]/
   WORD_REGEX_NOT = /[^\w@]/
