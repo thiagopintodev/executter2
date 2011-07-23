@@ -202,7 +202,7 @@ class Post < ActiveRecord::Base
   
   #optimize_word_search
   def create_words
-    post_words.delete_all if created_at.to_i != updated_at.to_i
+    #post_words.delete_all if created_at.to_i != updated_at.to_i
     
     text = body.gsub(WORD_REGEX_NOT, ' ').downcase
     filenames = post_files.map(&:filename).join(' ')
