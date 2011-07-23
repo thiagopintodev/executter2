@@ -202,8 +202,6 @@ class Post < ActiveRecord::Base
   
   #optimize_word_search
   def create_words
-    #post_words.delete_all if created_at.to_i != updated_at.to_i
-    
     text = body.gsub(WORD_REGEX_NOT, ' ').downcase
     filenames = post_files.map(&:filename).join(' ')
     
@@ -212,7 +210,7 @@ class Post < ActiveRecord::Base
     
     if MyF.pg?
       inserts = []
-      words.each { |word| inserts.push(self.class.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
+      words.each { |word| inserts.push(Post.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
       sql = "INSERT INTO \"post_words\" (\"post_id\", \"word\") VALUES #{inserts.join(', ')}"
       #transaction {  }
       connection.execute(sql)
@@ -220,6 +218,7 @@ class Post < ActiveRecord::Base
     else
       words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
     end
+    true
   end
 
 

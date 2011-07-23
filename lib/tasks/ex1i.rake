@@ -1,3 +1,7 @@
+task :postwords => :environment do
+  PostWord.delete_all
+  Post.all.map &:create_words
+end
 namespace :ex1i do
 
   desc "brings users from executter.com ex0"
