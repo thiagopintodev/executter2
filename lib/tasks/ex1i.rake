@@ -91,71 +91,72 @@ namespace :ex1i do
   end
 
   desc "brings user posts from executter.com ex0"
-  task :posts => :environment do
-    29.times do |i|
-      j=i+1
-      puts url = "http://linode.oficina7.com/ex1/all_posts/#{j}.json"
-      content = open(url).read
-      posts = JSON.load(content)
-      break if posts.empty?
-      
-      posts.each do |post|
-        p = post["post"]
-        u = User.findu(p["user_username"])
-        next unless u
+  task :posts, :page, :needs => :environment do |t, args|
+    page = args[:page]
+    
+    j=page
+    puts url = "http://linode.oficina7.com/ex1/all_posts/#{j}.json"
+    content = open(url).read
+    posts = JSON.load(content)
+    break if posts.empty?
+    
+    posts.each do |post|
+      p = post["post"]
+      u = User.findu(p["user_username"])
+      next unless u
 
-        p1 = u.posts.new  :remote_ip  => p["remote_ip"],
-                          :body       => p["body"],
-                          :created_at => p["created_at"],
-                          :files_categories => Post::CATEGORY_STATUS
-                          
-        p1.save
+      p1 = u.posts.new  :remote_ip  => p["remote_ip"],
+                        :body       => p["body"],
+                        :created_at => p["created_at"],
+                        :files_categories => Post::CATEGORY_STATUS
+                        
+      p1.save
+      #puts "post #{p1.id} :)"
+      unless p["url"]
         #puts "post #{p1.id} :)"
-        unless p["url"]
-          #puts "post #{p1.id} :)"
-        else
-          begin
+      else
+        begin
+        
+          filename = p["filename"]
+          url = URI.escape(p["url"])
           
-            filename = p["filename"]
-            url = URI.escape(p["url"])
-            
-            files_extensions = filename.split('.').last
-            
-            file = open(url)
-            #
-            pf=nil
-            if ["jpg", 'gif','png','bmp'].include? files_extensions
-              pf = p1.post_files.new( :image => file,
-                                      :category=>Post::CATEGORY_IMAGE,
-                                      :extension=>files_extensions,
-                                      :filename=>filename)
-              #puts "post #{p1.id}:#{pf.save} image #{u.username_at}"
-              pf.save
-            elsif ["mp3"].include? files_extensions
-              pf = p1.post_files.new( :audio => file,
-                                      :category=>Post::CATEGORY_AUDIO,
-                                      :extension=>files_extensions,
-                                      :filename=>filename)
-              #puts "post #{p1.id}:#{pf.save} audio #{u.username_at}"
-              pf.save
-            else
-              pf = p1.post_files.new( :other => file,
-                                      :category=>Post::CATEGORY_OTHER,
-                                      :extension=>files_extensions,
-                                      :filename=>filename)
-              #puts "post #{p1.id}:#{pf.save} other #{u.username_at} #{url}"
-              pf.save
-            end
-            p1.update_attribute :files_categories, pf.category
-            #
-          rescue NoMethodError => e
-            puts "post #{p1.id} no method"
-          rescue => e
-            puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
+          files_extensions = filename.split('.').last
+          
+          file = open(url)
+          #
+          pf=nil
+          if ["jpg", 'gif','png','bmp'].include? files_extensions
+            pf = p1.post_files.new( :image => file,
+                                    :category=>Post::CATEGORY_IMAGE,
+                                    :extension=>files_extensions,
+                                    :filename=>filename)
+            #puts "post #{p1.id}:#{pf.save} image #{u.username_at}"
+            pf.save
+          elsif ["mp3"].include? files_extensions
+            pf = p1.post_files.new( :audio => file,
+                                    :category=>Post::CATEGORY_AUDIO,
+                                    :extension=>files_extensions,
+                                    :filename=>filename)
+            #puts "post #{p1.id}:#{pf.save} audio #{u.username_at}"
+            pf.save
+          else
+            pf = p1.post_files.new( :other => file,
+                                    :category=>Post::CATEGORY_OTHER,
+                                    :extension=>files_extensions,
+                                    :filename=>filename)
+            #puts "post #{p1.id}:#{pf.save} other #{u.username_at} #{url}"
+            pf.save
           end
+          p1.update_attribute :files_categories, pf.category
+          #
+        rescue NoMethodError => e
+          puts "post #{p1.id} no method"
+        rescue => e
+          puts "post #{p1.id}, file: #{e.class.name} #{e} -- #{url}"
         end
       end
     end
+      
     puts 'done'
     Post.all.map &:create_words
   end
