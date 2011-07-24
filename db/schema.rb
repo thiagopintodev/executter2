@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110719190804) do
+ActiveRecord::Schema.define(:version => 20110724033853) do
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20110719190804) do
     t.integer  "post_files_count",        :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "generated_words",         :default => false
   end
 
   add_index "posts", ["post_id"], :name => "index_posts_on_post_id"

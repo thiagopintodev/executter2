@@ -1,5 +1,5 @@
 task :postwords, :i, :needs => :environment do |t, args|
-  Post.limit(10000).offset(args[:i]).map &:create_words
+  Post.where(:generated_words=>false).limit(10000).offset(args[:i]).map &:create_words
 end
 task :postnews, :i, :needs => :environment do |t, args|
   Post.where(:generated_notifications=>false).limit(10000).offset(args[:i]).each &:assign_notifications

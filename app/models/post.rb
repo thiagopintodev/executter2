@@ -219,6 +219,7 @@ class Post < ActiveRecord::Base
 =end
       words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
     #end
+    update_attribute :generated_words, true
     true
   end
 
