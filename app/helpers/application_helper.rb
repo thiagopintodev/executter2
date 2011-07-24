@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def bell_timeout
-    Rails.env.production? ? 5000 : 196000
+    Rails.env.production? ? 500000 : 196000
   end
 
   def background_image(user)

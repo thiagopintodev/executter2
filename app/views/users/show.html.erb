@@ -24,7 +24,7 @@
     
     <p>
       <%= content_tag :span, '', :class=>'icon-color profile-birth-date' %>
-      <%= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(Date.today, :format=>:long)) %>
+      <%= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(@user.born_at, :format=>:long)) %>
       
       <% if false %>
       <%= content_tag :span, '', :class=>'icon-color profile-birth-place' %>

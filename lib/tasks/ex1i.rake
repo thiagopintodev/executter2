@@ -1,6 +1,8 @@
-task :postwords => :environment do
-  PostWord.delete_all
-  Post.all.map &:create_words
+task :postwords, :i, :needs => :environment do |t, args|
+  Post.limit(10000).offset(args[:i]).map &:create_words
+end
+task :postnews, :i, :needs => :environment do |t, args|
+  Post.where(:generated_notifications=>false).limit(1000).offset(args[:i]).each &:assign_notifications
 end
 namespace :ex1i do
 

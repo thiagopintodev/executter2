@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       @pfo = @post.post_files.create(:other => params[:other], :category=>c, :extension=>e, :filename=>f) if params[:other]
       @post.save #|| puts(@post.errors)
     end
-    @post.create_words
+    #@post.create_words
     current_user.recount_posts
 =begin
     @post.has_image  = !!params[:image]
@@ -105,9 +105,9 @@ class PostsController < ApplicationController
 
   def generate_notifications
     #giving a little while to generate notifications helps because some of them will be deleted during this while
-    Post.where(:generated_notifications=>false)
-        .limit(10)
-        .each &:assign_notifications
+    #Post.where(:generated_notifications=>false)
+    #    .limit(10)
+    #    .each &:assign_notifications
     #Like.where(:generated_notifications=>false)
     #    .limit(10)
     #    .each &:assign_notifications
