@@ -1,8 +1,12 @@
 task :postwords, :i, :needs => :environment do |t, args|
-  Post.where(:generated_words=>false).limit(10000).offset(args[:i]).map &:create_words
+  10000.times do
+    Post.where(:generated_words=>false).limit(10).offset(args[:i]).map &:create_words
+  end
 end
 task :postnews, :i, :needs => :environment do |t, args|
-  Post.where(:generated_notifications=>false).limit(10000).offset(args[:i]).each &:assign_notifications
+  10000.times do
+    Post.where(:generated_notifications=>false).limit(10).offset(args[:i]).each &:assign_notifications
+  end
 end
 namespace :ex1i do
 

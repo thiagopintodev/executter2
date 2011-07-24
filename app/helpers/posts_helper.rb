@@ -16,7 +16,10 @@ module PostsHelper
     keys = []
     string.split(/\s/).collect do |w|
       next unless w.index('youtube')
-      keys << w[w.index("v=")+2..-1]
+      next unless a = w.index('v=')
+      b = w.index('&') || 0
+      i,j = a+2, b-1
+      keys << w[i..j]
     end
     keys
   end

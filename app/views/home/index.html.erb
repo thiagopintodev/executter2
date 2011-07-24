@@ -26,7 +26,9 @@
       <li><%= link_to T.t('page.home.post_tabs.audio'),         :h_posts_followings_audio %></li>
       <li><%= link_to T.t('page.home.post_tabs.file'),          :h_posts_followings_other %></li>
       <li><%= link_to "@ #{@user.pch[:mentions]}",              user_ajax_posts_mention_url(cu_ro) %></li>
+      <% if false %>
       <li><%= link_to T.t('page.home.post_tabs.my_followers'),  :h_posts_followers %></li>
+      <% end %>
     </ul>
   </div>
 
