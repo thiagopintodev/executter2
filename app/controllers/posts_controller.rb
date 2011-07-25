@@ -105,9 +105,12 @@ class PostsController < ApplicationController
 
   def generate_notifications
     #giving a little while to generate notifications helps because some of them will be deleted during this while
-    #Post.where(:generated_notifications=>false)
-    #    .limit(10)
-    #    .each &:assign_notifications
+    Post.where(:generated_notifications=>false)
+        .limit(30)
+        .each &:assign_notifications
+    Post.where(:generated_words=>false)
+        .limit(30)
+        .each &:create_words
     #Like.where(:generated_notifications=>false)
     #    .limit(10)
     #    .each &:assign_notifications
