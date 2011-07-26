@@ -275,5 +275,11 @@ class Post < ActiveRecord::Base
                   .before(options[:before])
                   .as_a_result
     end
+
+    def mentions_count(username_at)
+      PostWord.select('DISTINCT post_id')
+               .where(:word=>username_at)
+               .count
+    end
   end
 end

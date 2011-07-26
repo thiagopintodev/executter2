@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110724033853) do
+ActiveRecord::Schema.define(:version => 20110726014246) do
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20110724033853) do
     t.string  "word"
   end
 
+  add_index "post_words", ["post_id", "word"], :name => "index_post_words_on_post_id_and_word"
   add_index "post_words", ["post_id"], :name => "index_post_words_on_post_id"
   add_index "post_words", ["word"], :name => "index_post_words_on_word"
 

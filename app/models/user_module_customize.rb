@@ -67,7 +67,7 @@ module UserModuleCustomize
           :images   => posts.only_images.count,
           :audios   => posts.only_audios.count,
           :others   => posts.only_others.count,
-          :mentions => Post.from_search(u_).count
+          :mentions => Post.mentions_count(u_)
         }
     update_attribute :posts_count_string, h.collect { |k,v| "#{k}:#{v}" }.join(',')
     @pch = nil
