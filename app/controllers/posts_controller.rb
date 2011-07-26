@@ -97,7 +97,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    @post.destroy if @post.user_id == cu_ro.id
     render :nothing=>true
   end
 

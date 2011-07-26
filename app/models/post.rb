@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
     self.body = self.body[0..195]
   end
   before_destroy do
+    PUN.delete_all(:post_id=>self.id)
     PostWord.delete_all(:post_id=>self.id)
   end
 
