@@ -105,9 +105,9 @@ class ApplicationController < ActionController::Base
       users_id += comments.collect(&:user_id)
     end
     
-    #@posts.each do |post|
-    #  users_id << post.post.user_id if post.is_repost?
-    #end
+    @posts.each do |post|
+      users_id << post.post.user_id if post.post?
+    end
     
     users = User.select([:id, :username, :first_name, :last_name, :user_photo_id])#, :full_name, :photo_id
                 .where(:id=>users_id.uniq)
