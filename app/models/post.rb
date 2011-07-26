@@ -263,23 +263,24 @@ class Post < ActiveRecord::Base
     def from_search(text, options={})
       #TODO: options[:post_type]
       #TODO: options[:post_type_detail] jpg|gif|pdf|doc|ppt simplify table, string column instead of booleans, booleans are good for multiple file cases
-      return nil unless text
+      return [] unless text
       words = text.downcase.split(' ')
       
       post_ids = PostWord.select('DISTINCT post_id')
                          .where(:word=>words)
                          .limit(DEFAULT_LIMIT)
+                         .order("post_id DESC")
                          .collect(&:post_id)
 
-      posts = Post.where(:id=>post_ids)
-                  .before(options[:before])
-                  .as_a_result
+      Post.where(:id=>post_ids)
+          .before(options[:before])
+          .order("post_id DESC")
     end
 
     def mentions_count(username_at)
       PostWord.select('DISTINCT post_id')
-               .where(:word=>username_at.downcase)
-               .count
+              .where(:word=>username_at.downcase)
+              .count
     end
   end
 end
