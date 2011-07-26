@@ -278,7 +278,7 @@ class Post < ActiveRecord::Base
 
     def mentions_count(username_at)
       PostWord.select('DISTINCT post_id')
-               .where(:word=>username_at)
+               .where(:word=>username_at.downcase)
                .count
     end
   end
