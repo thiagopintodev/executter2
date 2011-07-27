@@ -64,7 +64,7 @@ class Post < ActiveRecord::Base
   
 
   #CONSTANTS
-  DEFAULT_LIMIT = 25
+  DEFAULT_LIMIT = 10
   DEFAULT_COMMENT_LIMIT = 3
   #WORD_REGEX_NOT = /[^\w@#$]/
   WORD_REGEX_NOT = /[^\w@]/
@@ -272,13 +272,13 @@ class Post < ActiveRecord::Base
       
       post_ids = PostWord.select('DISTINCT post_id')
                          .where(:word=>words)
+                         .before(options[:before])
+                         .after(options[:after])
                          .limit(DEFAULT_LIMIT)
-                         .order("post_id DESC")
                          .collect(&:post_id)
 
       Post.where(:id=>post_ids)
-          .before(options[:before])
-          .order("post_id DESC")
+          .order("id DESC")
     end
 
     def mentions_count(username_at)
