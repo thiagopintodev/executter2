@@ -411,7 +411,7 @@ body.c-home.a-index .body .content {
   #home-form-tabs .ui-button { float:right;margin-right:0;font-weight:bold;color:#666;font-size:15px; }
 
   #home-post-tabs  { margin-top:50px;padding:0;border:none; }
-  #home-post-tabs .ui-tabs-panel { padding:0;border-top: #ccc solid 1px; }
+  #home-post-tabs .ui-tabs-panel { padding:0;border-top: #ccc solid 1px;border-radius:0; }/*css3*/
 }
 
 body.c-users.a-show .body .content {
@@ -452,6 +452,7 @@ body.c-site.a-search a.more,
 body.c-users.a-show a.more { margin: 20px; }
 */
 
+body.c-home.a-index a.more,
 body.c-site.a-search a.more { margin: 20px; }
 
 
@@ -557,7 +558,8 @@ body.c-posts.a-show .post { padding:20px; }
 body.c-search .post,
 body.c-users.a-show .post { border-top:#ccc solid 1px;padding:20px 0; }
 
-body.c-home.a-index .post { border-bottom:#ccc solid 1px;padding:20px; }
+body.c-home.a-index .post { border-top:#ccc solid 1px;padding:20px; }
+body.c-home.a-index .post:first-child { border-top:none; }/*css3*/
 
 
 .post {

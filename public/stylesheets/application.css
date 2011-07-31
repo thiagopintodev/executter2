@@ -504,49 +504,52 @@ body.not-logged-in .body {
       .body .sidebar ul.table li a span {
         font-size: 10px; }
 
-body.c-home.a-index .body .content #home-form-tabs {
-  border: none !important; }
-body.c-home.a-index .body .content #home-form-tabs ul li {
-  border: none;
-  background: none;
-  font-weight: bold; }
-body.c-home.a-index .body .content #home-form-tabs ul li a {
-  color: #ff9900; }
-body.c-home.a-index .body .content #home-form-tabs ul li.ui-tabs-selected a {
-  color: darkblue; }
-body.c-home.a-index .body .content #home-form-tabs ul li.disabled {
-  color: #999999 !important;
-  cursor: text;
-  padding: 6px 13px 6px 0; }
-body.c-home.a-index .body .content #home-form-tabs ul li a {
-  padding-left: 0; }
-body.c-home.a-index .body .content #home-form-tabs ul li span {
-  float: left;
-  margin-right: 5px; }
-body.c-home.a-index .body .content #home-form-tabs .ui-tabs-panel {
-  padding: 0;
-  margin-top: 10px; }
-body.c-home.a-index .body .content #home-form-tabs .field {
-  width: 550px; }
-body.c-home.a-index .body .content #home-form-tabs textarea {
-  width: 100%; }
-body.c-home.a-index .body .content #home-form-tabs .chars {
-  font-size: 24px;
-  color: #ccc;
-  margin-top: 5px; }
-body.c-home.a-index .body .content #home-form-tabs .ui-button {
-  float: right;
-  margin-right: 0;
-  font-weight: bold;
-  color: #666;
-  font-size: 15px; }
-body.c-home.a-index .body .content #home-post-tabs {
-  margin-top: 50px;
-  padding: 0;
-  border: none; }
-body.c-home.a-index .body .content #home-post-tabs .ui-tabs-panel {
-  padding: 0;
-  border-top: #ccc solid 1px; }
+body.c-home.a-index .body .content {
+  /*css3*/ }
+  body.c-home.a-index .body .content #home-form-tabs {
+    border: none !important; }
+  body.c-home.a-index .body .content #home-form-tabs ul li {
+    border: none;
+    background: none;
+    font-weight: bold; }
+  body.c-home.a-index .body .content #home-form-tabs ul li a {
+    color: #ff9900; }
+  body.c-home.a-index .body .content #home-form-tabs ul li.ui-tabs-selected a {
+    color: darkblue; }
+  body.c-home.a-index .body .content #home-form-tabs ul li.disabled {
+    color: #999999 !important;
+    cursor: text;
+    padding: 6px 13px 6px 0; }
+  body.c-home.a-index .body .content #home-form-tabs ul li a {
+    padding-left: 0; }
+  body.c-home.a-index .body .content #home-form-tabs ul li span {
+    float: left;
+    margin-right: 5px; }
+  body.c-home.a-index .body .content #home-form-tabs .ui-tabs-panel {
+    padding: 0;
+    margin-top: 10px; }
+  body.c-home.a-index .body .content #home-form-tabs .field {
+    width: 550px; }
+  body.c-home.a-index .body .content #home-form-tabs textarea {
+    width: 100%; }
+  body.c-home.a-index .body .content #home-form-tabs .chars {
+    font-size: 24px;
+    color: #ccc;
+    margin-top: 5px; }
+  body.c-home.a-index .body .content #home-form-tabs .ui-button {
+    float: right;
+    margin-right: 0;
+    font-weight: bold;
+    color: #666;
+    font-size: 15px; }
+  body.c-home.a-index .body .content #home-post-tabs {
+    margin-top: 50px;
+    padding: 0;
+    border: none; }
+  body.c-home.a-index .body .content #home-post-tabs .ui-tabs-panel {
+    padding: 0;
+    border-top: #ccc solid 1px;
+    border-radius: 0; }
 
 body.c-users.a-show .body .content .card img#photo {
   float: left;
@@ -590,6 +593,7 @@ body.c-users.a-show .body .content .card .about {
 body.c-site.a-search a.more,
 body.c-users.a-show a.more { margin: 20px; }
 */
+body.c-home.a-index a.more,
 body.c-site.a-search a.more {
   margin: 20px; }
 
@@ -692,9 +696,13 @@ body.c-users.a-show .post {
   padding: 20px 0; }
 
 body.c-home.a-index .post {
-  border-bottom: #ccc solid 1px;
+  border-top: #ccc solid 1px;
   padding: 20px; }
 
+body.c-home.a-index .post:first-child {
+  border-top: none; }
+
+/*css3*/
 .post {
   font-size: 15px; }
   .post a {
