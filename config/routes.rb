@@ -132,6 +132,8 @@ Ex2::Application.routes.draw do
     get :ajax_relations_follower,   :filter => :follower
     get :ajax_relations_friend,     :filter => :friend
     
+    get :ajax_relations_sidebar_friend,     :filter => :friend
+    
     get :likes
     get :ajax_relate_panel
     put :ajax_relate

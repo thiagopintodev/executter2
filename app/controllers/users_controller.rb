@@ -85,6 +85,11 @@ class UsersController < ApplicationController
     render 'user', :layout=>false
   end
 
+  def ajax_relations_sidebar_friend
+    @users = @user.friends_users.order('users.updated_at').limit(25)
+    render 'user_sidebar', :layout=>false
+  end
+
 
 
   

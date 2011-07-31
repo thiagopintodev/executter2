@@ -6,16 +6,19 @@
 
 <% end %>
   <div class="in">
+
   
+<% if false %>
     <div class="title no-link-decoration">
       <span class="icon-color action-repo"></span>
       <%= link_to T.t('page.user.sidebar.email_verified').capitalize, profile_path(@user.username) %>
       <div class="clear">
       </div>
     </div>
+<% end %>
     
     <%= content_tag :p,
-      raw("#{content_tag(:strong, T.t('page.user.sidebar.user').capitalize)} #{@user.username}") %>
+      raw("#{content_tag(:strong, T.t('page.user.sidebar.user').capitalize)} #{link_to_username_mention @user.username}") %>
     <%= content_tag :p,
       raw("#{content_tag(:strong, T.t('page.user.sidebar.bio').capitalize)} #{@user.bio}") %>
     <%= content_tag :p,
@@ -70,14 +73,12 @@
     <div class="clear line">
     </div>
   
-    <%= link_to "Novos Usuarios", '/', :class=>"list-title strong" %>
-    
-    
-    <div  id="new_users"
+    <%= link_to "Amigos de @#{@user.username}", '/', :class=>"list-title strong" %>
+    <div  id="sidebar_user_list"
           class="users"
           data-ajaxload-event="load"
-          data-ajaxload-url="/u"
-          data-ajaxload-target="#new_users"
+          data-ajaxload-url="<%= user_ajax_relations_sidebar_friend_url(@user) %>"
+          data-ajaxload-target="#sidebar_user_list"
           >
     </div>
     

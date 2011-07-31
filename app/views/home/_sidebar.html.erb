@@ -51,13 +51,13 @@
     <div class="clear line">
     </div>
     
-    <%= link_to "Novos Usuarios", '/', :class=>"list-title strong" %>
-    
-    <div  id="new_users"
+
+    <%= link_to "Meus Amigos", '/', :class=>"list-title strong" %>
+    <div  id="sidebar_user_list"
           class="users"
           data-ajaxload-event="load"
-          data-ajaxload-url="/u"
-          data-ajaxload-target="#new_users"
+          data-ajaxload-url="<%= user_ajax_relations_sidebar_friend_url(cu_ro) %>"
+          data-ajaxload-target="#sidebar_user_list"
           >
     </div>
     
