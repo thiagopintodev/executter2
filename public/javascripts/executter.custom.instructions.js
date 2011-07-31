@@ -15,6 +15,7 @@ function mention(username) {
   $('#home-form-tabs textarea:visible').append(username+' ').focus();
 }
 function registerContextMenu() {
+/*
   var list = $("a.user[data-menucontext!=1]");
   if (list.length > 0) {
     menu = new ContextMenu();
@@ -33,8 +34,8 @@ function registerContextMenu() {
       $(this).attr('data-menucontext',1);
     });
   }
+*/
 }
-
 $(function() {
 
   $title1 = $("head title").html();
@@ -53,17 +54,15 @@ $(function() {
 
   make_button();
   functions.application.css2.fix();
-  registerContextMenu();
+  //registerContextMenu();
 
-/*
-  $('a.mention, a.username, a.user').live('click', function () {
+  $('a.username-mention').live('click', function () {
     if (CONTROLLER=='home')
       mention($(this).html());
     else
       window.location='/?mention='+$(this).html();
     return false;
   });
-*/
   
 
   $(".tabs").tabs().find("*").removeClass("ui-widget-header ui-corner-all");

@@ -4,7 +4,7 @@
   <title>Executter</title>
   <%= csrf_meta_tag %>
   <link rel="shortcut icon" href="/favicon.ico" />
-
+<%#'ContextMenu', %>
 <%= stylesheet_link_tag 'smoothness/jquery-ui',
                         'ContextMenu', 'colorbox', 'token-input',
                         'application' %>
@@ -15,7 +15,6 @@
                             'jquery.tokeninput',
                             'jquery.form',
                             'jquery.colorbox-min',
-                            'ContextMenu',
                             'executter.custom.functions',
                             'executter.custom.instructions' %>
 
@@ -30,6 +29,9 @@
       }
   </style>
   <% end %>
+  <style>
+  a.username-mention { color:#999 !important; }
+  </style>
   
 </head>
 <body <%= page_css_ref %>>

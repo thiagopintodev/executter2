@@ -20,6 +20,7 @@ functions.application.search.append_behaviour = function() {
   });
 
 }
+/*
 functions.application.cmenu = {}
 functions.application.cmenu.mention = function(e) {
   var username = $(e.target).html();
@@ -40,7 +41,7 @@ functions.application.cmenu.redirect_new = function(e) {
   $(e.target).click();
   //$("<a href='/"+username+"' target='_blank'></a>").click();
 }
-
+*/
 functions.application.css2 = {}
 functions.application.css2.fix = function() {
 

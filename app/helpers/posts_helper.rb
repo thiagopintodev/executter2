@@ -32,9 +32,15 @@ module PostsHelper
     youtube_links( youtube_keys(body) )
   end
 
-  def link_to_username(username)
-    random_id="mention-user-#{rand(99999999)}"
-    link_to("@#{username}", "/#{username}", :class=>:user, :id=>random_id)
+  def link_to_username(username, mention_helper=true)
+    #random_id="mention-user-#{rand(99999999)}"
+    #link_to("@#{username}", "/#{username}", :class=>:user, :id=>random_id)
+    options = mention_helper ? {:class=>:username} : {:class=>'username-mention'}
+    link_to "@#{username}", "/#{username}", options
+  end
+
+  def link_to_username_mention(username)
+    link_to "@#{username}", "/#{username}", {:class=>'username-mention'}
   end
   
 =begin
