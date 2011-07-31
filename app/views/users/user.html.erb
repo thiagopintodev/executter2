@@ -7,11 +7,11 @@
   <div class="post-right">
     <div class="who">
       <%= link_to user.fullname, profile_path(user.username), :class=>'fullname' %>
-      <%= link_to user.username_at, profile_path(user.username), :class=>'mention' %>
+      <%= link_to_username_mention user.username %>
     </div>
     <div class="text">
       <%= content_tag :span, '', :class=>'icon-color profile-birth-date' %>
-      <%= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(Date.today, :format=>:long)) %>
+      <%#= content_tag :span, T.t('page.user.show.profile.birth_date', :date => l(user.born_at, :format=>:long)) %>
     </div>
 
     <% if false %>
