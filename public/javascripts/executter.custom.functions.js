@@ -264,6 +264,10 @@ functions.home.ajax.append_behaviour = function() {
     $.get('/p/generate_notifications');
   });
 
+  $("#home-post-tabs").live('tabsselect tabscreate', function(event, ui) {
+      $(ui.panel).html("<center><img style='margin-top:100px;' src='/images/tab-panel-loading.gif' /></center>");
+  });
+
 }
 
 functions.profile = {}
