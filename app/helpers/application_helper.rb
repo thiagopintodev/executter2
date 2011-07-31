@@ -24,7 +24,7 @@ module ApplicationHelper
   end
   
   def bitly
-    raw "<script>bitly();</script>" if MyF.production?
+    raw "<img class='bitly' src='http://bit.ly/executter' style='display:none' />" if MyF.production?
   end
 
 end
