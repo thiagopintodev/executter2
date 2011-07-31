@@ -1,3 +1,4 @@
+<% cache [:users, @user.id, controller.action_name, :photo_ids, @users.map(&:user_photo_id).join('-')] do %>
 <% @users.each do |user| %>
 
 <div data-user-id="<%= user.id %>" class="post">
@@ -53,4 +54,5 @@
   </div>
 </div>
 
+<% end %>
 <% end %>

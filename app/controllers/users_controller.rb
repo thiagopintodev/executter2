@@ -73,15 +73,15 @@ class UsersController < ApplicationController
   end
 
   def ajax_relations_following
-    @users = @user.followings_users
+    @users = @user.followings_users.order('users.updated_at DESC').limit(25)
     render 'user', :layout=>false
   end
   def ajax_relations_follower
-    @users = @user.followers_users
+    @users = @user.followers_users.order('users.updated_at DESC').limit(25)
     render 'user', :layout=>false
   end
   def ajax_relations_friend
-    @users = @user.friends_users
+    @users = @user.friends_users.order('users.updated_at DESC').limit(25)
     render 'user', :layout=>false
   end
 
