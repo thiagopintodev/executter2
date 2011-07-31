@@ -55,6 +55,7 @@ $(function() {
   make_button();
   functions.application.css2.fix();
   //registerContextMenu();
+  make_colorbox();
 
   $('a.username-mention').live('click', function () {
     if (CONTROLLER=='home')
