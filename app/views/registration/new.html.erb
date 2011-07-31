@@ -86,7 +86,7 @@
           <%= f.label :sex %>:
         </td>
         <td class="field">
-          <%= f.select :sex, [0,1] %>
+          <%= f.select :sex, User.sex_options %>
           <%= content_tag :span, @user.errors[:sex].first, :class=>'my_error_msg'  if @user.errors[:sex].first %>
         </td>
       </tr>

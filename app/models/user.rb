@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   #used in EmailValidator
   EMAIL_REGEX = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   #NAME_REGEX = /^([0-9\^<,@\/\{\}\(\)\*\$%\?=>:\|;#]+)/ix
+
+
   
   include UserModuleAuthentication
   include UserModuleCustomize
@@ -99,6 +101,9 @@ class User < ActiveRecord::Base
     
     def is_username?(text)
       text[1..-1] == text[USERNAME_REGEX]
+    end
+    def sex_options
+      ['Masculino','Feminino']
     end
   end
     

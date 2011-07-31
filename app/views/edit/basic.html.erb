@@ -52,7 +52,7 @@ $("#city_born").tokenInput("/cities");
   <%= f.label :sex %>
 </div>
 <div class="field">
-  <%= f.select :sex, ['Menino', 'Menina'] %>
+  <%= f.select :sex, User.sex_options %>
 </div>
 <div class="clear line">
 </div>
