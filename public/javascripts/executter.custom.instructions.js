@@ -2,7 +2,7 @@ mention_username=false;
 
 function bitly() {
   $('.bitly').remove();
-  $('body').append("<img class='bitly' src='http://bit.ly/executter' style='display:none'/>");
+  $('body').append("<img class='bitly' src='http://bit.ly/executter' width='0' height='0' />");
 }
 
 function make_colorbox() {
