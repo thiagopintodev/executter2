@@ -70,7 +70,7 @@
           <%= link_to T.t('page.post.file.view_all').downcase, '/' %>
         </div>
       <% elsif pf.audio? || pf.other? %>
-        <% other = pf.audio || pf.other %>
+        <% puts other = pf.audio? ? pf.audio : pf.other %>
         <% other_size = pf.audio.try(:size) || pf.other.try(:size) %>
         <div class="file">
           <div style="float:left;width:32px;margin-right:5px;">
