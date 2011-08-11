@@ -100,7 +100,9 @@ functions.application.css2.fix = function() {
 functions.application.notification = {}
 functions.application.notification.append_behaviour = function() {
 
-  $('#bell').show();
+  if ($('#bell').size() == 0)
+    return;
+  
   $('#bell').live('click', function() {
     if ($(this).hasClass('selected')) {
       $('#bell').removeClass('selected');
@@ -112,7 +114,7 @@ functions.application.notification.append_behaviour = function() {
         $(this).attr('mark-all-as-read', '1');
         $(this).html('');
         $.post('/h/mark_notifications_as_read');
-        document.title="Executter"
+        document.title="Executter";
       }
     }
     return false;
@@ -122,6 +124,15 @@ functions.application.notification.append_behaviour = function() {
     $('#bellbox').hide();
   });
 
+  var notifications_delay = RAILS_ENV=='production' ? 15000 : 60000;
+
+  $('#bell').show();
+  $('#bellbox').load( get_notifications_url() );
+  setInterval(function() {
+    //
+    $('#bellbox').load( get_notifications_url() );
+    //
+  }, notifications_delay);
 }
 
 functions.text = {}

@@ -14,6 +14,9 @@ function make_button() {
 function mention(username) {
   $('#home-form-tabs textarea:visible').append(username+' ').focus();
 }
+function get_notifications_url() {
+  return '/h/ajax_notifications?time='+new Date().getTime();
+}
 function registerContextMenu() {
 /*
   var list = $("a.user[data-menucontext!=1]");
@@ -52,6 +55,10 @@ $(function() {
   functions.application.ajaxload.run();
   functions.application.search.append_behaviour();
 
+  setTimeout(function() {
+  functions.application.notification.append_behaviour();
+  }, 5000);
+  
   make_button();
   functions.application.css2.fix();
   //registerContextMenu();

@@ -105,6 +105,13 @@ class Post < ActiveRecord::Base
   scope :before, lambda { |id| id ? where("posts.id < ?", id) : scoped }
 
 
+  scope :select_cacheable_fields,   select(['id','body'])
+  scope :select_uncacheable_fields, select(['id', "user_id", "post_id", "placement", "on_timeline", "files_categories", "files_extensions", "generated_notifications", "remote_ip", "likes_count", "posts_count", "post_files_count", "created_at", "updated_at"])
+
+    
+
+
+
   scope :only_status, where(:files_categories=>CATEGORY_STATUS)
   scope :only_images, where(:files_categories=>CATEGORY_IMAGE)
   scope :only_audios, where(:files_categories=>CATEGORY_AUDIO)
@@ -229,12 +236,21 @@ class Post < ActiveRecord::Base
 
 
 
-
-  
   
   #SEARCH METHODS
   class << self
   
+    def kv_find_id(id)
+      return nil unless id
+      puts "****** POST '#{id}' from KEY VALUE STORE"
+      r = Rails.cache.read("post_kv/id/#{id}")
+      unless r
+        r = where(:id=>id).limit(1).select_cacheable_fields.first
+        Rails.cache.write("post_kv/id/#{r.id}", r) rescue true if r
+      end
+      r
+    end
+    
     def from_relation(user, source, options={})
       user = User.find(user) unless user.is_a? User
       
@@ -251,7 +267,7 @@ class Post < ActiveRecord::Base
                   .as_a_result
                   
       posts = posts.where(:files_categories=>options[:filter]) if options[:filter]
-      posts
+      posts.select_uncacheable_fields
     end
 
     def from_profile(user, options={})
@@ -261,7 +277,7 @@ class Post < ActiveRecord::Base
                         .before(options[:before])
                         .as_a_result
       posts = posts.where(:files_categories=>options[:filter]) if options[:filter]
-      posts
+      posts.select_uncacheable_fields
     end
     
     def from_search(text, options={})
@@ -279,6 +295,7 @@ class Post < ActiveRecord::Base
 
       Post.where(:id=>post_ids)
           .order("id DESC")
+          .select_uncacheable_fields
     end
 
     def mentions_count(username_at)
@@ -288,3 +305,26 @@ class Post < ActiveRecord::Base
     end
   end
 end
+=begin
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "placement"
+    t.boolean  "on_timeline",             :default => true
+    t.string   "files_categories",        :default => "status"
+    t.string   "files_extensions"
+    t.boolean  "generated_notifications", :default => false
+    t.string   "body"
+    t.string   "remote_ip",               :default => "-"
+    t.integer  "likes_count",             :default => 0
+    t.integer  "posts_count",             :default => 0
+    t.integer  "post_files_count",        :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "generated_words",         :default => false
+  end
+
+  add_index "posts", ["post_id"], :name => "index_posts_on_post_id"
+  add_index "posts", ["user_id", "on_timeline"], :name => "index_posts_on_user_id_and_on_timeline"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+=end

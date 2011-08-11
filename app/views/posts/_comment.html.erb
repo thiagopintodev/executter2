@@ -6,7 +6,7 @@
   <div class="comment-right">
     <div class="comment-text">
       <%= link_to user.fullname, profile_path(user.username), :class=>'comment-fullname' %>
-      <%= my_post_links comment.body %>
+      <%= my_post_links Post.kv_find_id(comment.id).body %>
     </div>
     <div class="comment-actions">
       <%= content_tag :span, l(comment.created_at, :format => :long), :class=>'comment-time' %>

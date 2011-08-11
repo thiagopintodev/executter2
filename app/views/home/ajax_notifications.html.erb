@@ -1,9 +1,7 @@
-<% cache [:ajax_notifications, @pun_list.map(&:id).join('-'), :unread_count, @pun_list_unread_count] do  %>
+<% cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-')] do  %>
 
 <script type="text/javascript">
-functions.application.notification.append_behaviour();
 <% if @pun_list_unread_count > 0 %>
-  //document.title="Executter (<%= @pun_list_unread_count %>)";
   $('#bell').html("<span><%= @pun_list_unread_count %></span>");
   $title2 = "NEW (<%= @pun_list_unread_count %>)";
 <% end%>

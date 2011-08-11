@@ -5,6 +5,7 @@ class MyF
       #heroku config:add MY_CUSTOM_ENV=staging --app 
       ENV['MY_CUSTOM_ENV'] || "my_custom_env_name"
     end
+    alias :env :my_env
     
     def production?
       my_env == 'production'

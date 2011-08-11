@@ -7,19 +7,10 @@
       
       <div id="bell-holder">
         <% if cu_ro %>
-        
           <a id="bell" class="icon-color" href="#">
           </a>
-          <div id="bellbox"
-            class="no-link-decoration"
-            data-ajaxload-event="load"
-            data-ajaxload-url="<%= h_ajax_notifications_path %>"
-            data-ajaxload-nocache="true"
-            data-ajaxload-target="#bellbox"
-            data-ajaxload-interval="<%= bell_timeout %>"
-            >
+          <div id="bellbox" class="no-link-decoration">
           </div>
-          
         <% end %>
       </div>
 

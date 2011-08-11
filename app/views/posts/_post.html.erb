@@ -13,7 +13,7 @@
       <%= link_to_username_mention(user.username) %>
     </div>
     <div class="text">
-      <%= my_post_links post.body %>
+      <%= my_post_links Post.kv_find_id(post.id).body %>
     </div>
 
     <% if post.post %>
@@ -27,7 +27,7 @@
         </div>
         <div style="float:left;width:440px;">
           <div class="repost-text">
-            <%= my_post_links post.post.body %>
+            <%= my_post_links Post.kv_find_id(post.post.id).body %>
           </div>
           <div>
             <%= link_to user.fullname, profile_path(user.username) %>
@@ -44,7 +44,7 @@
 <%#  YOUTUBE IS EQUAL TO POST FILES   %>
 
 
-<% youtube(original_post.body).each do |iframe| %>
+<% youtube(Post.kv_find_id(post.id).body).each do |iframe| %>
 
   <div class="line-files">
   </div>

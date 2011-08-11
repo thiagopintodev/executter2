@@ -61,6 +61,8 @@
 <script type="text/javascript">
   CONTROLLER = "<%= controller.controller_name %>";
   ACTION = "<%= controller.action_name %>";
+  RAILS_ENV = "<%= Rails.env %>";
+  MY_ENV = "<%= My.env %>";
   
   $(function() {
 	  <%= yield :jsload %>

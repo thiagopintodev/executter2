@@ -24,7 +24,7 @@ module ApplicationHelper
   end
   
   def bitly
-    raw "<img class='bitly' src='http://bit.ly/executter' style='display:none' />" if MyF.production?
+    raw "<img class='bitly' src='http://bit.ly/executter?#{Time.now.to_i}#{Random.rand}' style='display:none' />" if My.production?
   end
 
 end
