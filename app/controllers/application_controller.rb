@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     return @cu if @cu
     sus = session[:user_session]
     return nil unless sus && user = User.where(:id=>sus[:id]).first
-    return user if user.authentication_token == sus[:auth_token]
+    return  @cu = user if user.authentication_token == sus[:auth_token]
     nil
   end
   
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     return @cu if @cu
     sus = session[:user_session]
     return nil unless sus && user = User.kv_find(sus[:id])
-    return user if user.authentication_token == sus[:auth_token]
+    return @cu = user if user.authentication_token == sus[:auth_token]
     nil
   end
   
