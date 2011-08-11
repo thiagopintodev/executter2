@@ -218,8 +218,7 @@ class Post < ActiveRecord::Base
     
     words = text.split(' ')+filenames.split(/[\s.]/)
     words.uniq!
-=begin
-    if MyF.pg?
+    if My.pg?
       inserts = []
       words.each { |word| inserts.push(Post.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
       sql = "INSERT INTO \"post_words\" (\"post_id\", \"word\") VALUES #{inserts.join(', ')}"
@@ -227,9 +226,8 @@ class Post < ActiveRecord::Base
       connection.execute(sql)
       #INSERT INTO "post_words" ("post_id", "word") VALUES (3, 'aaaaaaaaaaaaaaa')
     else
-=end
       words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
-    #end
+    end
     update_attribute :generated_words, true
     true
   end
@@ -242,7 +240,7 @@ class Post < ActiveRecord::Base
   
     def kv_find_id(id)
       return nil unless id
-      puts "****** POST '#{id}' from KEY VALUE STORE"
+      #puts "****** POST '#{id}' from KEY VALUE STORE"
       r = Rails.cache.read("post_kv/id/#{id}")
       unless r
         r = where(:id=>id).limit(1).select_cacheable_fields.first
