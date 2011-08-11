@@ -91,8 +91,6 @@ module UserModuleCustomize
   def admin?
     false
   end
-  
-
 
   
 end

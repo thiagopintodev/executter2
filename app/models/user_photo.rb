@@ -33,7 +33,9 @@ class UserPhoto < ActiveRecord::Base
 	validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/gif', 'image/png', 'image/pjpeg', 'image/bmp']
 	validates_attachment_size :image, :less_than => 1.megabytes #unless :image
 	
-
+  after_save do
+    user.update_attribute :cached_photo_url, self.image.url
+  end
   
   
 end

@@ -112,6 +112,10 @@ class User < ActiveRecord::Base
 
   #EVENTS
 
+  before_create do
+    self.cached_photo_url = UserPhoto.new.image.url
+  end
+
   after_create do
     recount_relations
   end
@@ -120,7 +124,7 @@ class User < ActiveRecord::Base
   alias :u_ :username_at
   alias :fn_ :fullname
   def p_
-    photo.image.url(:thumb)
+    self.attributes['cached_photo_url'] || photo.image.url(:thumb)
   end
   
 end
