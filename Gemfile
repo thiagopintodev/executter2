@@ -3,9 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.6'
 
 
-group :development do
-  gem 'hirb'
-end
 group :development, :test do
   gem 'sqlite3'
 end
@@ -17,6 +14,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'rake', '0.8.7'
 gem 'pg'
+gem 'hirb'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
