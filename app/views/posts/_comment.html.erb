@@ -1,4 +1,4 @@
-<% user = @users_hash[comment.user_id] %>
+<% user = User.kv_find(comment.user_id) %>
 <div class="comment">
   <div class="comment-left">
     <%= my_image_tag user.p_, :dimensions=>32 %>
@@ -10,7 +10,7 @@
     </div>
     <div class="comment-actions">
       <%= content_tag :span, l(comment.created_at, :format => :long), :class=>'comment-time' %>
-      <% if current_user %>
+      <% if cu_ro %>
         <%= post_actions_link T.t('page.post.actions.like'),
                               post_like_path(comment),
                               'les',

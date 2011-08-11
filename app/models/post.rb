@@ -251,14 +251,12 @@ class Post < ActiveRecord::Base
     
     def from_relation(user, source, options={})
       user = User.find(user) unless user.is_a? User
+
+      user_ids = nil
+      user_ids = user.followers_user_ids   if source == :followers
+      user_ids = user.followings_user_ids  if source == :followings
+      user_ids = user.friends_user_ids     if source == :friends
       
-      source = user.followers_users   if source == :followers
-      source = user.followings_users  if source == :followings
-      source = user.friends_users     if source == :friends
-      user_ids = source.collect(&:id)
-      user_ids << user.id
-      
-                  #.where("is_comment = ? OR is_repost = ?", false, true)
       posts = Post.where(:user_id=>user_ids)
                   .where("on_timeline = ?", true)
                   .before(options[:before])

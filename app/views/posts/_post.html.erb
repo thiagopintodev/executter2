@@ -1,4 +1,4 @@
-<% user = @users_hash[post.user_id] %>
+<% user = User.kv_find(post.user_id) %>
 <% original_post = post.post || post %>
 
               <%#= raw "<span style='color:#fff;font-weight:bold;'>R</span>" if comment.repost? %>
@@ -17,7 +17,7 @@
     </div>
 
     <% if post.post %>
-      <% user = @users_hash[post.post.user_id] %>
+      <% user = User.kv_find(post.post.user_id) %>
       <div class="line-reposts">
       </div>
 
@@ -106,12 +106,12 @@
                             url_for(post),
                             'source-site',
                             :class=>'time', :'data-time'=>post.created_at.to_i %>
-      <% if current_user %>
+      <% if cu_ro %>
       <%= post_actions_link T.t('page.post.actions.like').capitalize,
                             post_like_path(post),
                             'action-like',
                             :remote=>true, :'data-method'=>:post, :class=>'like_it' %>
-                            <%# and !current_user.likes?(post.id) %>
+                            <%# and !cu_ro.likes?(post.id) %>
       <%= post_actions_link T.t('page.post.actions.repost').capitalize,
                             '#',
                             'action-repost',
@@ -126,7 +126,7 @@
                             :class=>'delete-post',
                             :remote=>true,
                             :confirm => T.t('page.post.actions.trash_confirm').capitalize,
-                            :method => :delete if post.user_id == current_user.id %>
+                            :method => :delete if post.user_id == cu_ro.id %>
       <% end %>
     </div>
     <% condition_1 = post.likes.size > 0 %>
@@ -187,7 +187,7 @@
       
       <div class="comment-state-during" style="display:none">
         <div class="comment-left">
-          <%= my_image_tag current_user.p_, :dimensions=>32 %>
+          <%= my_image_tag cu_ro.p_, :dimensions=>32 %>
         </div>
         <div class="comment-right">
           
@@ -208,7 +208,7 @@
       
       <div class="comment-state-after" style="display:none">
         <div class="comment-left">
-          <%= my_image_tag current_user.p_, :dimensions=>32 %>
+          <%= my_image_tag cu_ro.p_, :dimensions=>32 %>
         </div>
         <div class="comment-right">
           <div class="comment-text">

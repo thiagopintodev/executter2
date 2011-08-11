@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
   
   def posts_fill_hashes(posts)
     @posts = posts
-    users_id = @posts.collect(&:user_id)
+    #users_id = @posts.collect(&:user_id)
     
     #@comments_hash = {}
     #@posts.each do |post|
@@ -102,9 +102,10 @@ class ApplicationController < ActionController::Base
     @posts.each do |post|
       comments = post.repost? ? [post.post] : post.posts.limit(Post::DEFAULT_COMMENT_LIMIT).order("ID desc")
       @comments_hash[post.id] = comments.reverse
-      users_id += comments.collect(&:user_id)
+      #users_id += comments.collect(&:user_id)
     end
-    
+=begin
+obsolete since User KV
     @posts.each do |post|
       users_id << post.post.user_id if post.post
     end
@@ -114,6 +115,7 @@ class ApplicationController < ActionController::Base
                 .includes(:user_photo)
     @users_hash = {}
     users.each { |u| @users_hash[u.id] = u }
+=end
   end
 =begin
   def my_admin_only
