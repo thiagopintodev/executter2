@@ -46,10 +46,10 @@ class ApplicationController < ActionController::Base
   
   def current_user_read_only
     #return cu
-    return @cu if @cu
+    return @cu_ro if @cu_ro
     sus = session[:user_session]
     return nil unless sus && user = User.kv_find(sus[:id])
-    return @cu = user if user.authentication_token == sus[:auth_token]
+    return @cu_ro = user if user.authentication_token == sus[:auth_token]
     nil
   end
   
