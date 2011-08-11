@@ -69,7 +69,6 @@ class PostsController < ApplicationController
     @comments = post.try(:posts) || []
     @users_hash = {}
     if @comments.size > 0
-      @comments.reverse!
       users_id = @comments.map(&:user_id)
       users = User.select([:id, :username, :first_name, :last_name, :user_photo_id])
                   .where(:id=>users_id.uniq)
@@ -97,7 +96,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy if @post.user_id == cu_ro.id
+    @post.destroy if @post.user_id == cu_ro.id || @post.post.try(:user_id) == cu_ro.id
     render :nothing=>true
   end
 
