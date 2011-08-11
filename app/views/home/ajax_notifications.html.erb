@@ -10,9 +10,8 @@
 
 <% if @pun_list.size > 0 %>
 
-  <% users_from = ajax_notifications_users_from_hash %>
   <% @pun_list.each do |pun| %>
-    <% user_from = users_from[pun.user_id_from] %>
+    <% user_from = User.kv_find(pun.user_id_from) %>
     <% pun_path_to = pun.post_id ? post_path(pun.post_id) : profile_path(user_from.username) %>
     <div class="anchor" href="<%= pun_path_to %>">
       <%= image_tag user_from.p_, :width=>45, :height=>45 %>
