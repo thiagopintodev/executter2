@@ -256,6 +256,7 @@ class Post < ActiveRecord::Base
       user_ids = user.followers_user_ids   if source == :followers
       user_ids = user.followings_user_ids  if source == :followings
       user_ids = user.friends_user_ids     if source == :friends
+      user_ids << user.id
       
       posts = Post.where(:user_id=>user_ids)
                   .where("on_timeline = ?", true)
