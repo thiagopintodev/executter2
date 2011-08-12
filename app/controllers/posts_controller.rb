@@ -66,7 +66,7 @@ class PostsController < ApplicationController
   # GET /posts/1/ajax_comments
   def ajax_comments
     post = Post.find(params[:post_id])
-    @comments = post.try(:posts) || []
+    @comments = post.posts.size > 0 ? post.posts.order(:id) : []
     @users_hash = {}
     if @comments.size > 0
       users_id = @comments.map(&:user_id)
