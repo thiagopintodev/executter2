@@ -42,30 +42,30 @@ module UserModuleRelations
 
 
 
-  #segmented relations load
+  #segmented relations load, scoped
   def followers_users
-    User.find followers_user_ids
+    User.where :id => followers_user_ids
   end
-  #segmented relations load
+  #segmented relations load, scoped
   def followings_users
-    User.find followings_user_ids
+    User.where :id => followings_user_ids
   end
-  #segmented relations load
+  #segmented relations load, scoped
   def friends_users
-    User.find friends_user_ids
+    User.where :id => friends_user_ids
   end
 
 
   
-  #read-only
+  #read-only, not scoped
   def followers_users_ro
     User.kv_find followers_user_ids
   end
-  #read-only
+  #read-only, not scoped
   def followings_users_ro
     User.kv_find followings_user_ids
   end
-  #read-only
+  #read-only, not scoped
   def friends_users_ro
     User.kv_find friends_user_ids
   end
