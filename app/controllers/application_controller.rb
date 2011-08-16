@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
     {:before => params[:before], :filter=>params[:filter], :post_type=>params[:post_type]}
   end
   
-  def posts_fill_hashes(posts)
+  def posts_fill_hashes(posts, limit=3)
     @posts = posts
     #users_id = @posts.collect(&:user_id)
     
@@ -100,7 +100,7 @@ class ApplicationController < ActionController::Base
     
     @comments_hash = {}
     @posts.each do |post|
-      comments = post.repost? ? [post.post] : post.posts.limit(Post::DEFAULT_COMMENT_LIMIT).order("ID desc")
+      comments = post.repost? ? [post.post] : post.posts.limit(limit).order("ID desc")
       @comments_hash[post.id] = comments.reverse
       #users_id += comments.collect(&:user_id)
     end
