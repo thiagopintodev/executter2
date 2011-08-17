@@ -63,15 +63,15 @@
                             user_ajax_posts_status_url(@user),
                             'post-text' %>
     <%= user_post_tabs_item T.t('page.user.show.post_tabs.image'),
-                            @user.pch[:image],
+                            @user.pch[:images],
                             user_ajax_posts_image_url(@user),
                             'post-image' %>
     <%= user_post_tabs_item T.t('page.user.show.post_tabs.audio'),
-                            @user.pch[:audio],
+                            @user.pch[:audios],
                             user_ajax_posts_audio_url(@user),
                             'post-audio' %>
     <%= user_post_tabs_item T.t('page.user.show.post_tabs.file'),
-                            @user.pch[:other],
+                            @user.pch[:others],
                             user_ajax_posts_other_url(@user),
                             'post-file' %>
     <%= user_post_tabs_item @user.u_,
