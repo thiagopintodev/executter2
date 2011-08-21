@@ -369,10 +369,6 @@ body.not-logged-in .body {
     margin-left: 10px; }
 
 /*footer end*/
-.body .content a.more {
-  width: 560px;
-  text-indent: 0; }
-
 .body .sidebar .title {
   margin-bottom: 5px; }
   .body .sidebar .title span {
@@ -523,13 +519,15 @@ body.c-home.a-index .body .content {
     color: #666;
     font-size: 15px; }
   body.c-home.a-index .body .content #home-post-tabs {
-    margin-top: 50px;
     padding: 0;
     border: none; }
   body.c-home.a-index .body .content #home-post-tabs .ui-tabs-panel {
     padding: 0;
     border-top: #ccc solid 1px;
     border-radius: 0; }
+  body.c-home.a-index .body .content #home-news-holder {
+    margin: 10px 20px;
+    height: 40px; }
 
 body.c-users.a-show .body .content .card img#photo {
   float: left;
@@ -585,10 +583,14 @@ body.c-home.a-index .post:first-child {
   border-top: none; }
 
 /*css3*/
-body.c-home.a-index a.more {
+.body .content a.more {
+  width: 560px;
+  text-indent: 0; }
+
+body.c-home.a-index .content a.more {
   margin: 20px 0; }
 
-body.c-site.a-search a.more {
+body.c-site.a-search .content a.more {
   margin: 20px; }
 
 body.c-registration .new-user .panel {

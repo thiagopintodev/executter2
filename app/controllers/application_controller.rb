@@ -84,7 +84,9 @@ class ApplicationController < ActionController::Base
   end
   
   def get_post_options
-    {:before => params[:before], :filter=>params[:filter], :post_type=>params[:post_type]}
+    o = {:before => params[:before], :filter=>params[:filter], :post_type=>params[:post_type]}
+    o[:before] ||= cu_ro.last_read_post_id+1 if cu_ro #+1 so it includes current :)
+    o
   end
   
 =begin

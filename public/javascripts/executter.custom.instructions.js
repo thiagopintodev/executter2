@@ -17,6 +17,9 @@ function mention(username) {
 function get_notifications_url() {
   return '/h/ajax_notifications?time='+new Date().getTime();
 }
+function load_post_news_button() {
+  $("#home-news-holder").load('/h/ajax_news_button');
+}
 function registerContextMenu() {
 /*
   var list = $("a.user[data-menucontext!=1]");

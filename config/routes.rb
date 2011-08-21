@@ -80,6 +80,7 @@ Ex2::Application.routes.draw do
   get "s/posts/:post_type/:text" => "search#posts", :as => :search_posts
   get "z(/:text)" => "search#paginated"
   #get "l/:locale" => "site#locale", :as => :l
+  get "h/posts_followings_all_latest" => "home#posts_followings_all_latest"
   get "h/posts_followings_all"    => "home#posts_followings_all"
   get "h/posts_followings_status" => "home#posts_followings_status",  :filter => Post::CATEGORY_STATUS
   get "h/posts_followings_image"  => "home#posts_followings_image",   :filter => Post::CATEGORY_IMAGE
@@ -89,6 +90,7 @@ Ex2::Application.routes.draw do
   #get "h/posts_mention"           => "home#posts_mention"
   get 'h/forms'                   => "home#forms"
   get 'h/ajax_notifications'           => "home#ajax_notifications"
+  get 'h/ajax_news_button'        => "home#ajax_news_button"
   post 'h/invite'           => "home#invite"
   post 'h/mark_notifications_as_read'           => "home#mark_notifications_as_read"
   

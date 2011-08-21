@@ -248,6 +248,21 @@ class Post < ActiveRecord::Base
       end
       r
     end
+
+    def from_relation_count_unread(user, source)
+      user = User.find(user) unless user.is_a? User
+
+      user_ids = nil
+      user_ids = user.followers_user_ids   if source == :followers
+      user_ids = user.followings_user_ids  if source == :followings
+      user_ids = user.friends_user_ids     if source == :friends
+      user_ids << user.id
+      
+      posts = Post.where(:user_id=>user_ids)
+                  .where("on_timeline = ?", true)
+                  .after(user.last_read_post_id)
+      posts.count
+    end
     
     def from_relation(user, source, options={})
       user = User.find(user) unless user.is_a? User
@@ -261,6 +276,7 @@ class Post < ActiveRecord::Base
       posts = Post.where(:user_id=>user_ids)
                   .where("on_timeline = ?", true)
                   .before(options[:before])
+                  .after(options[:after])
                   .as_a_result
                   
       posts = posts.where(:files_categories=>options[:filter]) if options[:filter]

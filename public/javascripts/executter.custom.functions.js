@@ -1,3 +1,5 @@
+live_array = [];
+
 functions = {}
 
 functions.application = {}
@@ -236,6 +238,22 @@ functions.home.ajax.append_behaviour = function() {
 
   $("#home-form-tabs").tabs().show().find("*").removeClass("ui-widget-header ui-corner-all");
   $("#home-post-tabs").tabs().show().find("*").removeClass("ui-widget-header ui-corner-all");
+  
+  //after submit
+  $('form.new_topic').ajaxForm(function() {
+    $("#home-form-tabs-holder").load( $("#home-form-tabs-holder").data('ajaxload-url') );
+    functions.home.ajax.load_latest_posts_main_tab();
+    //$.get('/p/generate_notifications');
+  });
+
+  functions.home.ajax.append_behaviour_once();
+}
+functions.home.ajax.append_behaviour_once = function() {
+  if (live_array['functions.home.ajax.append_behaviour_once'])
+    return false;
+  live_array['functions.home.ajax.append_behaviour_once'] = true;
+
+
   $("#home-form-tabs").live('tabsselect', function(event, ui) {
     $("#home-form-tabs ul li a span").removeClass('selected');
     $(ui.tab).find('span').addClass('selected');
@@ -268,17 +286,30 @@ functions.home.ajax.append_behaviour = function() {
   $('form.new_topic').live('submit', function(){
     $("#home-form-tabs input[type='submit']").replaceWith("<img style='float:right' src='/images/ajax_new_post.gif'/>");
   });
-  //after submit
-  $('form.new_topic').ajaxForm(function() {
-    $("#home-form-tabs-holder").load( $("#home-form-tabs-holder").data('ajaxload-url') );
-    $("#home-post-tabs").tabs('load', $("#home-post-tabs").tabs('option', 'selected'));
-    $.get('/p/generate_notifications');
-  });
+
 
   $("#home-post-tabs").live('tabsselect tabscreate', function(event, ui) {
       $(ui.panel).html("<center><img style='margin-top:100px;' src='/images/tab-panel-loading.gif' /></center>");
   });
 
+  $("#home-news-holder a").live('click', function() {
+    functions.home.ajax.load_latest_posts_main_tab();    
+    return false;
+  });
+  
+  setTimeout(load_post_news_button,   5000);
+  setInterval(load_post_news_button, 45000);
+}
+functions.home.ajax.load_latest_posts_main_tab = function() {
+  setTimeout(function() {
+    //
+    $("#home-news-holder a").remove();
+    $("#home-post-tabs").tabs('select', 0);
+    $.get('/h/posts_followings_all_latest', function(data) {
+      $("#home-post-tabs .ui-tabs-panel:first").prepend(data);
+    });
+    //
+  }, 1);
 }
 
 functions.profile = {}

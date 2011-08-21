@@ -42,6 +42,12 @@ class HomeController < ApplicationController
     render :layout=>false
   end
 
+  def ajax_news_button
+    return render :nothing => true unless cu.last_read_post_id
+    @count = Post.from_relation_count_unread(cu, :followings)
+    render :layout=>false
+  end
+
   def mark_notifications_as_read
     PUN.update_all ["is_read = ?", true], ["user_id = ?", current_user.id]
     render :nothing=>true
@@ -49,8 +55,15 @@ class HomeController < ApplicationController
 
   # partial html via ajax
 
+  def posts_followings_all_latest
+    @posts = Post.from_relation(cu, :followings, {:after=>cu.last_read_post_id})
+    User.update(cu.id, :last_read_post_id => @posts.first.id) if @posts.first
+    #expires_cache many
+    render '/posts/index', :layout=>false
+  end
+  
   def posts_followings_all
-   @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_status

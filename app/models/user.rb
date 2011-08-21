@@ -22,8 +22,6 @@ class User < ActiveRecord::Base
   include UserModuleRelations
   include UserModuleKeyValueStore
   
-
-
   #VALIDATIONS
 
   validates :first_name,

@@ -10,7 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811172656) do
+ActiveRecord::Schema.define(:version => 20110821200055) do
+
+  create_table "cities", :force => true do |t|
+    t.integer  "city_base_id"
+    t.integer  "city_id"
+    t.string   "country"
+    t.string   "region_code"
+    t.string   "name"
+    t.string   "label"
+    t.string   "labels_comma"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "city_bases", :force => true do |t|
+    t.string   "country"
+    t.string   "name"
+    t.string   "label"
+    t.string   "region_code"
+    t.string   "region_name"
+    t.integer  "population"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -213,6 +238,7 @@ ActiveRecord::Schema.define(:version => 20110811172656) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_photo_url"
+    t.integer  "last_read_post_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
