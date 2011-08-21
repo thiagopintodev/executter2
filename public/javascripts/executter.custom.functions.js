@@ -20,6 +20,23 @@ functions.application.search.append_behaviour = function() {
   });
 
 }
+
+
+
+
+functions.registration = {}
+
+functions.registration.ajax = {}
+functions.registration.ajax.append_behaviour = function() {
+
+  $("#user_city").tokenInput("/c/base_search.json", {
+    crossDomain: false,
+    prePopulate: $("#user_city").data("pre"),
+    tokenLimit: 1
+  });
+  
+}
+
 /*
 functions.application.cmenu = {}
 functions.application.cmenu.mention = function(e) {

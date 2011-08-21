@@ -1,5 +1,13 @@
 Ex2::Application.routes.draw do
 
+  resources :cities
+
+  resources :cities, :path=>'c' do
+    collection do
+      get 'base_search'
+    end
+  end
+
   scope 'a' do
     resources :user_agents, :only=>:index
     get 'user_sessions' => "user_sessions#index", :as=>'xxx'

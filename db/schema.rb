@@ -10,7 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811172656) do
+ActiveRecord::Schema.define(:version => 20110820221735) do
+
+  create_table "cities", :force => true do |t|
+    t.integer  "city_base_id"
+    t.integer  "city_id"
+    t.string   "name"
+    t.string   "label"
+    t.string   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "city_bases", :force => true do |t|
+    t.string   "country"
+    t.string   "name"
+    t.string   "label"
+    t.string   "region"
+    t.string   "data"
+    t.integer  "population"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -85,6 +108,18 @@ ActiveRecord::Schema.define(:version => 20110811172656) do
   add_index "post_user_news", ["user_id", "is_read"], :name => "index_post_user_news_on_user_id_and_is_read"
   add_index "post_user_news", ["user_id"], :name => "index_post_user_news_on_user_id"
   add_index "post_user_news", ["user_id_from"], :name => "index_post_user_news_on_user_id_from"
+
+  create_table "post_user_notifications", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.integer  "user_id_from"
+    t.string   "reason_trigger"
+    t.string   "reason_why"
+    t.boolean  "is_read",        :default => false
+    t.boolean  "is_mailed",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "post_words", :id => false, :force => true do |t|
     t.integer "post_id"

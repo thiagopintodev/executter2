@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  country: MyString
+  name: MyString
+  label: MyString
+  region_code: MyString
+  region_name: MyString
+  population: 1
+  lat: 9.99
+  lng: 9.99
+
+two:
+  country: MyString
+  name: MyString
+  label: MyString
+  region_code: MyString
+  region_name: MyString
+  population: 1
+  lat: 9.99
+  lng: 9.99
