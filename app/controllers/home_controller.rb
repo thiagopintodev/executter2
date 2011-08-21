@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   end
 
   def mobile_index
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
   end
 
 
@@ -50,31 +50,31 @@ class HomeController < ApplicationController
   # partial html via ajax
 
   def posts_followings_all
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+   @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_status
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_image
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_audio
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_other
-    posts_fill_hashes( Post.from_relation(current_user, :followings, get_post_options) )
+    @posts = Post.from_relation(current_user, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followers
-    posts_fill_hashes( Post.from_relation(current_user, :followers, get_post_options) )
+    @posts = Post.from_relation(current_user, :followers, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_mention
-    posts_fill_hashes( Post.from_search(current_user.u_, get_post_options) )
+    @posts = Post.from_search(current_user.u_, get_post_options)
     render '/posts/index', :layout=>false
   end
 end

@@ -60,7 +60,6 @@ class PostsController < ApplicationController
   def show
     redirect_to :root unless @post = Post.find(params[:id])
     @user = @post.user
-    posts_fill_hashes( [@post], 50 )
   end
 
   # GET /posts/1/ajax_comments

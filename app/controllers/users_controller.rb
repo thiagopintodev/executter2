@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   #can't be cached
   def ajax_posts_mention
-    posts_fill_hashes( Post.from_search(@user.u_, get_post_options) )
+    @posts = Post.from_search(@user.u_, get_post_options)
     render('/posts/index', :layout=>false)
   end
 
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
   protected
 
   def post_fill_hashes_from_profile
-    posts_fill_hashes( Post.from_profile(@user, get_post_options) ) #unless fragment_exist? user_cache_key
+    @posts = Post.from_profile(@user, get_post_options) #unless fragment_exist? user_cache_key
     render('posts', :layout=>false)
   end
   

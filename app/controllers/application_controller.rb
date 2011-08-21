@@ -87,36 +87,6 @@ class ApplicationController < ActionController::Base
     {:before => params[:before], :filter=>params[:filter], :post_type=>params[:post_type]}
   end
   
-  def posts_fill_hashes(posts, limit=3)
-    @posts = posts
-    #users_id = @posts.collect(&:user_id)
-    
-    #@comments_hash = {}
-    #@posts.each do |post|
-    #  comments = post.is_repost? ? [post.post] : post.posts.limit(3).order("ID desc")
-    #  @comments_hash[post.id] = comments
-    #  users_id += comments.collect(&:user_id)
-    #end
-    
-    @comments_hash = {}
-    @posts.each do |post|
-      comments = post.repost? ? [post.post] : post.posts.limit(limit).order("ID desc")
-      @comments_hash[post.id] = comments.reverse
-      #users_id += comments.collect(&:user_id)
-    end
-=begin
-obsolete since User KV
-    @posts.each do |post|
-      users_id << post.post.user_id if post.post
-    end
-    
-    users = User.select([:id, :username, :first_name, :last_name, :user_photo_id])#, :full_name, :photo_id
-                .where(:id=>users_id.uniq)
-                .includes(:user_photo)
-    @users_hash = {}
-    users.each { |u| @users_hash[u.id] = u }
-=end
-  end
 =begin
   def my_admin_only
   #, :notice=>"ONLY ADMIN IN"

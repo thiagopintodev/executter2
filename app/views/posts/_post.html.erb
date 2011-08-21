@@ -172,9 +172,11 @@
 
 
     <% if post.posts.size > 0 %>
+    <% cache [:post, post.id, post.updated_at, :comments_count, post.posts.size] do %>
       <div id="post-<%= post.id %>-comments" class="comments">
-        <%= render :partial => "/posts/comment", :collection => @comments_hash[post.id] %>
+        <%= render :partial => "/posts/comment", :collection => post_get_comments(post) %>
       </div>
+    <% end %>
     <% end %>
     
 

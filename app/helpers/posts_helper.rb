@@ -4,6 +4,11 @@ module PostsHelper
     !post.repost? and current_user
   end
 
+  def post_get_comments(post)
+    limit = controller.controller_name=='post' ? 50 : 3
+    post.post ? [post.post] : post.posts.limit(limit).order("ID desc")
+  end
+
   def post_actions_link(text, url, css_class, options={})
     css_class = "icon-color #{css_class}"
     
@@ -29,7 +34,7 @@ module PostsHelper
     end
   end
   def youtube(body)
-    youtube_links( youtube_keys(body) )
+    Rails.env.development? ? [] : youtube_links( youtube_keys(body) )
   end
 
   def link_to_username(username, mention_helper=true)
