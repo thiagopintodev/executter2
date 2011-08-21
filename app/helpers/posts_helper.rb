@@ -6,7 +6,7 @@ module PostsHelper
 
   def post_get_comments(post)
     limit = controller.controller_name=='post' ? 50 : 3
-    post.post ? [post.post] : post.posts.limit(limit).order("ID desc")
+    post.post ? [post.post] : post.posts.limit(limit).order("ID desc").reverse
   end
 
   def post_actions_link(text, url, css_class, options={})
