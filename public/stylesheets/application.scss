@@ -274,7 +274,7 @@ body.not-logged-in  .body { margin:120px auto 0; }
   
   .sidebar, .sidebar-back { width:239px;height:100%;position:absolute;left:600px;top:0; }
   .sidebar-back { background:#ffffff;opacity:0.8; }
-  .sidebar { border-left: #ccc solid 1px; }
+  .sidebar { border-left: #fff solid 1px; }
 }
 /*body end*/
 
@@ -325,31 +325,15 @@ body.not-logged-in  .body { margin:120px auto 0; }
       a.photo   { float:left;margin-right:10px;margin-bottom:10px; }
       span      { color:$color3;margin-bottom:10px; }
     }
-/*
-<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
-  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#ui-tabs-1">all posts (1)</a></li>
-  <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-2">status (0)</a></li>
-  <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-3">images ()</a></li>
-  <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-4">audios ()</a></li>
-  <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-5">files ()</a></li>
-  <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-6">@e2DYt1exIC (0)</a></li>
-</ul>
 
-<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#ui-tabs-1">all posts <span class="icon-color action-like"><em>Loading…</em></span> <strong>1</strong></a></li>
-    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-2">status <span class="icon-color post-text"></span> <strong>0</strong></a></li>
-    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-3">images <span class="icon-color post-image"></span> <strong></strong></a></li>
-    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-4">audios <span class="icon-color post-audio"></span> <strong></strong></a></li>
-    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-5">files <span class="icon-color post-file"></span> <strong></strong></a></li>
-    <li class="ui-state-default ui-corner-top"><a href="#ui-tabs-6">@e2DYt1exIC <span class="icon-color post-file"></span> <strong>0</strong></a></li>
-  </ul>
-*/
+    
     ul.ui-tabs-nav {
       li {
         background: none transparent;border:none;
         a {
           position:relative;
           display:block;width:100%;height:18px;padding: 10px 0 4px;text-indent:40px;font-size:12px;
+          color:$color1;
           span {
             display:block;width:16px;height:16px;
             position:absolute;top:10px;left:20px;
@@ -359,8 +343,10 @@ body.not-logged-in  .body { margin:120px auto 0; }
             float:right;margin-right:20px;
           }
         }
-        &:hover, &.ui-tabs-selected { background:#fff; }
-        &.selected, &.selected strong { color:$color3;font-weight:bold; }
+        &.hover, &.ui-tabs-selected { background:#fafafa; }
+        &.ui-tabs-selected {
+          a, strong { color:$color3;font-weight:bold; }
+        }
       }
     }
     
@@ -447,13 +433,21 @@ body.c-users.a-show .body .content {
 /*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
 /*********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********   PAGE SPECIFIC   *********/
 
-/*
-body.c-site.a-search a.more,
-body.c-users.a-show a.more { margin: 20px; }
-*/
 
-body.c-home.a-index a.more,
+
+body.c-home.a-index #home-post-tabs .ui-tabs-panel { margin: 0 20px; }
+
+body.c-search .post,
+body.c-home.a-index .post,
+body.c-users.a-show .post { border-top:#ccc solid 1px;padding:20px 0; }
+
+body.c-posts.a-show .post { padding:20px; }
+
+body.c-home.a-index .post:first-child { border-top:none; }/*css3*/
+
+body.c-home.a-index a.more  { margin: 20px 0; }
 body.c-site.a-search a.more { margin: 20px; }
+
 
 
 body.c-registration {
@@ -550,19 +544,6 @@ a, a:hover { color: $color1; }
 .body .sidebar a.user { color:$color4; }
 /*flavour end*/
 
-
-
-body.c-home.a-index #home-post-tabs .ui-tabs-panel { margin: 0 20px; }
-
-body.c-posts.a-show .post { padding:20px; }
-
-
-body.c-search .post,
-body.c-home.a-index .post,
-body.c-users.a-show .post { border-top:#ccc solid 1px;padding:20px 0; }
-
-
-body.c-home.a-index .post:first-child { border-top:none; }/*css3*/
 
 
 .post {
