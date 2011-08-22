@@ -8,12 +8,12 @@ class SearchController < ApplicationController
   
   def posts
     #return render :nothing => true if !params[:text] || params[:text].length < 3
-    posts_fill_hashes( Post.from_search(params[:text], get_post_options)   )
+    @posts = Post.from_search(params[:text], get_post_options)
     render '/posts/index', :layout=>false
   end
 
   def paginated
-    posts_fill_hashes( Post.from_search(params[:text], get_post_options)   )
+    @posts = Post.from_search(params[:text], get_post_options)
   end
 
   def async

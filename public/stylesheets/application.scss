@@ -441,11 +441,9 @@ body.c-search, body.c-home.a-index, body.c-users.a-show {
   .post {
     border-bottom:#ccc solid 1px;padding:20px 0;
     &.page-last { border-color:$color1; }
+    &:last-child { border-bottom:none; }/*css3*/
   }
 }
-
-body.c-home.a-index .post:last-child { border-bottom:none; }/*css3*/
-
 
 
 .body .content {

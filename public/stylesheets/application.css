@@ -575,14 +575,13 @@ body.c-home.a-index #home-post-tabs .ui-tabs-panel {
 
 body.c-search .post, body.c-home.a-index .post, body.c-users.a-show .post {
   border-bottom: #ccc solid 1px;
-  padding: 20px 0; }
+  padding: 20px 0;
+  /*css3*/ }
   body.c-search .post.page-last, body.c-home.a-index .post.page-last, body.c-users.a-show .post.page-last {
     border-color: #ff9900; }
+  body.c-search .post:last-child, body.c-home.a-index .post:last-child, body.c-users.a-show .post:last-child {
+    border-bottom: none; }
 
-body.c-home.a-index .post:last-child {
-  border-bottom: none; }
-
-/*css3*/
 .body .content a.more {
   width: 560px;
   text-indent: 0; }
