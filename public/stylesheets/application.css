@@ -570,17 +570,17 @@ body.c-users.a-show .body .content .card .about {
 body.c-home.a-index #home-post-tabs .ui-tabs-panel {
   margin: 0 20px; }
 
-body.c-search .post,
-body.c-home.a-index .post,
-body.c-users.a-show .post {
-  border-top: #ccc solid 1px;
-  padding: 20px 0; }
-
-body.c-posts.a-show .post {
+.post {
   padding: 20px; }
 
-body.c-home.a-index .post:first-child {
-  border-top: none; }
+body.c-search .post, body.c-home.a-index .post, body.c-users.a-show .post {
+  border-bottom: #ccc solid 1px;
+  padding: 20px 0; }
+  body.c-search .post.page-last, body.c-home.a-index .post.page-last, body.c-users.a-show .post.page-last {
+    border-color: #ff9900; }
+
+body.c-home.a-index .post:last-child {
+  border-bottom: none; }
 
 /*css3*/
 .body .content a.more {
