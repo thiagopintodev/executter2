@@ -116,7 +116,7 @@ functions.application.notification.append_behaviour = function() {
         $(this).attr('mark-all-as-read', '1');
         $(this).html('');
         $.post('/h/mark_notifications_as_read');
-        document.title="Executter";
+        $title2 = $title;
       }
     }
     return false;
@@ -304,6 +304,7 @@ functions.home.ajax.load_latest_posts_main_tab = function() {
   setTimeout(function() {
     //
     $("#home-news-holder a").remove();
+    $title1 = $title;
     $("#home-post-tabs").tabs('select', 0);
     $.get('/h/posts_followings_all_latest', function(data) {
       $("#home-post-tabs .ui-tabs-panel:first").prepend(data);

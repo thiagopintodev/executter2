@@ -1,6 +1,7 @@
+<% count_str = @count >= 10 ? '10+' : @count %>
+<% count_str = "#{pluralize @count, 'novidade'}" %>
 <script type="text/javascript">
-<% if false %>
-<% end %>
+<%= "$title1='#{count_str}';" unless @count.zero? %>
 make_button();
 </script>
-<%= link_to "novas #{@count}", :root, :class=>'ui-button' unless @count.zero? %>
+<%= link_to count_str, :root, :style=>'width:100%', :class=>'ui-button' unless @count.zero? %>

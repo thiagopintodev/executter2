@@ -57,6 +57,7 @@ class HomeController < ApplicationController
 
   def posts_followings_all_latest
     @posts = Post.from_relation(cu, :followings, {:after=>cu.last_read_post_id})
+    @no_more = true
     User.update(cu.id, :last_read_post_id => @posts.first.id) if @posts.first
     #expires_cache many
     render '/posts/index', :layout=>false

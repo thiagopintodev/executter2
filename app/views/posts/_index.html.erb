@@ -1,6 +1,6 @@
 <%= render @posts %>
 
-<% if @posts.length == Post::DEFAULT_LIMIT %>
+<% if @posts.length == Post::DEFAULT_LIMIT and !@no_more %>
 <% more_url = url_for params.merge({:before=>@posts.last.id}) %>
 <%= link_to "MORE", "#", :class=>'more ui-button', :'data-url'=>more_url %>
 <% end %>

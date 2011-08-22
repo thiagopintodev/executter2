@@ -1,0 +1,11 @@
+<%= form_for UserPhoto.new, :url=>:e_photo, :html=>{:multipart=>true} do |f| %>
+
+  <h2 style="color:#666">Put a picture and get responses from people interested in you</h2>
+  
+  <div style="margin:0 auto">
+    <%= file_field_tag :image %>
+    <br />
+    <%= f.submit 'send my photo', :class=>'ui-button' %>
+  </div>
+  
+<% end %>

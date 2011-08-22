@@ -261,6 +261,7 @@ class Post < ActiveRecord::Base
       posts = Post.where(:user_id=>user_ids)
                   .where("on_timeline = ?", true)
                   .after(user.last_read_post_id)
+                  .limit(10)
       posts.count
     end
     

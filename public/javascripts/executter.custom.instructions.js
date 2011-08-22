@@ -44,8 +44,9 @@ function registerContextMenu() {
 }
 $(function() {
 
-  $title1 = $("head title").html();
-  $title2 = $title1;
+  $title = $("head title").html();
+  $title1 = $title;
+  $title2 = $title;
   $title_at1 = true;
   
   setInterval(function() {
