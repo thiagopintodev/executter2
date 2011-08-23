@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820221735) do
+ActiveRecord::Schema.define(:version => 20110823234856) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
     t.integer  "city_id"
     t.string   "name"
     t.string   "label"
-    t.string   "data"
+    t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20110820221735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_photo_url"
+    t.integer  "city_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

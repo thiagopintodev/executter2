@@ -35,11 +35,15 @@ class RegistrationController < ApplicationController
       #because of reCAPTCHA
       return render :action =>:captcha
     end
+
+    city = City.create_many_from_city_base(@user.city_base_id)
     
     if @user.register
       session[:user_session] = {:id=>@user.id, :auth_token =>@user.authentication_token}
+      city.register_citizen(@user)
       #redirect_to :root
       UserAgent.note(request.user_agent)
+      
       redirect_to :r_after_register
     else
       #because of @user.errors

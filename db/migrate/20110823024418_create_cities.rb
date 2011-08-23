@@ -5,7 +5,7 @@ class CreateCities < ActiveRecord::Migration
       t.references :city
       t.string :name
       t.string :label
-      t.string :data
+      t.string :country
 
       t.timestamps
     end

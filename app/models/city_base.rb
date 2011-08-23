@@ -13,10 +13,14 @@ class CityBase < ActiveRecord::Base
   def full_name
     "#{country.upcase}, #{name}"
   end
-
-  def fn_
-    {:name=>full_name}
+  
+  def label_country
+    "#{label}-#{country}"
   end
+
+  #def fn_
+  #  {:name=>full_name, :id=>id}
+  #end
   
 
   validates :data, :uniqueness=>true

@@ -28,13 +28,13 @@ functions.registration = {}
 
 functions.registration.ajax = {}
 functions.registration.ajax.append_behaviour = function() {
-
-  $("#user_city").tokenInput("/c/base_search.json", {
+/*
+  $("#user_city_base_id").tokenInput("/c/base_search.json", {
     crossDomain: false,
-    prePopulate: $("#user_city").data("pre"),
+    prePopulate: 100,
     tokenLimit: 1
   });
-  
+*/
 }
 
 /*

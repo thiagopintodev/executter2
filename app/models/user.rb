@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     #errors.add(:username, "username is not valid or is already taken") unless User.username_allowed username
   #end
   
-  attr_accessor :city#, :user_photo_id
+  attr_accessor :city_base_id#, :user_photo_id
   #invites_count
 
 
