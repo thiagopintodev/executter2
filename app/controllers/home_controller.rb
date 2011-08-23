@@ -36,7 +36,7 @@ class HomeController < ApplicationController
 
   def ajax_notifications
     check_user_session
-    pun_list = cu_ro.post_user_news.order("id DESC")
+    pun_list = cu.post_user_news.order("id DESC")
     @pun_list_unread_count = pun_list.where(:is_read => false).count
     @pun_list = pun_list.limit(6)
     render :layout=>false
