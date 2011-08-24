@@ -1,5 +1,7 @@
 class CitiesController < ApplicationController
 
+  before_filter :fill_city, :only=>[:show, :edit, :destroy]
+
   caches_action :show
   
   def base_search
@@ -17,12 +19,6 @@ class CitiesController < ApplicationController
   # GET /cities/1
   # GET /cities/1.xml
   def show
-    @city = City.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @city }
-    end
   end
 
   
@@ -51,7 +47,6 @@ class CitiesController < ApplicationController
 
   # GET /cities/1/edit
   def edit
-    @city = City.find(params[:id])
   end
 
   # POST /cities
@@ -89,12 +84,21 @@ class CitiesController < ApplicationController
   # DELETE /cities/1
   # DELETE /cities/1.xml
   def destroy
-    @city = City.find(params[:id])
     @city.destroy
 
     respond_to do |format|
       format.html { redirect_to(cities_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  protected
+  
+  def fill_city
+    if id = params[:city_id]||params[:id]
+      @city = City.find(id)
+    elsif label = params[:label]
+      @city = City.findl(label)
     end
   end
 end

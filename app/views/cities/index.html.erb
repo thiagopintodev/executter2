@@ -19,7 +19,7 @@
     <td><%= city.name %></td>
     <td><%= city.label %></td>
     <td><%= city.country %></td>
-    <td><%= link_to 'Show', city %></td>
+    <td><%= link_to 'Show', city_label_path(city.label) %></td>
     <td><%= link_to 'Edit', edit_city_path(city) %></td>
     <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
   has_many :likes,      :dependent => :destroy
   has_many :invites,    :dependent => :destroy
 
+  belongs_to :city
   
   has_many :post_followers,  :dependent => :destroy
   has_many :post_user_news,  :dependent => :destroy

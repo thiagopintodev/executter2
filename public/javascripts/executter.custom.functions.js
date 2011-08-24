@@ -28,7 +28,7 @@ functions.registration = {}
 
 functions.registration.ajax = {}
 functions.registration.ajax.append_behaviour = function() {
-  $("#user_city_base_id").tokenInput("/c/base_search.json", {tokenLimit: 1});
+  $("#user_city_base_id").tokenInput("/cities/base_search.json", {tokenLimit: 1});
 }
 
 /*
