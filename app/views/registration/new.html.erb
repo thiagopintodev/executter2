@@ -58,9 +58,8 @@ $("table ul li input[type='text']").addClass("input-value input-type-text");
           <%= f.label :city_base_id, :city %>:
         </td>
         <td class="field">
-          <%#= f.text_field :city_base_id %>
-          <%= f.select :city_base_id, CityBase.limit(100).map { |cb| [cb.full_name, cb.id]  } %>
-          <%#= content_tag :span, @user.errors[:city_base].first, :class=>'my_error_msg'  if @user.errors[:city_base].first %>
+          <%= f.text_field :city_base_id %>
+          <%= content_tag :span, @user.errors[:city_base_id].first, :class=>'my_error_msg'  if @user.errors[:city_base_id].first %>
         </td>
       </tr>
 

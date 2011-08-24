@@ -1,19 +1,12 @@
 class CitiesController < ApplicationController
 
-  def base_search
-    return render :json => [] unless q = params[:q].try(:downcase)
-    render :json => CityBase.search(q) 
-  end
-
-
-  #caches_action :search
+  caches_action :base_search
   caches_action :show
   
-  #def search
-  #  return render :json => [] unless q = params[:q].try(:downcase)
-  #  models = Country.limit(10).where("data LIKE :q", :q=>"%#{q}%")
-  #  render :json => models.map(&:attributes)
-  #end
+  def base_search
+    return render :json => [] unless q = params[:q].try(:downcase)
+    render :json => CityBase.search(q)
+  end
 
   # GET /cities/1
   # GET /cities/1.xml

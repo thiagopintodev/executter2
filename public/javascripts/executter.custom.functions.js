@@ -28,13 +28,7 @@ functions.registration = {}
 
 functions.registration.ajax = {}
 functions.registration.ajax.append_behaviour = function() {
-/*
-  $("#user_city_base_id").tokenInput("/c/base_search.json", {
-    crossDomain: false,
-    prePopulate: 100,
-    tokenLimit: 1
-  });
-*/
+  $("#user_city_base_id").tokenInput("/c/base_search.json", {tokenLimit: 1});
 }
 
 /*

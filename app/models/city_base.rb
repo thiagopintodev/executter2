@@ -3,11 +3,11 @@ class CityBase < ActiveRecord::Base
   has_many :cities
 
   def self.search(words)
-    query = CityBase.limit(10).order('length(label)').select([:name, :country])
+    query = CityBase.limit(10).order('length(label)').select([:name, :country, :id])
     words.downcase.split(' ').each do |word|
       query = query.where("data LIKE :w", :w=>"%#{word}%")
     end
-    query.map(&:fn_)
+    query.map { |cb| {:name=>cb.full_name, :id=>cb.id} }
   end
 
   def full_name
@@ -18,9 +18,6 @@ class CityBase < ActiveRecord::Base
     "#{label}-#{country}"
   end
 
-  #def fn_
-  #  {:name=>full_name, :id=>id}
-  #end
   
 
   validates :data, :uniqueness=>true
