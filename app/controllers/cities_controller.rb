@@ -1,6 +1,5 @@
 class CitiesController < ApplicationController
 
-  caches_action :base_search
   caches_action :show
   
   def base_search
