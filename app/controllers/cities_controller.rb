@@ -3,8 +3,15 @@ class CitiesController < ApplicationController
   caches_action :show
   
   def base_search
-    return render :json => [] unless q = params[:q].try(:downcase)
-    render :json => CityBase.search(q)
+    q = params[:q].try(:downcase)
+    cache_key = [:city_base_search, q]
+    r = Rails.cache.read(cache_key)
+    unless r
+      r = render (q ? {:json => CityBase.search(q)} : {:json => []})
+      Rails.cache.write(cache_key, r)
+      puts "WROTE #{cache_key}"
+    end
+    r
   end
 
   # GET /cities/1
