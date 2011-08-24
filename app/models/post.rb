@@ -241,10 +241,10 @@ class Post < ActiveRecord::Base
     def kv_find_id(id)
       return nil unless id
       #puts "****** POST '#{id}' from KEY VALUE STORE"
-      r = Rails.cache.read("post_kv/id/#{id}")
+      r = Rails.cache.read([:model, :post_kv, id])
       unless r
         r = where(:id=>id).limit(1).select_cacheable_fields.first
-        Rails.cache.write("post_kv/id/#{r.id}", r) rescue true if r
+        Rails.cache.write([:model, :post_kv, id], r) rescue true if r
       end
       r
     end

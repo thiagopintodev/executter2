@@ -248,8 +248,8 @@ ActiveRecord::Schema.define(:version => 20110823234856) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_photo_url"
-    t.integer  "last_read_post_id"
     t.integer  "city_id"
+    t.integer  "last_read_post_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
