@@ -61,11 +61,11 @@ class ApplicationController < ActionController::Base
   end
   
   def must_login
-    redirect_to :new unless cu_ro
+    not_allowed unless cu_ro
   end
   
   def must_admin
-    redirect_to :new unless current_user
+    not_allowed unless current_user
   end
 
   def mobile_device?
@@ -88,7 +88,12 @@ class ApplicationController < ActionController::Base
     o[:before] ||= cu_ro.last_read_post_id+1 if cu_ro #+1 so it includes current :)
     o
   end
-  
+
+  private
+
+  def not_allowed
+    request.xhr? ? render(:nothing=>true) : redirect_to(:new)
+  end
 =begin
   def my_admin_only
   #, :notice=>"ONLY ADMIN IN"
