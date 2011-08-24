@@ -45,18 +45,17 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user_read_only
-    #return cu
     return @cu_ro if @cu_ro
-    return @cu_ro = current_user
+    return @cu_ro = @cu if @cu
+    #this one searches from cache
+    sus = session[:user_session]
+    return nil unless sus && user = User.kv_find(sus[:id])
+    return  @cu_ro = user if user.authentication_token == sus[:auth_token]
     nil
   end
   
-  def cu
-    current_user
-  end
-  def cu_ro
-    current_user_read_only
-  end
+  alias :cu_ro :current_user_read_only
+  alias :cu :current_user
   
   def must_login
     not_allowed unless cu_ro

@@ -72,23 +72,23 @@ class HomeController < ApplicationController
     render '/posts/index', :layout=>false
   end
   def posts_followings_image
-    @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_audio
-    @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_other
-    @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followers
-    @posts = Post.from_relation(current_user, :followers, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followers, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_mention
-    @posts = Post.from_search(current_user.u_, get_post_options)
+    @posts = Post.from_search(cu_ro.u_, get_post_options)
     render '/posts/index', :layout=>false
   end
 end
