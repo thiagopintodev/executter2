@@ -30,6 +30,7 @@ class CitiesController < ApplicationController
   # GET /cities/1
   # GET /cities/1.xml
   def show
+    redirect_to :root unless @city
   end
 
   
