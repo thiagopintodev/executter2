@@ -11,6 +11,9 @@ class City < ActiveRecord::Base
 
   alias :l_ :label_sign
   
+  def image_url
+    'http://roadtickle.com/img/environment/6-amazing-future-city-concepts/regatta-jakarta.jpg'
+  end
 
   class << self
     #CUSTOM METHODS

@@ -1,24 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= content_tag :h2, @city.name, :style=>'color:#999' %>
 
-<p>
-  <b>City base:</b>
-  <%= @city.city_base %>
-</p>
 
-<p>
-  <b>City:</b>
-  <%= @city.city %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @city.name %>
-</p>
-
-<p>
-  <b>Label:</b>
-  <%= @city.label %>
-</p>
-
-<%= link_to 'Edit', edit_city_path(@city) %> |
-<%= link_to 'Back', cities_path %>
+<p><center><%= image_tag @city.image_url %></center></p>

@@ -1,9 +1,8 @@
 class CitiesController < ApplicationController
+  sub_layout 'double'
 
   before_filter :fill_city, :only=>[:show, :edit, :destroy]
 
-  caches_action :show
-  
   def base_search
     q = params[:q].try(:downcase)
     cache_key = [:city_base_search, q]

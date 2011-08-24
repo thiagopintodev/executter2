@@ -1,7 +1,7 @@
 Ex2::Application.routes.draw do
 
   get 'c/:label' => 'cities#show', :as=>:city_label
-  resources :cities do
+  resources :cities, :only=>[:show] do
     collection do
       get 'base_search'
     end
