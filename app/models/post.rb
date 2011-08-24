@@ -129,8 +129,8 @@ class Post < ActiveRecord::Base
     Like.like_it(user_id_liker, id)
   end
 
-  after_create :assign_notifications
-  after_create :create_words
+  #after_create :assign_notifications
+  #after_create :create_words
 
   def assign_notifications
     #my_post_news = []

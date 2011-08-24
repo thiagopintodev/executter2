@@ -1,3 +1,0 @@
-<% anchor = link_to current_user.fullname, profile_path(current_user.username), :class=>'comment-fullname' %>
-s = "<%= escape_javascript anchor %> <%= @post.body %>";
-$('.post[data-post-id=<%= @post.post_id %>]:visible').find(".comment-state-after").show().find(".comment-text").html(s);
