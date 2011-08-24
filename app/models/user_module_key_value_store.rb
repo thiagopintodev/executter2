@@ -17,7 +17,6 @@ module UserModuleKeyValueStore
       return nil unless id
       #puts "****** USER '#{id}' from KEY VALUE STORE"
       Rails.cache.read([:model, :user_kv, id]) || (x = find(id) and x.try(:kv_save) and x)
-      find(id)
     end
     
   end

@@ -64,11 +64,11 @@ class HomeController < ApplicationController
   end
   
   def posts_followings_all
-    @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_status
-    @posts = Post.from_relation(current_user, :followings, get_post_options)
+    @posts = Post.from_relation(cu_ro, :followings, get_post_options)
     render '/posts/index', :layout=>false
   end
   def posts_followings_image
