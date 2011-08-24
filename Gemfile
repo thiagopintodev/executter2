@@ -5,6 +5,7 @@ gem 'rails', '3.0.6'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'silent-postgres'
 end
 
 gem 'jquery-rails', '1.0.11'
