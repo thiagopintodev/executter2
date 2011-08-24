@@ -22,6 +22,17 @@ functions.application.search.append_behaviour = function() {
   });
 
 }
+
+
+
+
+functions.registration = {}
+
+functions.registration.ajax = {}
+functions.registration.ajax.append_behaviour = function() {
+  $("#user_city_base_id").tokenInput("/cities/base_search.json", {tokenLimit: 1});
+}
+
 /*
 functions.application.cmenu = {}
 functions.application.cmenu.mention = function(e) {

@@ -35,6 +35,8 @@ li.token-input-token {
     margin: 3px;
     padding: 3px 5px;
     background-color: #d0efa0;
+    background-color: #fc6;
+    background-color: #f90;
     color: #000;
     font-weight: bold;
     cursor: default;
@@ -55,6 +57,8 @@ li.token-input-token span {
 
 li.token-input-selected-token {
     background-color: #08844e;
+    background-color: #f90;
+    background-color: #fc6;
     color: #fff;
 }
 
@@ -109,5 +113,7 @@ div.token-input-dropdown ul li em {
 
 div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     background-color: #d0efa0;
+    background-color: #fc6;
+    background-color: #f90;
 }
 

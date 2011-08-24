@@ -1,12 +1,12 @@
 # SQLite version 3.x
 #   gem install sqlite3
-development:
+development_sqlite:
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
   
-development_pg:
+development:
   host: localhost
   adapter: postgresql
   encoding: unicode

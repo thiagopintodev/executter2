@@ -84,7 +84,7 @@ e: '/username'
         b = a[User::USERNAME_REGEX]
         c = a.gsub(b,'')
         d = "$#{b}"
-        e = "/s/#{b}"
+        e = "/c/#{b}"
         #link_to(w, "/s/#{a}", :class=>:hash_tag)
         "#{link_to(d, e, :class=>:group)}#{c}"
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'

@@ -1,6 +1,5 @@
-<% if false %>
-<%# content_for :jsload do %>
-$("#city_born").tokenInput("/cities");
+<% content_for :jsload do %>
+$("#user_city_id").tokenInput("/cities/search.json", {tokenLimit: 1});
 <% end %>
 
 <%= form_for @user, :url=>request.url do |f| %>
@@ -53,6 +52,16 @@ $("#city_born").tokenInput("/cities");
 </div>
 <div class="field">
   <%= f.select :sex, User.sex_options %>
+</div>
+<div class="clear line">
+</div>
+
+
+<div class="label">
+  <%= f.label :city_id, :city %>
+</div>
+<div class="field">
+  <%= f.text_field :city_id %>
 </div>
 <div class="clear line">
 </div>

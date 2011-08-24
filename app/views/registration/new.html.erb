@@ -1,3 +1,8 @@
+<% content_for :jsload do %>
+functions.registration.ajax.append_behaviour();
+$("table ul li input[type='text']").addClass("input-value input-type-text");
+<% end %>
+
 <div class="new-user" style="margin-bottom:20px">
 
 
@@ -48,17 +53,15 @@
         </td>
       </tr>
       
-<% if false %>
       <tr>
         <td class="label">
-          <%= f.label :city %>:
+          <%= f.label :city_base_id, :city %>:
         </td>
         <td class="field">
-          <%= f.text_field :city %>
-          <%= content_tag :span, @user.errors[:city].first, :class=>'my_error_msg'  if @user.errors[:city].first %>
+          <%= f.text_field :city_base_id %>
+          <%= content_tag :span, @user.errors[:city_base_id].first, :class=>'my_error_msg'  if @user.errors[:city_base_id].first %>
         </td>
       </tr>
-<% end %>
 
       <tr>
         <td class="label">
