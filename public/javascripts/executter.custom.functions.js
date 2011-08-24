@@ -363,8 +363,13 @@ functions.posts.ajax.append_behaviour = function() {
   });
   $("form.new_comment").live('submit', function() {
     post = $(this).closest('.post');
-    post.contents().find('.toggle_comment').remove();//.replaceWith("<strong>YOU COMMENTED IT :)</strong>");
-    post.contents().find('.comment_box').remove();
+    post.contents().find('.toggle_comment').remove();
+    post.contents().find('.comment-state-before, .comment-state-during').hide();
+    $(post.data('comments-target')).load(post.data('comments-url'), function() {
+      post.contents().find('.comment-state-during textarea').val('');
+      post.contents().find('.comment-state-during').show();
+      post.contents().find('.comment-state-during textarea').focus();
+    });
   });
 
   $("a[rel='post-comments-loader']").live('click', function () {

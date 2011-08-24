@@ -9,6 +9,10 @@ module PostsHelper
     post.post ? [post.post] : post.posts.limit(limit).order("ID desc").reverse
   end
 
+  def page_post_show?
+    controller.controller_name=='posts'
+  end
+
   def post_actions_link(text, url, css_class, options={})
     css_class = "icon-color #{css_class}"
     

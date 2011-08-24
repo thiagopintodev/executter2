@@ -1,0 +1,30 @@
+<div class="comment write_box">
+<%#= " style='display:none'" if post.posts.size == 0 %>
+<%# according to latest changes, this div should always be hidden %>
+
+  <div class="comment-state-before">
+    <%= text_area_tag '', T.t('page.post.actions.write_a_comment'), :rows=>1 %>
+  </div>
+  
+  <div class="comment-state-during" style="display:none">
+    <div class="comment-left">
+      <%= my_image_tag cu_ro.p_, :dimensions=>32 %>
+    </div>
+    <div class="comment-right">
+      
+      <%= form_for post.posts.build, :url=>:create_comment_posts, :remote=>true, :html=>{:class=>'new_comment'} do |f| %>
+        <%= f.hidden_field :post_id %>
+        <%= f.text_area :body, :rows=>2 %>
+        <div style="width:90%;">
+          <%= f.check_box :is_repost, :id=>"post_is_repost_of_#{post.id}" %>
+          <%= f.label :is_repost, "re-executter", :for=>"post_is_repost_of_#{post.id}" %>
+          <%#= f.submit %>
+          <%= content_tag :span, 196, :class=>"counter" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+
+</div>

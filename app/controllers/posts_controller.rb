@@ -65,12 +65,14 @@ class PostsController < ApplicationController
   # GET /posts/1/ajax_comments
   def ajax_comments
     post = Post.find(params[:post_id])
+    limit = params[:limit] || 50
     @comments = post.posts.size > 0 ? post.posts.order(:id) : []
     @users_hash = {}
     if @comments.size > 0
       users_id = @comments.map(&:user_id)
       users = User.select([:id, :username, :first_name, :last_name, :user_photo_id])
                   .where(:id=>users_id.uniq)
+                  .limit(limit)
                   .includes(:user_photo)
       users.each { |u| @users_hash[u.id] = u }
     end

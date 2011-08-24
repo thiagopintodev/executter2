@@ -223,7 +223,7 @@ class Post < ActiveRecord::Base
       words.each { |word| inserts.push(Post.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
       sql = "INSERT INTO \"post_words\" (\"post_id\", \"word\") VALUES #{inserts.join(', ')}"
       #transaction {  }
-      connection.execute(sql)
+      connection.execute(sql) if inserts.size > 0
       #INSERT INTO "post_words" ("post_id", "word") VALUES (3, 'aaaaaaaaaaaaaaa')
     else
       words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
