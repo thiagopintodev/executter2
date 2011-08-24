@@ -15,6 +15,18 @@ class CitiesController < ApplicationController
     r
   end
 
+  def search
+    q = params[:q].try(:downcase)
+    cache_key = [:city_search, q]
+    r = Rails.cache.read(cache_key)
+    unless r
+      r = render (q ? {:json => City.search(q)} : {:json => []})
+      Rails.cache.write(cache_key, r)
+      puts "WROTE #{cache_key}"
+    end
+    r
+  end
+
   # GET /cities/1
   # GET /cities/1.xml
   def show

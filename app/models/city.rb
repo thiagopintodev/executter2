@@ -43,6 +43,14 @@ class City < ActiveRecord::Base
     def findl(param_label)
       where(:label => param_label.downcase.delete("$")).first
     end
+    
+    def search(words)
+      query = City.where('city_id IS NULL').limit(10).order('length(label)').select([:name, :id])
+      words.downcase.split(' ').each do |word|
+        query = query.where("label LIKE :w", :w=>"%#{word}%")
+      end
+      query.map { |c| {:name=>c.name, :id=>c.id} }
+    end
   end
   def register_citizen(user)
     user.update_attribute(:city_id, self.id)
