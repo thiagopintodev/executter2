@@ -254,7 +254,7 @@ functions.home.ajax.append_behaviour = function() {
   $('form.new_topic').ajaxForm(function() {
     $("#home-form-tabs-holder").load( $("#home-form-tabs-holder").data('ajaxload-url') );
     functions.home.ajax.load_latest_posts_main_tab();
-    $.get('/p/generate_notifications');
+    //$.get('/p/generate_notifications');
   });
 
   functions.home.ajax.append_behaviour_once();

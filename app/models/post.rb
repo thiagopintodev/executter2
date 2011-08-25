@@ -129,8 +129,8 @@ class Post < ActiveRecord::Base
     Like.like_it(user_id_liker, id)
   end
 
-  #after_create :assign_notifications
-  #after_create :create_words
+  after_create :assign_notifications
+  after_create :create_words
 
   def assign_notifications
     #my_post_news = []
@@ -138,7 +138,7 @@ class Post < ActiveRecord::Base
     #assign mentioned users to be notified for future events
     #notify mentioned users to this event (being mentioned)
     post_words.only_usernames.each do |word|
-      user_mentioned = User.findu(word.word)
+      user_mentioned = User.findu(word.word.remove('@'))
       if user_mentioned
         #assigns user to this post
         my_post_followers << pfo = PFo.find_or_create_by_user_id_and_post_id(user_mentioned.id, id)
