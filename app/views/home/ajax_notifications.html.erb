@@ -1,4 +1,4 @@
-<% cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-')] do  %>
+<% cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-'), :expires_in=>5.minutes] do %>
 
 <script type="text/javascript">
 <% if @pun_list_unread_count > 0 %>

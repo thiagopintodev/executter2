@@ -232,23 +232,24 @@ class Post < ActiveRecord::Base
     true
   end
 
-
+  def cached_body
+    return self.attributes['body'] ||= Post.kv_find_id(self.id).body
+  end
 
   
   #SEARCH METHODS
   class << self
-  
     def kv_find_id(id)
       return nil unless id
       #puts "****** POST '#{id}' from KEY VALUE STORE"
       r = Rails.cache.read([:model, :post_kv, id])
       unless r
         r = where(:id=>id).limit(1).select_cacheable_fields.first
-        Rails.cache.write([:model, :post_kv, id], r) rescue true if r
+        Rails.cache.write([:model, :post_kv, id], r, :expires_in=>10.minutes) rescue true if r
       end
       r
     end
-
+    
     def from_relation_count_unread(user, source)
       user = User.find(user) unless user.is_a? User
 
