@@ -598,70 +598,75 @@ body.c-search .post, body.c-home.a-index .post, body.c-users.a-show .post {
   margin-top: 20px;
   text-indent: 0; }
 
-body.c-registration .new-user .panel {
-  display: inline-block;
-  width: 400px;
-  margin-top: 20px; }
-  body.c-registration .new-user .panel h1 {
-    color: #069;
-    font-size: 18px;
-    margin: 0 0 10px 0; }
-  body.c-registration .new-user .panel h2 {
-    color: #069;
-    font-size: 24px;
-    margin: 0 0 3px 0; }
-  body.c-registration .new-user .panel h3 {
-    color: #069;
-    font-size: 15px;
-    margin: 0 0 3px 0;
-    font-weight: normal;
-    border-bottom: #efefef solid 1px;
-    padding-bottom: 5px; }
-  body.c-registration .new-user .panel.left {
-    float: left; }
-  body.c-registration .new-user .panel.right {
-    float: right; }
-    body.c-registration .new-user .panel.right .field_with_errors {
-      display: inline; }
-    body.c-registration .new-user .panel.right .my_error_msg {
-      color: #f30;
-      padding-left: 20px;
+.c-registration .body {
+  width: 900px;
+  margin: 0 auto; }
+  .c-registration .body .new-user .panel {
+    display: inline-block;
+    width: 400px;
+    height: 800px;
+    margin-top: 20px; }
+    .c-registration .body .new-user .panel h1 {
+      color: #069;
+      font-size: 18px;
+      margin: 0 0 10px 0; }
+    .c-registration .body .new-user .panel h2 {
+      color: #069;
+      font-size: 24px;
+      margin: 0 0 3px 0; }
+    .c-registration .body .new-user .panel h3 {
+      color: #069;
       font-size: 15px;
-      margin-bottom: 10px;
-      display: block;
-      background: url(/images/icons/icon_error.gif) no-repeat; }
-    body.c-registration .new-user .panel.right table {
-      width: 100%; }
-      body.c-registration .new-user .panel.right table tr td {
-        padding: 5px 3px 0px; }
-        body.c-registration .new-user .panel.right table tr td.label {
-          text-align: right;
-          width: 100px; }
-          body.c-registration .new-user .panel.right table tr td.label label {
+      margin: 0 0 3px 0;
+      font-weight: normal;
+      border-bottom: #efefef solid 1px;
+      padding-bottom: 5px; }
+    .c-registration .body .new-user .panel.left {
+      float: left; }
+    .c-registration .body .new-user .panel.right {
+      float: left;
+      margin-left: 40px; }
+      .c-registration .body .new-user .panel.right .field_with_errors {
+        display: inline; }
+      .c-registration .body .new-user .panel.right .my_error_msg {
+        color: #f30;
+        padding-left: 20px;
+        font-size: 15px;
+        margin-bottom: 10px;
+        display: block;
+        background: url(/images/icons/icon_error.gif) no-repeat; }
+      .c-registration .body .new-user .panel.right table {
+        width: 100%; }
+        .c-registration .body .new-user .panel.right table tr td {
+          padding: 5px 3px 0px; }
+          .c-registration .body .new-user .panel.right table tr td.label {
+            text-align: right;
+            width: 100px; }
+            .c-registration .body .new-user .panel.right table tr td.label label {
+              font-size: 15px;
+              color: #333; }
+          .c-registration .body .new-user .panel.right table tr td.field .input-type-text {
+            font-weight: bold;
+            padding: 5px;
+            border-width: 1px;
             font-size: 15px;
-            color: #333; }
-        body.c-registration .new-user .panel.right table tr td.field .input-type-text {
-          font-weight: bold;
-          padding: 5px;
-          border-width: 1px;
-          font-size: 15px;
-          line-height: 22px;
-          margin-bottom: 5px;
-          width: 100%;
-          color: #212121; }
-        body.c-registration .new-user .panel.right table tr td.field .input-type-select {
-          padding: 5px;
-          border-width: 1px;
-          font-size: 15px;
-          line-height: 22px; }
-body.c-registration .new-user center {
-  margin: 47px auto; }
-body.c-registration .new-user .ui-button {
-  width: 100% !important;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 18px;
-  color: #ff9900 !important; }
+            line-height: 22px;
+            margin-bottom: 5px;
+            width: 100%;
+            color: #212121; }
+          .c-registration .body .new-user .panel.right table tr td.field .input-type-select {
+            padding: 5px;
+            border-width: 1px;
+            font-size: 15px;
+            line-height: 22px; }
+  .c-registration .body .new-user center {
+    margin: 47px auto; }
+  .c-registration .body .new-user .ui-button {
+    width: 100% !important;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ff9900 !important; }
 
 /*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/
 /*********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********   FLAVOUR SPECIFIC   *********/

@@ -464,10 +464,12 @@ body.c-search, body.c-home.a-index, body.c-users.a-show {
 
 
 
-body.c-registration {
+.c-registration .body {
+  width:900px;
+  margin: 0 auto;
   .new-user {
     .panel {
-      display:inline-block;width:400px;margin-top:20px;
+      display:inline-block;width:400px;height:800px;margin-top:20px;
       h1 { color:#069;font-size:18px;margin:0 0 10px 0; }
       h2 { color:#069;font-size:24px;margin:0 0 3px 0; }
       h3 { color:#069;font-size:15px;margin:0 0 3px 0;font-weight:normal;border-bottom: #efefef solid 1px;padding-bottom:5px; }
@@ -475,7 +477,7 @@ body.c-registration {
         float:left;
       }
       &.right {
-        float:right;
+        float:left;margin-left:40px;
         .field_with_errors { display:inline; }
         .my_error_msg { color: #f30;
           padding-left:20px;font-size:15px;
