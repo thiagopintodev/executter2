@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   #authentication_token as a cache key for home controller
 
   before_filter do
-    @user = cu_ro
+    @user = cu
   end
 
   def mobile_index

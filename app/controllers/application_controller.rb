@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   before_filter do
     #no  www
-    #return redirect_to("http://executter.com") if request.host.starts_with? "www"
+    return redirect_to("http://executter.com") if request.host.starts_with? "www"
     
     #Time.zone = cookies[:tz]
     
