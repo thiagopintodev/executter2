@@ -11,7 +11,7 @@ class CityBase < ActiveRecord::Base
   end
 
   def full_name
-    "#{country.upcase}, #{name}"
+    "#{name} #{country.upcase}"
   end
   
   def label_country

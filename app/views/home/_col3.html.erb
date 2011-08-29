@@ -1,6 +1,6 @@
 <%= background_image current_user if current_user %>
 <% if current_user %>
-  <div class="users in">
+  <div class="users">
     <div class="user">
       <%= link_to my_image_tag(@user.p_, :dimensions=>32), :e_photo, :class=>'photo' %>
       <%= link_to @user.fullname, profile_path(@user.username), :class=>'strong' %>
@@ -10,6 +10,27 @@
   </div>
   <div class="clear">
   </div>
+  
+  <div class="users">
+  
+    <div class="clear line">
+    </div>
+    
+    <%= link_to "Meus Amigos", '/', :class=>"list-title strong" %>
+    <div  id="sidebar_user_list"
+          class="users"
+          data-ajaxload-event="load"
+          data-ajaxload-url="<%= user_ajax_relations_sidebar_friend_url(cu_ro) %>"
+          data-ajaxload-target="#sidebar_user_list"
+          >
+    </div>
+    
+    <div class="clear line">
+    </div>
+  </div>
+<% end %>
+
+
 <% if false %>
   <div class="in" style="margin-top:25px;">
     <%= form_tag :h_invite do %>
@@ -21,7 +42,7 @@
   <div class="clear">
   </div>
 
-  <table class="in no-link-decoration">
+  <table class="no-link-decoration">
     <tr>
       <% a = raw("#{content_tag :strong, @user.rch[:followings]} #{content_tag :span, T.t('page.user.sidebar.columns.followings').downcase}") %>
       <td><%= link_to a, username_followings_url(@user.username) %></td>
@@ -36,39 +57,13 @@
 
 
 
-  <ul class="in ex2tabs table no-link-decoration">
+  <ul class="ex2tabs table no-link-decoration">
     <li></li>
     <li><%= link_to raw("#{content_tag :strong, @user.rch[:followers]} #{content_tag :span, T.t('page.user.sidebar.columns.followers').downcase}"), username_followers_url(@user.username) %></li>
     <li><%= link_to raw("#{content_tag :strong, @user.rch[:friends]} #{content_tag :span, T.t('page.user.sidebar.columns.friends').downcase}"), username_friends_url(@user.username) %></li>
   </ul>
 
+  <div class="clear">
+  </div>
 <% end %>
-  <div class="clear">
-  </div>
-  
-  <div class="in">
-    <%= link_to cu.city.l_, city_label_path(cu.city.label) if cu.city %>
-  </div>
-  
-  <div class="clear">
-  </div>
-  
-  <div class="users in">
-  
-    <div class="clear line">
-    </div>
-    
 
-    <%= link_to "Meus Amigos", '/', :class=>"list-title strong" %>
-    <div  id="sidebar_user_list"
-          class="users"
-          data-ajaxload-event="load"
-          data-ajaxload-url="<%= user_ajax_relations_sidebar_friend_url(cu_ro) %>"
-          data-ajaxload-target="#sidebar_user_list"
-          >
-    </div>
-    
-    <div class="clear line">
-    </div>
-  </div>
-<% end %>

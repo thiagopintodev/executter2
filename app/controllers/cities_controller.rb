@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
 
   before_filter :fill_city, :only=>[:show, :edit, :destroy]
 

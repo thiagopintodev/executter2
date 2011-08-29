@@ -5,8 +5,7 @@
   $("#text").val(decodeURI(String(window.location).split("/s/")[1]));
 <% end %>
 
-<div  id="searchresult" style="padding:20px;"
-                        data-ajaxload-event="load"
+<div  id="searchresult" data-ajaxload-event="load"
                         data-ajaxload-url="<%= search_posts_url(:all, params[:text]) %>"
                         data-ajaxload-nocache="false"
                         data-ajaxload-target="#searchresult">

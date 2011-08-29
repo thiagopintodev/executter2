@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
 
   before_filter :must_login
   #authentication_token as a cache key for home controller

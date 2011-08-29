@@ -1,0 +1,5 @@
+<% if @user.city %>
+<h2>Your City</h2>
+<%= link_to @user.city.name, city_label_path(@user.city.label) %>
+<%= link_to @user.city.l_, city_label_path(@user.city.label) %>
+<% end %>

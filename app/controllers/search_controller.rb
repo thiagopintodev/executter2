@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
 
   before_filter do
     return redirect_to :root if !params[:text] || params[:text].length < 3

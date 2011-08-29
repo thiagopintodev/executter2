@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
   
   before_filter :fill_user
   before_filter :must_login, :only => [:relate_panel, :relate]

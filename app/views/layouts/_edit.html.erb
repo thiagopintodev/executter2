@@ -1,42 +1,28 @@
 <%= background_image current_user if current_user %>
-<div class="content">
-<div class="content-in">
-  <div style="background:#fff;border-bottom:#ccc solid 1px;">
-    <div class="in-h" style="padding:12px 0;">
-    <% if false %>
-      <h1><%= current_user.username %>
-      -> Configuracoes
-      -> <%= controller.action_name %>
-      </h1>
-    <% end %>
-      <%= content_tag :h2, flash[:success], :style=>"color:#0a0" if flash[:success] %>
-      <%= content_tag :h2, flash[:error], :style=>"color:red" if flash[:error] %>
-    </div>
-  </div>
-  <div style="background:#fafafa">
-    <%= yield %>
-  </div>
-</div>
-</div>
-<div class="sidebar-back">
-</div>
-<div class="sidebar">
-<div class="sidebar-in">
-    <% if false %>
-  <div style="height:81px;">
-    <% end %>
-  <div style="height:15px;">
-  </div>
-  <ul class="list no-link-decoration">
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_basic').capitalize,      :e_basic,      'action-like' %>
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_username').capitalize,   :e_username,   'post-text' %>
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_email').capitalize,      :e_email,      'post-image' %>
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_password').capitalize,   :e_password,   'post-audio' %>
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_photo').capitalize,      :e_photo,      'post-image' %>
-    <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_theme').capitalize,      :e_theme,      'post-image' %>
-  </ul>
-  
-  <div class="clear">
-  </div>
-</div>
-</div>
+<table id="bodytable" cellspacing=0>
+<tbody>
+  <tr>
+    <td id="col12" class="col">
+      <div class="col-in">
+        <%= content_tag :h2, flash[:success], :style=>"color:#0a0" if flash[:success] %>
+        <%= content_tag :h2, flash[:error], :style=>"color:red" if flash[:error] %>
+        <%= yield %>
+      </div>
+    </td>
+    <td id="col3" class="col">
+      <div class="col-in">
+        <div style="height:15px;">
+        </div>
+        <ul class="list no-link-decoration">
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_basic').capitalize,      :e_basic,      'action-like' %>
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_username').capitalize,   :e_username,   'post-text' %>
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_email').capitalize,      :e_email,      'post-image' %>
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_password').capitalize,   :e_password,   'post-audio' %>
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_photo').capitalize,      :e_photo,      'post-image' %>
+          <%= sidebar_edit_link_list T.t('page.edit.sidebar.change_theme').capitalize,      :e_theme,      'post-image' %>
+        </ul>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</table>
