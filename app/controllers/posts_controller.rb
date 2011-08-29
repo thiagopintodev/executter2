@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
 
   before_filter :must_login, :except => [:show, :generate_notifications]
 #  caches_action  :generate_notifications, :expires_in => 1.minutes
