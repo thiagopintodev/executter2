@@ -368,12 +368,11 @@ body {
 
 /*footer end*/
 #col2 h2 {
-  background: #EFEFEF;
-  border-top: #CCC solid 1px;
-  color: #666;
+  background: #F7F7F7;
+  border-top: #EAEAEA solid 1px;
+  color: #999;
   font-size: 12px;
-  padding: 5px;
-  font-weight: normal; }
+  padding: 5px; }
 
 #col3 .title {
   margin-bottom: 5px; }
