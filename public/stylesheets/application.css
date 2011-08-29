@@ -205,7 +205,7 @@ body {
     .header .left #bellbox {
       width: 300px;
       background: #fff;
-      color: darkblue;
+      color: #333333;
       border: 1px solid #666;
       /*border-width: 0px 2px 1px 0px;*/
       position: absolute;
@@ -387,12 +387,12 @@ body {
     padding: 5px;
     font-size: 15px;
     font-weight: bold;
-    color: darkblue; }
+    color: #333333; }
     #col3 .title a:hover {
       color: #ff9900; }
 #col3 p {
   margin: 5px 0;
-  color: darkblue; }
+  color: #333333; }
 #col3 .line {
   margin-bottom: 10px;
   border-bottom: #fff solid 1px; }
@@ -406,7 +406,7 @@ body {
     margin-right: 10px;
     margin-bottom: 10px; }
   #col3 .user span {
-    color: darkblue;
+    color: #333333;
     margin-bottom: 10px; }
 #col3 ul.ui-tabs-nav li {
   background: none transparent;
@@ -433,7 +433,7 @@ body {
   #col3 ul.ui-tabs-nav li.hover, #col3 ul.ui-tabs-nav li.ui-tabs-selected {
     background: #fafafa; }
   #col3 ul.ui-tabs-nav li.ui-tabs-selected a, #col3 ul.ui-tabs-nav li.ui-tabs-selected strong {
-    color: darkblue;
+    color: #333333;
     font-weight: bold; }
 #col3 ul.list {
   margin-top: 10px; }
@@ -458,7 +458,7 @@ body {
   #col3 ul.list li a:hover, #col3 ul.list li a.selected {
     background: #fff; }
   #col3 ul.list li a.selected, #col3 ul.list li a.selected strong {
-    color: darkblue;
+    color: #333333;
     font-weight: bold; }
 #col3 ul.table li {
   list-style: none;
@@ -479,7 +479,7 @@ body {
       text-align: center; }
     #col3 ul.table li a strong {
       font-size: 15px;
-      color: darkblue; }
+      color: #333333; }
     #col3 ul.table li a span {
       font-size: 10px; }
 
@@ -494,7 +494,7 @@ body.c-home.a-index #col1 {
   body.c-home.a-index #col1 #home-form-tabs ul li a {
     color: #ff9900; }
   body.c-home.a-index #col1 #home-form-tabs ul li.ui-tabs-selected a {
-    color: darkblue; }
+    color: #333333; }
   body.c-home.a-index #col1 #home-form-tabs ul li.disabled {
     color: #999999 !important;
     cursor: text;
@@ -552,12 +552,12 @@ body.c-users.a-show #col1 {
       body.c-users.a-show #col1 .card .about h1 {
         font-size: 18px;
         margin: 0;
-        color: darkblue; }
+        color: #333333; }
       body.c-users.a-show #col1 .card .about .relate_panel {
         height: 40px;
         padding-top: 10px; }
         body.c-users.a-show #col1 .card .about .relate_panel a {
-          color: darkblue; }
+          color: #333333; }
         body.c-users.a-show #col1 .card .about .relate_panel .jqbutton {
           background: #efefef none; }
         body.c-users.a-show #col1 .card .about .relate_panel .jqbutton span {
@@ -710,7 +710,7 @@ a, a:hover {
   .post .who .user {
     color: #999999; }
   .post .text {
-    color: darkblue;
+    color: #333333;
     line-height: 20px; }
   .post .actions {
     font-size: 12px; }
@@ -745,11 +745,11 @@ a, a:hover {
     color: #999999;
     font-size: 10px; }
   .post .repost .repost-text {
-    color: darkblue; }
+    color: #333333; }
   .post .file {
     font-size: 12px; }
   .post .file-name {
-    color: darkblue; }
+    color: #333333; }
   .post .file-name span {
     color: #999999; }
   .post .file-get {
@@ -765,7 +765,7 @@ a, a:hover {
   .post .info_box {
     margin-top: 30px;
     font-size: 12px;
-    color: darkblue; }
+    color: #333333; }
     .post .info_box .info {
       background: #fafafa;
       padding: 5px 10px;
@@ -798,7 +798,7 @@ a, a:hover {
         font-size: 12px;
         font-weight: bold; }
       .post .comment .comment-right .comment-text {
-        color: darkblue;
+        color: #333333;
         line-height: 15px; }
       .post .comment .comment-right .comment-time {
         color: #999999;
