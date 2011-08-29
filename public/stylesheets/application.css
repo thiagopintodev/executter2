@@ -334,7 +334,7 @@ body {
       max-width: 220px;
       background: #fff; }
       .body #bodytable #col2 .col-in {
-        margin-right: 10px; }
+        margin: 20px 10px 20px 0; }
     .body #bodytable #col3 {
       width: 200px;
       max-width: 200px;
@@ -342,7 +342,7 @@ body {
       background: #fff;
       opacity: 0.8; }
       .body #bodytable #col3 .col-in {
-        margin: 10px; }
+        margin: 20px 10px; }
     .body #bodytable #col12 {
       width: 755px;
       max-width: 755px;
@@ -372,7 +372,10 @@ body {
   border-top: #EAEAEA solid 1px;
   color: #999;
   font-size: 12px;
-  padding: 5px; }
+  padding: 5px;
+  margin: 0; }
+#col2 p {
+  margin: 5px 0; }
 
 #col3 .title {
   margin-bottom: 5px; }
