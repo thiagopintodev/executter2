@@ -1,7 +1,7 @@
 <% cache [:users_sidebar, @user.id, controller.action_name, :photo_ids, @users.map(&:user_photo_id).join('-')] do %>
   <% @users.each do |user| %>
     <div class="user">
-      <%= link_to image_tag(user.p_, :width=>48, :height=>48), profile_path(user.username), :class=>'photo' %>
+      <%= link_to my_image_tag(user.p_, :dimensions=>(@width || 48)), profile_path(user.username), :class=>'photo' %>
       <%=  %>
       <%= link_to user.fullname, profile_path(user.username), :class=>'strong' %>
       <br/>

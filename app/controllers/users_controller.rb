@@ -93,6 +93,7 @@ class UsersController < ApplicationController
   caches_action :ajax_suggestions_sidebar, :expires_in=>5.minutes
 
   def ajax_suggestions_sidebar
+    @width = 64
     @users = User.order('id DESC').limit(15)
     render 'user_sidebar', :layout=>false
   end
