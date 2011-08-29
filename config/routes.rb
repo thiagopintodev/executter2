@@ -102,6 +102,7 @@ Ex2::Application.routes.draw do
   get 'h/ajax_news_button'        => "home#ajax_news_button"
   post 'h/invite'           => "home#invite"
   post 'h/mark_notifications_as_read'           => "home#mark_notifications_as_read"
+  get 'h/ajax_suggestions_sidebar'  => 'users#ajax_suggestions_sidebar', :as=> :user_ajax_suggestions_sidebar
   
   #get '_/:user_validation_token/post_news/subscribe/:post_id'   => "post_news#subscribe",   :as => "_pn_subs"
   #get '_/:user_validation_token/post_news/unsubscribe/:post_id' => "post_news#unsubscribe", :as => "_pn_unsubs"
@@ -129,7 +130,6 @@ Ex2::Application.routes.draw do
 =end
   #match "p" => "users#redirect"
   
-
   resources :users, :path => "u" do#, :only =>[:show, :index] do #, :index, :update do
     get :ajax_posts_all
     get :ajax_posts_status,  :filter => :status

@@ -377,6 +377,18 @@ body {
 #col2 p {
   margin: 5px 0; }
 
+.col .users {
+  margin-top: 10px; }
+  .col .users .user {
+    font-size: 12px; }
+    .col .users .user a.photo {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px; }
+    .col .users .user span {
+      color: #333333;
+      margin-bottom: 10px; }
+
 #col3 .title {
   margin-bottom: 5px; }
   #col3 .title span {
@@ -402,15 +414,6 @@ body {
 #col3 a.list-title {
   display: block;
   margin-bottom: 10px; }
-#col3 .user {
-  font-size: 12px; }
-  #col3 .user a.photo {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px; }
-  #col3 .user span {
-    color: #333333;
-    margin-bottom: 10px; }
 #col3 ul.ui-tabs-nav li {
   background: none transparent;
   border: none; }
@@ -796,7 +799,7 @@ a, a:hover {
     .post .comment .comment-left {
       margin-right: 8px; }
     .post .comment .comment-right {
-      width: 420px; }
+      width: 360px; }
       .post .comment .comment-right .comment-fullname {
         font-size: 12px;
         font-weight: bold; }

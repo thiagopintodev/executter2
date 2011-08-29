@@ -1,2 +1,21 @@
 <%= render '/cities/city_col2' %>
 <%= render '/sponsor_col2' %>
+
+<div class="users">
+
+  <div class="clear line">
+  </div>
+  
+  <h2>Suggestions</h2>
+  
+  <div  id="col2_user_list"
+        class="users"
+        data-ajaxload-event="load"
+        data-ajaxload-url="<%= user_ajax_suggestions_sidebar_url %>"
+        data-ajaxload-target="#col2_user_list"
+        >
+  </div>
+  
+  <div class="clear line">
+  </div>
+</div>
