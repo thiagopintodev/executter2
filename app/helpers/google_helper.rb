@@ -1,4 +1,4 @@
-module Col2Helper
+module GoogleHelper
 
   def google_ads
     return '' if Rails.env.development?
