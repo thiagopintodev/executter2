@@ -36,7 +36,7 @@ class RegistrationController < ApplicationController
       return render :action =>:captcha
     end
 
-    city = City.create_many_from_city_base(@user.city_base_id)
+    city = City.create_many_from_city_base(@user.living_city_base_id)
     
     if @user.register
       session[:user_session] = {:id=>@user.id, :auth_token =>@user.authentication_token}

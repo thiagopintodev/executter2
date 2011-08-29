@@ -1,7 +1,14 @@
-<% if @user.city %>
-<h2>Your City</h2>
+<% if @user.born_city %>
+<h2>Nasceu Em</h2>
 <p>
-<%= link_to @user.city.name, city_label_path(@user.city.label) %>
-<%= link_to @user.city.l_, city_label_path(@user.city.label) %>
+<%= link_to @user.born_city.name, city_label_path(@user.born_city.label) %>
+<%= link_to @user.born_city.l_,   city_label_path(@user.born_city.label) %>
+</p>
+<% end %>
+<% if @user.living_city %>
+<h2>Mora Em</h2>
+<p>
+<%= link_to @user.living_city.name, city_label_path(@user.living_city.label) %>
+<%= link_to @user.living_city.l_,   city_label_path(@user.living_city.label) %>
 </p>
 <% end %>

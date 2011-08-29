@@ -55,6 +55,8 @@ Ex2::Application.routes.draw do
 =end
   get  "e/basic"    => "edit#basic"
   put  "e/basic"    => "edit#basic_put"
+  get  "e/cities"   => "edit#cities"
+  put  "e/cities"   => "edit#cities_put"
   get  "e/username" => "edit#username"
   put  "e/username" => "edit#username_put"
   get  "e/email"    => "edit#email"

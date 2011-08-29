@@ -1,5 +1,5 @@
 <% content_for :jsload do %>
-functions.registration.ajax.append_behaviour();
+$("#user_living_city_base_id").tokenInput("/cities/base_search.json", {tokenLimit: 1});
 $("table ul li input[type='text']").addClass("input-value input-type-text");
 <% end %>
 
@@ -11,7 +11,6 @@ $("table ul li input[type='text']").addClass("input-value input-type-text");
   <%= image_tag "http://s3.amazonaws.com/of7_production/ex1-production/banners/imgs/000/000/001/1_original_out_1.jpg?1288462423", :width=>400, :height=>250 %>
 </div>
 <div class="right panel">
-
 
   <h2><%= T.t('page.registration.new.right.title') %></h2>
   <h3><%= T.t('page.registration.new.right.subtitle') %></h3>
@@ -55,11 +54,11 @@ $("table ul li input[type='text']").addClass("input-value input-type-text");
       
       <tr>
         <td class="label">
-          <%= f.label :city_base_id, :city %>:
+          <%= f.label :living_city_base_id, :city %>:
         </td>
         <td class="field">
-          <%= f.text_field :city_base_id %>
-          <%= content_tag :span, @user.errors[:city_base_id].first, :class=>'my_error_msg'  if @user.errors[:city_base_id].first %>
+          <%= f.text_field :living_city_base_id %>
+          <%= content_tag :span, @user.errors[:living_city_base_id].first, :class=>'my_error_msg'  if @user.errors[:living_city_base_id].first %>
         </td>
       </tr>
 

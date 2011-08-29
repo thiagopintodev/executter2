@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823234856) do
+ActiveRecord::Schema.define(:version => 20110829222128) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(:version => 20110823234856) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "city_bases", ["data"], :name => "index_city_bases_on_data"
+  add_index "city_bases", ["label"], :name => "index_city_bases_on_label"
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -108,18 +111,6 @@ ActiveRecord::Schema.define(:version => 20110823234856) do
   add_index "post_user_news", ["user_id", "is_read"], :name => "index_post_user_news_on_user_id_and_is_read"
   add_index "post_user_news", ["user_id"], :name => "index_post_user_news_on_user_id"
   add_index "post_user_news", ["user_id_from"], :name => "index_post_user_news_on_user_id_from"
-
-  create_table "post_user_notifications", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.integer  "user_id_from"
-    t.string   "reason_trigger"
-    t.string   "reason_why"
-    t.boolean  "is_read",        :default => false
-    t.boolean  "is_mailed",      :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "post_words", :id => false, :force => true do |t|
     t.integer "post_id"
@@ -248,8 +239,9 @@ ActiveRecord::Schema.define(:version => 20110823234856) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_photo_url"
-    t.integer  "city_id"
     t.integer  "last_read_post_id"
+    t.integer  "born_city_id"
+    t.integer  "living_city_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

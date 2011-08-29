@@ -13,7 +13,7 @@ gem 'paperclip'
 gem 'aws-s3', :require => 'aws/s3'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
-gem 'rake', '0.8.7'
+gem 'rake', '0.9.2'
 gem 'pg'
 gem 'hirb'
 

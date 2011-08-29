@@ -18,6 +18,28 @@ class EditController < ApplicationController
       render :basic
     end
   end
+
+  def cities
+  end
+
+  def cities_put
+    p = params[:user][:living_city_base_id]
+    if !p.empty?
+      city = City.create_many_from_city_base(p)
+      @user.living_city_id = city.id
+    end
+    p = params[:user][:born_city_base_id]
+    if !p.empty?
+      city = City.create_many_from_city_base(p)
+      @user.born_city_id = city.id
+    end
+    if @user.save
+      flash[:success] = 'Successfully updated.'
+      redirect_to :back
+    else
+      render :cities
+    end
+  end
   
   def username
   end

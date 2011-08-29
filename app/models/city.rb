@@ -1,7 +1,9 @@
 class City < ActiveRecord::Base
   belongs_to :city_base
   belongs_to :city
-  has_many :users
+  
+  has_many :living_users, :class_name => "User"
+  has_many :born_users,   :class_name => "User"
   
   validates :label, :uniqueness=>true
 
@@ -53,7 +55,8 @@ class City < ActiveRecord::Base
     end
   end
   def register_citizen(user)
-    user.update_attribute(:city_id, self.id)
+    user.update_attributes :born_city_id   => self.id,
+                           :living_city_id => self.id
   end
   
   

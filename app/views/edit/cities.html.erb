@@ -1,0 +1,57 @@
+<% content_for :jsload do %>
+$("#user_living_city_base_id, #user_born_city_base_id").tokenInput("/cities/base_search.json", {tokenLimit: 1});
+$("a[rel='change_city']").click(function() {
+  var field = $(this).closest('.field');
+  field.find('.show').hide();
+  field.find('.edit').show();
+  return false;
+});
+<% end %>
+<%= form_for @user, :url=>request.url do |f| %>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="label">
+  Nasceu Em:
+</div>
+<div class="field">
+  <span class='show'>
+    <%= @user.born_city.name %>
+    <%= link_to 'alterar', '#', :rel=>'change_city' %>
+  </span>
+  <span class='edit' style='display:none'>
+    <%= f.text_field :born_city_base_id %>
+  </span>
+</div>
+<div class="clear">
+</div>
+
+
+<div class="label">
+  Vive Em:
+</div>
+<div class="field">
+  <span class='show'>
+    <%= @user.living_city.name %>
+    <%= link_to 'alterar', '#', :rel=>'change_city' %>
+  </span>
+  <span class='edit' style='display:none'>
+    <%= f.text_field :living_city_base_id %>
+  </span>
+</div>
+<div class="clear">
+</div>
+
+<div class="actions">
+  <%= f.submit 'save', :class=>'ui-button' %>
+</div>
+      
+<% end %>
