@@ -7,7 +7,7 @@
           >
 <% end %>
 
-  <div class="users in">
+  <div class="users">
     <div class="user">
       <%= link_to my_image_tag(@city.image_url, :dimensions=>32), :e_photo, :class=>'photo' %>
       <%= link_to @city.name, city_label_path(@city.label), :class=>'strong' %>
@@ -15,30 +15,21 @@
       <%= link_to @city.l_, city_label_path(@city.label) %>
     </div>
   </div>
-  <div class="clear">
+  
+  <div class="clear line">
   </div>
-  
-  <div class="in">
-    
-    <div class="clear line">
-    </div>
-  
-    <%= link_to "Moradores de #{@city.l_}", '/', :class=>"list-title strong" %>
-    <div class="users">
-      <% @city.users.each do |user| %>
-      <div class="user">
-        <%= link_to image_tag(user.p_, :width=>48, :height=>48), profile_path(user.username), :class=>'photo' %>
-        <%=  %>
-        <%= link_to user.fullname, profile_path(user.username), :class=>'strong' %>
-        <br/>
-        <%= link_to_username_mention user.username %>
-        <div class="clear">
-        </div>
+
+  <%= link_to "Moradores de #{@city.l_}", '/', :class=>"list-title strong" %>
+  <div class="users">
+    <% @city.living_users.limit(20).order('updated_at DESC').each do |user| %>
+    <div class="user">
+      <%= link_to image_tag(user.p_, :width=>48, :height=>48), profile_path(user.username), :class=>'photo' %>
+      <%=  %>
+      <%= link_to user.fullname, profile_path(user.username), :class=>'strong' %>
+      <br/>
+      <%= link_to_username_mention user.username %>
+      <div class="clear">
       </div>
-    <% end %>
     </div>
-    
-    <div class="clear line">
-    </div>
-    
+  <% end %>
   </div>

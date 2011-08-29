@@ -2,8 +2,8 @@ class City < ActiveRecord::Base
   belongs_to :city_base
   belongs_to :city
   
-  has_many :living_users, :class_name => "User"
-  has_many :born_users,   :class_name => "User"
+  has_many :living_users, :class_name => "User", :foreign_key => 'living_city_id'
+  has_many :born_users,   :class_name => "User", :foreign_key => 'born_city_id'
   
   validates :label, :uniqueness=>true
 
