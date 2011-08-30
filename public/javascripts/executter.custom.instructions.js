@@ -52,7 +52,7 @@ $(function() {
   setInterval(function() {
     t = ($title_at1) ? $title1 : $title2;
     $title_at1 = !$title_at1;
-    $("head title").html(t);
+    document.title = t;
   }, 1200);
 
   functions.application.ex2tabs.append_behaviour();
