@@ -1,6 +1,5 @@
-<div class="subheader">
-  <div class="wrapper">
-    <% unless controller.controller_name == 'user_sessions' %>
+<% unless controller.controller_name == 'user_sessions' %>
+  <div class="subheader">
     <div class="left">
       <%= form_for UserSession.new do |f| %>
         <table cellspacing="0">
@@ -42,6 +41,5 @@
     <div class="right">
       <%= link_to T.t('subheader.register'), :new, :class=>"ui-button" %>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>

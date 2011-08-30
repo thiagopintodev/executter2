@@ -266,6 +266,7 @@ body {
 /*header end*/
 /*subheader begin*/
 .subheader {
+  position: fixed;
   top: 40px;
   left: 0;
   z-index: 15;
@@ -313,8 +314,16 @@ body {
 
 /*subheader end*/
 /*body begin*/
+body.logged-in .body {
+  margin: 30px 20px 0; }
+
+body.not-logged-in .body {
+  margin: 120px 20px 0; }
+
+body.c-registration.not-logged-in .body {
+  margin: 120px auto 0; }
+
 .body {
-  margin: 30px 20px 0;
   /*triple*/ }
   .body #col3-back {
     position: fixed;
@@ -613,7 +622,7 @@ body.c-search .post, body.c-home.a-index .post, body.c-users.a-show .post {
 
 .c-registration .body {
   width: 900px;
-  margin: 0 auto; }
+  margin: 120px auto; }
   .c-registration .body .new-user .panel {
     display: inline-block;
     width: 400px;

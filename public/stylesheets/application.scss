@@ -219,7 +219,7 @@ body {margin:0;padding:0;font-size:12px;font-family:Arial;}
 
 /*subheader begin*/
 .subheader {
-  top:40px;left:0;z-index:15;
+  position:fixed;top:40px;left:0;z-index:15;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   background:#069;
   width:100%;height:80px;
@@ -248,9 +248,11 @@ body {margin:0;padding:0;font-size:12px;font-family:Arial;}
 /*subheader end*/
 
 /*body begin*/
+body.logged-in     .body { margin: 30px 20px 0; }
+body.not-logged-in .body { margin: 120px 20px 0; }
+body.c-registration.not-logged-in .body { margin: 120px auto 0; }
+
 .body {
-  margin: 30px 20px 0;
-  
   /*triple*/
   #col3-back {
     position: fixed;float: right;top: 0;left: 779px;z-index: -1;
@@ -473,7 +475,7 @@ body.c-search, body.c-home.a-index, body.c-users.a-show {
 
 .c-registration .body {
   width:900px;
-  margin: 0 auto;
+  margin: 120px auto;
   .new-user {
     .panel {
       display:inline-block;width:400px;height:800px;margin-top:20px;
