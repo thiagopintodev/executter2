@@ -317,6 +317,16 @@ body {
 .body {
   margin: 0 20px;
   /*triple*/ }
+  .body #col3-back {
+    position: fixed;
+    float: right;
+    top: 0;
+    left: 779px;
+    z-index: -1;
+    width: 220px;
+    height: 100%;
+    background: #fff;
+    opacity: 0.8; }
   .body #bodytable {
     height: 800px; }
     .body #bodytable .col {
@@ -338,9 +348,7 @@ body {
     .body #bodytable #col3 {
       width: 200px;
       max-width: 200px;
-      margin: 0px;
-      background: #fff;
-      opacity: 0.8; }
+      margin: 0px; }
       .body #bodytable #col3 .col-in {
         margin: 20px 10px; }
     .body #bodytable #col12 {
@@ -353,9 +361,10 @@ body {
 /*body end*/
 /*footer begin*/
 .footer {
-  margin: 20px 0 0;
-  box-shadow: 10px 2px 0 rgba(0, 0, 0, 0);
-  padding: 5px 0;
+  margin: 0;
+  box-shadow: 10px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  padding: 7px 0 0;
   background: #fff; }
   .footer .left {
     float: left; }
