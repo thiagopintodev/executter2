@@ -138,131 +138,130 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 35px;
-  padding-top: 5px;
-  position: relative; }
-  .header .left {
-    float: left;
-    margin-left: 20px; }
-    .header .left #bell-holder {
-      float: left;
-      margin-right: 5px;
-      width: 32px;
-      height: 32px; }
-    .header .left #logo, .header .left #bell, .header .left #searchbox {
+  padding-top: 5px; }
+
+.header .right {
+  float: right;
+  font-size: 15px;
+  margin-right: 20px; }
+  .header .right ul {
+    height: 32px;
+    margin: 0; }
+    .header .right ul li {
       display: inline-block;
       float: left;
-      margin-right: 5px;
+      height: 32px; }
+      .header .right ul li a {
+        padding: 6px 10px 0;
+        color: #fff;
+        display: block;
+        height: 32px;
+        text-decoration: none; }
+      .header .right ul li.hover {
+        background: #ffaa33; }
+.header .left {
+  float: left;
+  margin-left: 20px; }
+  .header .left #bell-holder {
+    float: left;
+    margin-right: 5px;
+    width: 32px;
+    height: 32px; }
+  .header .left #logo, .header .left #bell, .header .left #searchbox {
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    width: 32px;
+    height: 32px; }
+  .header .left #logo {
+    width: 128px;
+    background-color: #fff;
+    background-position: 0 0; }
+    .header .left #logo:hover {
+      background-position: 0 -32px; }
+  .header .left #bell {
+    /*position:absolute;left:0;top:4px;*/
+    background-color: #fff;
+    background-position: -128px 0;
+    display: none;
+    position: relative;
+    z-index: 10; }
+    .header .left #bell:hover {
+      background-position: -128px -32px;
+      text-decoration: none; }
+    .header .left #bell.selected {
+      background-position: -128px -64px; }
+    .header .left #bell span {
+      background: #090;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 4px;
+      border-radius: 2px 4px;
+      position: absolute;
+      top: 0;
+      right: 0; }
+  .header .left #searchbox {
+    width: 256px;
+    /*position:absolute;left:164px;top:4px;*/
+    background-position: -192px 0; }
+    .header .left #searchbox #text, .header .left #searchbox #search {
+      display: inline-block;
+      float: left; }
+    .header .left #searchbox #text {
+      width: 216px;
+      border: none;
+      font-size: 12px;
+      line-height: 22px;
+      margin: 4px;
+      background: transparent;
+      outline: none;
+      color: #fff; }
+    .header .left #searchbox #search {
       width: 32px;
       height: 32px; }
-    .header .left #logo {
-      width: 128px;
-      /*position:absolute;left:0;top:4px;*/
-      background-color: #fff;
-      background-position: 0 0; }
-      .header .left #logo:hover {
-        background-position: 0 -32px; }
-    .header .left #bell {
-      /*position:absolute;left:0;top:4px;*/
-      background-color: #fff;
-      background-position: -128px 0;
-      display: none;
-      position: relative;
-      z-index: 10; }
-      .header .left #bell:hover {
-        background-position: -128px -32px;
-        text-decoration: none; }
-      .header .left #bell.selected {
-        background-position: -128px -64px; }
-      .header .left #bell span {
-        background: #090;
-        color: #fff;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 2px 4px;
-        border-radius: 2px 4px;
-        position: absolute;
-        top: 0;
-        right: 0; }
-    .header .left #searchbox {
-      width: 256px;
-      /*position:absolute;left:164px;top:4px;*/
-      background-position: -192px 0; }
-      .header .left #searchbox #text, .header .left #searchbox #search {
-        display: inline-block;
-        float: left; }
-      .header .left #searchbox #text {
-        width: 216px;
-        border: none;
-        font-size: 12px;
-        line-height: 22px;
-        margin: 4px;
-        background: transparent;
-        outline: none;
-        color: #fff; }
-      .header .left #searchbox #search {
-        width: 32px;
-        height: 32px; }
-    .header .left #bellbox {
-      width: 300px;
+  .header .left #bellbox {
+    width: 300px;
+    background: #fff;
+    color: #333333;
+    border: 1px solid #666;
+    /*border-width: 0px 2px 1px 0px;*/
+    position: absolute;
+    top: 35px;
+    left: 133px;
+    display: none; }
+    .header .left #bellbox div.anchor {
       background: #fff;
-      color: #333333;
-      border: 1px solid #666;
-      /*border-width: 0px 2px 1px 0px;*/
-      position: absolute;
-      top: 35px;
-      left: 133px;
-      display: none; }
-      .header .left #bellbox div.anchor {
-        background: #fff;
-        padding: 10px;
-        display: inline-block; }
-        .header .left #bellbox div.anchor img, .header .left #bellbox div.anchor span {
-          float: left; }
-        .header .left #bellbox div.anchor span {
-          width: 230px;
-          margin-left: 5px;
-          color: #999999; }
-        .header .left #bellbox div.anchor strong {
-          color: #ff9900; }
-        .header .left #bellbox div.anchor .time {
-          color: #999999; }
-        .header .left #bellbox div.anchor a {
-          display: inline-block;
-          margin-right: 5px;
-          position: relative;
-          height: 12px;
-          padding: 10px 0 4px;
-          text-indent: 20px; }
-          .header .left #bellbox div.anchor a span {
-            display: block;
-            width: 16px;
-            height: 16px;
-            position: absolute;
-            top: 8px;
-            left: 0px; }
-        .header .left #bellbox div.anchor.hover {
-          background: #ff9900; }
-          .header .left #bellbox div.anchor.hover strong, .header .left #bellbox div.anchor.hover span, .header .left #bellbox div.anchor.hover a {
-            color: #fff; }
-  .header .right {
-    float: right;
-    font-size: 15px;
-    margin-right: 20px; }
-    .header .right ul {
-      height: 32px;
-      margin: 0; }
-      .header .right ul li {
+      padding: 10px;
+      display: inline-block; }
+      .header .left #bellbox div.anchor img, .header .left #bellbox div.anchor span {
+        float: left; }
+      .header .left #bellbox div.anchor span {
+        width: 230px;
+        margin-left: 5px;
+        color: #999999; }
+      .header .left #bellbox div.anchor strong {
+        color: #ff9900; }
+      .header .left #bellbox div.anchor .time {
+        color: #999999; }
+      .header .left #bellbox div.anchor a {
         display: inline-block;
-        float: left;
-        height: 32px; }
-        .header .right ul li a {
-          padding: 6px 10px 0;
-          color: #fff;
+        margin-right: 5px;
+        position: relative;
+        height: 12px;
+        padding: 10px 0 4px;
+        text-indent: 20px; }
+        .header .left #bellbox div.anchor a span {
           display: block;
-          height: 32px;
-          text-decoration: none; }
-          .header .right ul li a.hover {
-            color: #fff; }
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          top: 8px;
+          left: 0px; }
+      .header .left #bellbox div.anchor.hover {
+        background: #ff9900; }
+        .header .left #bellbox div.anchor.hover strong, .header .left #bellbox div.anchor.hover span, .header .left #bellbox div.anchor.hover a {
+          color: #fff; }
 
 /*header end*/
 /*subheader begin*/
@@ -315,7 +314,7 @@ body {
 /*subheader end*/
 /*body begin*/
 .body {
-  margin: 0 20px;
+  margin: 30px 20px 0;
   /*triple*/ }
   .body #col3-back {
     position: fixed;
@@ -350,7 +349,7 @@ body {
       max-width: 200px;
       margin: 0px; }
       .body #bodytable #col3 .col-in {
-        margin: 20px 10px; }
+        margin: 10px; }
     .body #bodytable #col12 {
       width: 755px;
       max-width: 755px;

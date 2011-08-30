@@ -133,91 +133,86 @@ body {margin:0;padding:0;font-size:12px;font-family:Arial;}
 .header {
   position:fixed;top:0;left:0;z-index:10;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  width:100%;height:35px;
-  
-    padding-top:5px;position:relative;
-    .left {
-      float:left;margin-left:20px;
-      #bell-holder { float:left;margin-right:5px;width:32px;height:32px; }
-      #logo, #bell, #searchbox { display:inline-block;float:left;margin-right:5px;width:32px;height:32px; }
-      #logo {
-        width:128px;
-        /*position:absolute;left:0;top:4px;*/
-        background-color:#fff;background-position: 0 0;
-        &:hover { background-position: 0 -32px; }
-      }
-      #bell {
-        /*position:absolute;left:0;top:4px;*/
-        background-color:#fff;background-position: -128px 0;
-        display:none;
-        position:relative;z-index:10;
-        &:hover { background-position: -128px -32px;text-decoration:none; }
-        &.selected { background-position: -128px -64px; }
-        span {
-          background:#090;color:#fff;
-          font-size:12px;font-weight:bold;
-          padding:2px 4px;border-radius:2px 4px;
-          position:absolute;
-          top:0;right:0;
+  width:100%;height:35px;padding-top:5px;
+}
+.header {
+  .right {
+    float:right;font-size:15px;margin-right:20px;
+    ul {
+      height:32px;margin:0;
+      li {
+        display:inline-block;float:left;height:32px;
+        a {
+          padding: 6px 10px 0;color:#fff; display:block;height:32px; text-decoration:none;
         }
+        &.hover { background:$color2; }
       }
-      #searchbox {
-        width:256px;
-        /*position:absolute;left:164px;top:4px;*/
-        background-position: -192px 0;
-        #text, #search  { display:inline-block;float:left; }
-        #text           { width:216px;border:none;font-size:12px;line-height:22px;margin: 4px;background:transparent;outline:none;color:#fff; }
-        #search         { width:32px;height:32px; }
+    }
+  }
+  .left {
+    float:left;margin-left:20px;
+    #bell-holder { float:left;margin-right:5px;width:32px;height:32px; }
+    #logo, #bell, #searchbox { display:inline-block;float:left;margin-right:5px;width:32px;height:32px; }
+    #logo {
+      width:128px;
+      background-color:#fff;background-position: 0 0;
+      &:hover { background-position: 0 -32px; }
+    }
+    #bell {
+      /*position:absolute;left:0;top:4px;*/
+      background-color:#fff;background-position: -128px 0;
+      display:none;
+      position:relative;z-index:10;
+      &:hover { background-position: -128px -32px;text-decoration:none; }
+      &.selected { background-position: -128px -64px; }
+      span {
+        background:#090;color:#fff;
+        font-size:12px;font-weight:bold;
+        padding:2px 4px;border-radius:2px 4px;
+        position:absolute;
+        top:0;right:0;
       }
-      #bellbox {
-        width:300px;
-        background:#fff;
+    }
+    #searchbox {
+      width:256px;
+      /*position:absolute;left:164px;top:4px;*/
+      background-position: -192px 0;
+      #text, #search  { display:inline-block;float:left; }
+      #text           { width:216px;border:none;font-size:12px;line-height:22px;margin: 4px;background:transparent;outline:none;color:#fff; }
+      #search         { width:32px;height:32px; }
+    }
+    #bellbox {
+      width:300px;
+      background:#fff;
 
-        color:$color3;
-        
-        border:1px solid #666; /*border-width: 0px 2px 1px 0px;*/
-        position:absolute;top:35px;left:133px;
-        display:none;
-        
-        div.anchor {
-          background:#fff;padding:10px;display:inline-block;
-          img, span { float:left; }
-          span { width:230px;margin-left:5px;color:$color4; }
-          strong { color:$color1; }
-          .time { color:$color4; }       
-          a {
-            display:inline-block;margin-right:5px;
-            position:relative;
-            height:12px;padding: 10px 0 4px;text-indent:20px;
-            span {
-              display:block;width:16px;height:16px;
-              position:absolute;top:8px;left:0px;
-            }
+      color:$color3;
+      
+      border:1px solid #666; /*border-width: 0px 2px 1px 0px;*/
+      position:absolute;top:35px;left:133px;
+      display:none;
+      
+      div.anchor {
+        background:#fff;padding:10px;display:inline-block;
+        img, span { float:left; }
+        span { width:230px;margin-left:5px;color:$color4; }
+        strong { color:$color1; }
+        .time { color:$color4; }       
+        a {
+          display:inline-block;margin-right:5px;
+          position:relative;
+          height:12px;padding: 10px 0 4px;text-indent:20px;
+          span {
+            display:block;width:16px;height:16px;
+            position:absolute;top:8px;left:0px;
           }
-          &.hover {
-            background:$color1;
-            strong, span, a { color:#fff; }
-          }
+        }
+        &.hover {
+          background:$color1;
+          strong, span, a { color:#fff; }
         }
       }
     }
-
-
-
-    .right {
-      float:right;font-size:15px;margin-right:20px;
-      ul {
-        height:32px;margin:0;
-        li {
-          display:inline-block;float:left;height:32px;
-          a {
-            padding: 6px 10px 0;color:#fff; display:block;height:32px; text-decoration:none;
-            &.hover { color:#fff; }
-          }
-        }
-      }
-    }
-    
+  }
 }
 /*header end*/
 
@@ -254,7 +249,7 @@ body {margin:0;padding:0;font-size:12px;font-family:Arial;}
 
 /*body begin*/
 .body {
-  margin: 0 20px;
+  margin: 30px 20px 0;
   
   /*triple*/
   #col3-back {
@@ -279,7 +274,7 @@ body {margin:0;padding:0;font-size:12px;font-family:Arial;}
     #col3 {
       width:200px;max-width:200px;
       margin:0px;
-      .col-in { margin:20px 10px; }
+      .col-in { margin:10px; }
     }
     #col12 {
       width:755px;max-width:755px;
