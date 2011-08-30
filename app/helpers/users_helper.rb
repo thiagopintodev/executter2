@@ -3,7 +3,7 @@ module UsersHelper
   def current_user_is_not_user
     !user_me?
   end
-
+  
   def user_post_tabs_item(text, number, url, css_class)
     css_class = "icon-color #{css_class}"
     content = raw "#{text} #{content_tag :span, '', :class=>css_class} #{content_tag :strong, number}"

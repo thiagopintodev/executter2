@@ -13,7 +13,7 @@
   
     <%= content_tag :h1, @user.fullname %>
     
-    <% if current_user_is_not_user %>
+    <% if current_user && current_user!=@user %>
     <div id="relatepanel" class="relate_panel"
                           data-ajaxload-event="load"
                           data-ajaxload-url="<%= user_ajax_relate_panel_url(@user) %>"
