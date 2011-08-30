@@ -27,13 +27,18 @@ class City < ActiveRecord::Base
       
       #first check for 'anapolis'
       city_without_country = City.where(:label=>cb.label).first
-      if !city_without_country
+      if city_without_country.nil?
         #if there is no 'anapolis' creates both MASTER and SLAVE
+        #anapolis
         city_without_country  = cb.cities.create!(:name=>cb.full_name, :country=>cb.country, :label=>cb.label)
-        city_with_country     = cb.cities.create!(:name=>cb.full_name, :country=>cb.country, :label=>cb.label_country, :city_id=>city_without_country.id)
+        #anapolis-br
+        cb.cities.create!(:name=>cb.full_name, :country=>cb.country, :label=>cb.label_country, :city_id=>city_without_country.id)
+        #anapolis
         return city_without_country
       else
         #if there is 'anapolis', finds or creates 'anapolis-br', without a master
+        return city_without_country if cb.country == city_without_country.country
+        #anapolis-br
         return City.where(:label=>cb.label_country).first || cb.cities.create!(:label=>cb.label, :name=>cb.full_name, :country=>cb.country)
       end
       #returns MASTER if MASTER-SLAVE, or SLAVE-only if MASTER was already taken for another country
