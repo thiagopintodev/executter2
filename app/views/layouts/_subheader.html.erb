@@ -23,23 +23,14 @@
                 <%= f.submit T.t('subheader.login.button') %>
               </td>
             </tr>
-            <% if false %>
-            <tr>
-              <td>
-              </td>
-              <td>
-                <%= link_to T.t('subheader.login.forgot1'), '/' %>
-              </td>
-            </tr>
-            <% end %>
           </tbody>
         </table>
       <% end %>
     </div>
-    <% end %>
     <% unless ['registration', 'user_sessions'].include? controller.controller_name %>
-    <div class="right">
-      <%= link_to T.t('subheader.register'), :new, :class=>"ui-button" %>
-    </div>
+      <div class="right">
+        <%= link_to T.t('subheader.register'), :new, :class=>"ui-button" %>
+      </div>
+    <% end %>
   </div>
 <% end %>
