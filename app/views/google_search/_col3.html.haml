@@ -1,5 +1,6 @@
-- @image_list[:results].each do |image|
-  = link_to image_tag(image[:url], :width=>64), image[:url], :rel=>'thumbnail', :style=>'margin:10px;float:left'
+= cache [@cache_key, :col3], :expires_in => 1.day do
+  - @image_list[:results].each do |image|
+    = link_to image_tag(image[:url], :width=>64), image[:url], :rel=>'thumbnail', :style=>'margin:10px;float:left'
   
-= javascript_tag do
-  make_colorbox();
+  = javascript_tag do
+    make_colorbox();

@@ -1,3 +1,4 @@
-- @video_list[:results].each do |video|
-  - youtube_210(video[:play_url]).each do |content|
-    = raw content
+- cache [@cache_key, :col2], :expires_in => 1.day do
+  - @video_list[:results].each do |video|
+    - youtube_210(video[:play_url]).each do |content|
+      = raw content

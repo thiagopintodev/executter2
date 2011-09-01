@@ -1,5 +1,5 @@
 = background_image current_user if current_user
-  
-- @text_list.each do |text|
-  .text{:style=>"border-bottom:solid 1px #999;padding:20px;"}
-    = link_to raw(text[:text]), CGI::unescape(URI.decode(text[:url])), :target=>'_blank'
+- cache @cache_key, :expires_in => 1.day do
+  - @text_list.each do |text|
+    .text{:style=>"border-bottom:solid 1px #999;padding:20px;"}
+      = link_to raw(text[:text]), CGI::unescape(URI.decode(text[:url])), :target=>'_blank'
