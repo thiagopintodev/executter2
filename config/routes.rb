@@ -24,7 +24,7 @@ Ex2::Application.routes.draw do
     end
     #city
     get "c/:label"  => 'mobile#city'
-    scope "uc/:label" do
+    scope "c/:label" do
       get 'posts' => 'mobile#city_posts'
     end
   end

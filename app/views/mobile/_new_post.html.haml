@@ -1,0 +1,4 @@
+- if cu_ro
+  = form_tag :mobile_new_post do
+    = text_area_tag :body, ("#{@user.u_} " if @user && @user!=cu_ro), :id=>'new_post_body'
+    = submit_tag "Executter", :id=>'new_post_submit'

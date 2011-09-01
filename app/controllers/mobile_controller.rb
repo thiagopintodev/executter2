@@ -33,6 +33,17 @@ class MobileController < ApplicationController
   end
 
   def user
+    if params[:user_id]||params[:id]
+      @user = current_user if (current_user && current_user.id == params[:user_id]||params[:id])
+      @user ||= User.find(params[:user_id]||params[:id])
+    elsif params[:username]
+      @user = current_user if (current_user && current_user.username.downcase == params[:username].downcase)
+      @user ||= User.findu(params[:username])
+    elsif current_user
+      @user = current_user
+    end
+    
+    @posts = Post.from_profile(@user, :before => params[:before])
   end
 
   def user_posts
