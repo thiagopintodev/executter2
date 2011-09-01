@@ -6,6 +6,7 @@ class City < ActiveRecord::Base
   has_many :born_users,   :class_name => "User", :foreign_key => 'born_city_id'
   
   validates :label, :uniqueness=>true
+  LABEL_REGEX = /[a-z-]{2,}/i
 
   def label_sign
     "$#{label}"

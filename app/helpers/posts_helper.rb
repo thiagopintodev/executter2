@@ -85,7 +85,7 @@ e: '/username'
         "#{link_to(d, e, :class=>:group)}#{c}"
       elsif w[0,1]==city_key
         a = w[1..-1]
-        b = a[User::USERNAME_REGEX]
+        b = a[City::LABEL_REGEX]
         c = a.gsub(b,'')
         d = "$#{b}"
         e = "/c/#{b}"
