@@ -17,6 +17,7 @@ gem 'rake', '0.9.2'
 gem 'pg'
 gem 'hirb'
 gem 'haml'
+gem 'googleajax'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
