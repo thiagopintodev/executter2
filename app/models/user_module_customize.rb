@@ -80,16 +80,16 @@ module UserModuleCustomize
 
   #privileges array
   def privileges
-    self.privileges_string.split(',')
+    self.privileges_string.split(',') rescue []
   end
   def privileges=(value)
     self.privileges_string = value.join(',')
   end
   def developer?
-    privileges.include? 'dev'
+    self.privileges.include?('dev')
   end
   def admin?
-    privileges.include? 'adm'
+    self.privileges.include?('adm') || developer?
   end
 
   
