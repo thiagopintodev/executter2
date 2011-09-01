@@ -1,21 +1,25 @@
 Ex2::Application.routes.draw do
 
-  get 'm' => 'mobile#index'
-  scope 'm' do
+  get 'm' => 'mobile#index_posts', :as=>:mobile_root
+  scope 'm', :as=>'mobile' do
+    get "mentions"  => 'mobile#index_mentions'
+    get 'posts'     => 'mobile#index_posts'
+    #
+    post 'new_post' => 'mobile#index_new_post'
+    #authentication
     get  "login" => 'mobile#login'
     post "login" => 'mobile#post_login'
-    get "posts" => 'mobile#index_posts'
-    get "mentions" => 'mobile#index_mentions'
-    get "new" => 'mobile#index_post_new'
+    #get "posts" => 'mobile#index_posts'
+    #get "new" => 'mobile#index_post_new'
     #user
-    get "u/:username" => 'mobile#user'
+    get "u/:username" => 'mobile#user', :as=>:user
     scope "u/:username" do
-      get 'posts' => 'mobile#user_posts'
+      get 'posts' => 'mobile#user_posts', :as=>:user_posts
     end
     #post
-    get "p/:id"     => 'mobile#post'
-    scope "p/:id" do
-      get 'posts' => 'mobile#post_posts'
+    get "p/:id"     => 'mobile#post', :as=>:post
+    scope "p/:id", :as=>:post do
+      get 'comments' => 'mobile#post_posts'
       get 'new' => 'mobile#post_posts_new'
     end
     #city

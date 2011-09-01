@@ -16,6 +16,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'rake', '0.9.2'
 gem 'pg'
 gem 'hirb'
+gem 'haml'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
