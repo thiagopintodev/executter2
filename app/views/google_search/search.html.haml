@@ -2,4 +2,4 @@
   
 - @text_list.each do |text|
   .text{:style=>"border-bottom:solid 1px #999;padding:20px;"}
-    = link_to raw(text[:text]), text[:url], :target=>'_blank'
+    = link_to raw(text[:text]), CGI::unescape(URI.decode(text[:url])), :target=>'_blank'

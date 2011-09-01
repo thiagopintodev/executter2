@@ -22,7 +22,6 @@ class GoogleSearchController < ApplicationController
     GoogleAjax::Search.books(text)[:results].each do |book|
       @text_list << {:url=>book[:url],      :text=>book[:title]}
     end
-    
   end
 
 end
