@@ -42,13 +42,28 @@ module PostsHelper
   end
 
   def link_to_username(username, mention_helper=true)
+    username = username.downcase
     #random_id="mention-user-#{rand(99999999)}"
     #link_to("@#{username}", "/#{username}", :class=>:user, :id=>random_id)
-    link_to "@#{username}", "/#{username}", {:class=>'username', :title=>"Ver Perfil de @#{username}"}
+    url = @mobile ? "/m/u/#{username}" : "/#{username}"
+    link_to "@#{username}", url, {:class=>'username', :title=>"Ver Perfil de @#{username}"}
   end
 
   def link_to_username_mention(username)
-    link_to "@#{username}", "/#{username}", {:class=>'username-mention', :title=>"Mencionar @#{username}"}
+    url = @mobile ? "/m/u/#{username}" : "/#{username}"
+    link_to "@#{username}", url, {:class=>'username-mention', :title=>"Mencionar @#{username}"}
+  end
+
+  def link_to_search(title)
+    #url = @mobile ? "/m/s/#{username}" : "/s/#{title}"
+    url = "/s/#{title}"
+    link_to "##{title}", url, :class=>:search
+  end
+  
+  def link_to_city(label)
+    #url = @mobile ? "/m/c/#{label}" : "/c/#{label}"
+    url = "/c/#{label}"
+    link_to "$#{label}", url, :class=>:city
   end
   
 =begin
@@ -70,27 +85,17 @@ e: '/username'
         a = w[1..-1]
         b = a[User::USERNAME_REGEX]
         c = a.gsub(b,'')
-        #d = "@#{b}"
-        #e = "/#{b}"
-        #random_id="mention-user-#{rand(99999999)}"
-        #"#{link_to(d, e, :class=>:user, :id=>random_id)}#{c}"
         "#{link_to_username(b)}#{c}"
       elsif w[0,1]==group_key
         a = w[1..-1]
         b = a[User::USERNAME_REGEX]
         c = a.gsub(b,'')
-        d = "##{b}"
-        e = "/s/#{b}"
-        #link_to(w, "/s/#{a}", :class=>:hash_tag)
-        "#{link_to(d, e, :class=>:group)}#{c}"
+        "#{link_to_search(b)}#{c}"
       elsif w[0,1]==city_key
         a = w[1..-1]
         b = a[City::LABEL_REGEX]
         c = a.gsub(b,'')
-        d = "$#{b}"
-        e = "/c/#{b}"
-        #link_to(w, "/s/#{a}", :class=>:hash_tag)
-        "#{link_to(d, e, :class=>:group)}#{c}"
+        "#{link_to_city(b)}#{c}"
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'

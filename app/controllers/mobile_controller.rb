@@ -1,8 +1,11 @@
 class MobileController < ApplicationController
+  layout 'application_mobile'
 
   before_filter :must_login, :except=>[:login, :post_login]
 
-  layout 'application_mobile'
+  before_filter do
+    @mobile = true
+  end
   
   def login
   end
