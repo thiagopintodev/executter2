@@ -1,0 +1,19 @@
+= form_tag :mobile_new_post do
+  = text_area_tag :body, '', :id=>'new_post_body'
+  = submit_tag "Executter", :id=>'new_post_submit'
+
+- @posts.each do |post|
+  - user = User.kv_find(post.user_id)
+  - original_post = post.post || post
+  .post
+    .post-left
+      = my_image_tag user.p_, :dimensions=>32
+    .post-right
+      %p
+        = link_to user.u_.downcase, mobile_user_path(user.username.downcase)
+        = my_post_links post.cached_body
+      %p= link_to "#{post.posts_count} comments", mobile_post_comments_path(post.id) unless post.posts_count.zero?
+  
+
+- if @posts.length == Post::DEFAULT_LIMIT and !@no_more
+  = link_to "MORE", url_for(params.merge({:before=>@posts.last.id}))

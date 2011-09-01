@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Executter Mobile</title>
+  <%= csrf_meta_tag %>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <%#= stylesheet_link_tag 'application-mobile' %>
+
+  <style>
+    /* CSS Mobile Reset */
+html, body
+{
+ margin: 0;
+ padding: 0; 
+ border: 0;
+}
+
+body 
+{
+ font-family:Arial,  sans-serif;
+ line-height:1.5;
+ font-size:16px;
+ background: #fff;
+ color: #000;
+ word-wrap: break-word;
+ -webkit-text-size-adjust: none;
+}
+
+h1, h2, h3, h4, h5, h6{ font-weight: normal; }
+
+p img { float: left; margin: 0 10px 5px 0; padding: 0; }
+
+img { border: 0; max-width: 100%; }
+
+table { width:auto; border-collapse: collapse;border-spacing: 0; }
+
+label,input,select,table,textarea,button { -webkit-appearance: none; }
+    /* CSS Mobile Reset */
+
+    .header {
+      /*position:absolute;top:0;left:0;z-index:10;*/
+      width:100%;height:35px;padding-top:5px;
+      background:#f90;
+    }
+    .header .right {
+      float:right;font-size:15px;margin-right:5px;
+    }
+    .header .right ul {
+      height:32px;margin:0;
+    }
+    .header .right ul li {
+      display:inline-block;float:left;height:32px;
+    }
+    .header .right ul li a {
+      padding: 6px 10px 0;color:#fff; display:block;height:32px; text-decoration:none;
+    }
+    .header .left {
+      float:left;margin-left:5px;
+    }
+    .header .left #logo {
+      display:inline-block;float:left;margin-right:5px;width:128px;height:32px;
+      background-color:#fff;background-position: 0 0;background-image:url('/images/sprite_orange.png?a');
+    }
+
+    .body {
+      padding:5px;
+    }
+    .body a { color:#f90; }
+
+    form { display:inline-block; }
+    #new_post_body    { width:200px;height:50px;display:block; }
+    #new_post_submit  { width:100px;height:25px;color:#f90;background:#fff;border:outset #999 1px;margin:5px 0;float:right }
+
+    .post {border-bottom:#ccc solid 1px;display:block;padding:5px 0 0;}
+    .post-right { position:relative;top:-42px;left:37px;}
+    .post-right p { margin:0px;padding:0; }
+    .clear {clear:both}
+  
+  </style>
+  
+</head>
+<body <%= page_css_ref %>>
+
+<div class="header">
+  <div class="left">
+    <a id="logo" href="<%= cu_ro ? mobile_root_path : new_path %>"></a>
+  </div>
+  <div class="right">
+    <ul>
+<% if cu_ro %>
+  <%= li link_to T.t('header.menu.home').capitalize,    :mobile_root %>
+  <%= li link_to T.t('header.menu.profile').capitalize, mobile_user_url(cu_ro.username.downcase) %>
+  <%= li link_to T.t('header.menu.out').capitalize,     :out %>
+<% else %>
+  <%= li link_to T.t('header.menu.new').capitalize,     :new %>
+  <%= li link_to T.t('header.menu.in').capitalize,      :in %>
+<% end %>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+
+<div class="body">
+  <%= yield %>
+</div>
+
+<%#= render '/layouts/footer' %>
+
+</body>
+<% if false %>
+<%= bitly %>
+<script type="text/javascript">
+  CONTROLLER = "<%= controller.controller_name %>";
+  ACTION = "<%= controller.action_name %>";
+  RAILS_ENV = "<%= Rails.env %>";
+  MY_ENV = "<%= My.env %>";
+</script>
+<% end %>
+<%= google_analytics %>
+</html>
