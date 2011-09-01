@@ -346,25 +346,25 @@ body.c-registration.not-logged-in .body {
       max-width: 535px;
       background: #fff; }
       .body #bodytable #col1 .col-in {
-        margin: 20px; }
+        margin: 30px 20px; }
     .body #bodytable #col2 {
       width: 220px;
       max-width: 220px;
       background: #fff; }
       .body #bodytable #col2 .col-in {
-        margin: 20px 10px 20px 0; }
+        margin: 30px 10px 20px 0; }
     .body #bodytable #col3 {
       width: 200px;
       max-width: 200px;
       margin: 0px; }
       .body #bodytable #col3 .col-in {
-        margin: 10px; }
+        margin: 20px 10px; }
     .body #bodytable #col12 {
       width: 755px;
       max-width: 755px;
       background: #fff; }
       .body #bodytable #col12 .col-in {
-        margin: 20px; }
+        margin: 30px 20px; }
 
 /*body end*/
 /*footer begin*/
