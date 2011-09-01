@@ -25,7 +25,7 @@ module PostsHelper
     keys = []
     string.split(/\s/).collect do |w|
       next unless w.index('youtube')
-      next unless a = w.index('v=')
+      next unless a = w.index('v=') || w.index('v/')
       b = w.index('&') || 0
       i,j = a+2, b-1
       keys << w[i..j]
@@ -37,8 +37,16 @@ module PostsHelper
       "<iframe width='425' height='349' src='http://www.youtube.com/embed/#{key}?rel=0' frameborder='0' allowfullscreen></iframe>"
     end
   end
+  def youtube_links_210(array)
+    return array.collect do |key|
+      "<iframe width='210' height='170' src='http://www.youtube.com/embed/#{key}?rel=0' frameborder='0' allowfullscreen></iframe>"
+    end
+  end
   def youtube(body)
     Rails.env.development? ? [] : youtube_links( youtube_keys(body) )
+  end
+  def youtube_210(body)
+    Rails.env.development? ? [] : youtube_links_210( youtube_keys(body) )
   end
 
   def link_to_username(username, mention_helper=true)
@@ -66,6 +74,12 @@ module PostsHelper
     link_to "$#{label}", url, :class=>:city
   end
   
+  def link_to_google_search(text)
+    #url = @mobile ? "/m/c/#{text}" : "/c/#{text}"
+    url = "/google_search/#{text}"
+    link_to "!#{text}", url, :class=>:google
+  end
+  
 =begin
 w.starts_with?('www')
 w: '@username...'
@@ -80,6 +94,7 @@ e: '/username'
     user_key = "@"
     group_key = "#"
     city_key = "$"
+    google_search_key = "!"
     r = s.split(/\s/).collect do |w|
       if w[0,1]==user_key
         a = w[1..-1]
@@ -96,6 +111,12 @@ e: '/username'
         b = a[City::LABEL_REGEX]
         c = a.gsub(b,'')
         "#{link_to_city(b)}#{c}"
+      elsif w[0,1]==google_search_key
+        a = w[1..-1]
+        b = a[City::LABEL_REGEX]
+        #c = a.gsub(b,'')
+        #"#{link_to_google_search(b)}#{c}"
+        "#{link_to_google_search(b)}"
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'

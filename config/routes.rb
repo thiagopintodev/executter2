@@ -1,5 +1,7 @@
 Ex2::Application.routes.draw do
 
+  get "google_search/:text" => "google_search#search"
+
   get 'm' => 'mobile#index_posts', :as=>:mobile_root
   scope 'm', :as=>'mobile' do
     get "mentions"  => 'mobile#index_mentions'
