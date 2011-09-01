@@ -1,2 +1,5 @@
 - @image_list[:results].each do |image|
-  = image_tag image[:url], :width=>64, :style=>'margin:10px;float:left'
+  = link_to image_tag(image[:url], :width=>64), image[:url], :rel=>'thumbnail', :style=>'margin:10px;float:left'
+  
+= javascript_tag do
+  make_colorbox();

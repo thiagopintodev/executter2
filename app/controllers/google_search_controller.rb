@@ -26,4 +26,3 @@ class GoogleSearchController < ApplicationController
   end
 
 end
-
