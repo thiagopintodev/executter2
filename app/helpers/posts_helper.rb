@@ -76,7 +76,7 @@ module PostsHelper
   
   def link_to_google_search(text)
     #url = @mobile ? "/m/c/#{text}" : "/c/#{text}"
-    url = "/google_search/#{text}"
+    url = "/w/#{text}"
     link_to "!#{text}", url, :class=>:google
   end
   

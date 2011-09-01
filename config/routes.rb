@@ -1,6 +1,6 @@
 Ex2::Application.routes.draw do
 
-  get "google_search/:text" => "google_search#search"
+  get "w/:text" => "google_search#search"
 
   get 'm' => 'mobile#index_posts', :as=>:mobile_root
   scope 'm', :as=>'mobile' do
@@ -15,20 +15,19 @@ Ex2::Application.routes.draw do
     #get "new" => 'mobile#index_post_new'
     #user
     get "u/:username" => 'mobile#user', :as=>:user
-    scope "u/:username" do
-      get 'posts' => 'mobile#user_posts', :as=>:user_posts
-    end
+    #scope "u/:username" do
+    #  get 'posts' => 'mobile#user_posts', :as=>:user_posts
+    #end
     #post
     get "p/:id"     => 'mobile#post', :as=>:post
-    scope "p/:id", :as=>:post do
-      get 'comments' => 'mobile#post_posts'
-      get 'new' => 'mobile#post_posts_new'
-    end
+    #scope "p/:id", :as=>:post do
+    #  get 'comments' => 'mobile#post_posts'
+    #end
     #city
     get "c/:label"  => 'mobile#city'
-    scope "c/:label" do
-      get 'posts' => 'mobile#city_posts'
-    end
+    #scope "c/:label" do
+    #  get 'posts' => 'mobile#city_posts'
+    #end
   end
 
   get 'c/:label' => 'cities#show', :as=>:city_label
