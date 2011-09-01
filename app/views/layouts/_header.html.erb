@@ -31,7 +31,7 @@
             <li><%= link_to "M", :mobile=>true %></li>
           <% end %>
         <% end %>
-  <%= li link_to("M", :mobile_root) if cu_ro.try(:admin?) %>
+  <%= li link_to("mobile", :mobile_root) %>
 <% if cu_ro %>
   <%= li link_to T.t('header.menu.home').capitalize,    :root %>
   <%= li link_to T.t('header.menu.profile').capitalize, profile_url(cu_ro.username) %>

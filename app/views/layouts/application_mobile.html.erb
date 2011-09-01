@@ -87,7 +87,7 @@ label,input,select,table,textarea,button { -webkit-appearance: none; }
   </div>
   <div class="right">
     <ul>
-  <%= li link_to("W", :root) %>
+  <%= li link_to("web", :root) %>
 <% if cu_ro %>
   <%= li link_to T.t('header.menu.home').capitalize,    :mobile_root %>
   <%= li link_to T.t('header.menu.profile').capitalize, mobile_user_url(cu_ro.username.downcase) %>
