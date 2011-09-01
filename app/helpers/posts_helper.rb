@@ -34,12 +34,12 @@ module PostsHelper
   end
   def youtube_links(array)
     return array.collect do |key|
-      "<iframe width='425' height='349' src='http://www.youtube.com/embed/#{key}?rel=0' frameborder='0' allowfullscreen></iframe>"
+      "<object width='425' height='349'><param name='movie' value='http://www.youtube.com/v/#{key}?version=3&amp;hl=pt_BR&amp;rel=0'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><param name='wmode' value='transparent'><embed src='http://www.youtube.com/v/#{key}?version=3&amp;hl=pt_BR&amp;rel=0' type='application/x-shockwave-flash' width='425' height='349' allowscriptaccess='always' allowfullscreen='true' wmode='transparent'></embed></object>"
     end
   end
   def youtube_links_210(array)
     return array.collect do |key|
-      "<iframe width='210' height='170' src='http://www.youtube.com/embed/#{key}?rel=0' frameborder='0' allowfullscreen></iframe>"
+      "<object width='210' height='170'><param name='movie' value='http://www.youtube.com/v/#{key}?version=3&amp;hl=pt_BR&amp;rel=0'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><param name='wmode' value='transparent'><embed src='http://www.youtube.com/v/#{key}?version=3&amp;hl=pt_BR&amp;rel=0' type='application/x-shockwave-flash' width='210' height='170' allowscriptaccess='always' allowfullscreen='true' wmode='transparent'></embed></object>"
     end
   end
   def youtube(body)
