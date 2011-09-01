@@ -357,11 +357,14 @@ functions.posts.ajax.append_behaviour = function() {
     post = $(this).closest('.post');
     post.contents().find('.toggle_comment').remove();
     post.contents().find('.comment-state-before, .comment-state-during').hide();
-    $(post.data('comments-target')).load(post.data('comments-url'), function() {
-      post.contents().find('.comment-state-during textarea').val('');
-      post.contents().find('.comment-state-during').show();
-      post.contents().find('.comment-state-during textarea').focus();
-    });
+    //making it take a while longer may garantee my comment to show on this ajax load
+    setTimeout(function() {
+      $(post.data('comments-target')).load(post.data('comments-url'), function() {
+        post.contents().find('.comment-state-during textarea').val('');
+        post.contents().find('.comment-state-during').show();
+        post.contents().find('.comment-state-during textarea').focus();
+      });
+    }, 1000);
   });
 
   $("a[rel='post-comments-loader']").live('click', function () {
