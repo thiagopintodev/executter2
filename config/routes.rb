@@ -1,5 +1,30 @@
 Ex2::Application.routes.draw do
 
+  get 'm' => 'mobile#index'
+  scope 'm' do
+    get  "login" => 'mobile#login'
+    post "login" => 'mobile#post_login'
+    get "posts" => 'mobile#index_posts'
+    get "mentions" => 'mobile#index_mentions'
+    get "new" => 'mobile#index_post_new'
+    #user
+    get "u/:username" => 'mobile#user'
+    scope "u/:username" do
+      get 'posts' => 'mobile#user_posts'
+    end
+    #post
+    get "p/:id"     => 'mobile#post'
+    scope "p/:id" do
+      get 'posts' => 'mobile#post_posts'
+      get 'new' => 'mobile#post_posts_new'
+    end
+    #city
+    get "c/:label"  => 'mobile#city'
+    scope "uc/:label" do
+      get 'posts' => 'mobile#city_posts'
+    end
+  end
+
   get 'c/:label' => 'cities#show', :as=>:city_label
   resources :cities, :only=>[:show] do
     collection do
