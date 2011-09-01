@@ -11,7 +11,7 @@ class GoogleSearchController < ApplicationController
     #web_list   = GoogleAjax::Search.web(text)
     #blog_list  = GoogleAjax::Search.blogs(text)
     GoogleAjax::Search.web(text)[:results].each do |web|
-      @text_list << {:url=>web[:title],     :text=>web[:content]}
+      @text_list << {:url=>web[:url],     :text=>web[:content]}
     end
     GoogleAjax::Search.news(text)[:results].each do |news|
       @text_list << {:url=>news[:url],      :text=>news[:title]}
