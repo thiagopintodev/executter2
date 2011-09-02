@@ -51,7 +51,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    redirect_to :root unless @post = Post.find(params[:id])
+    post_id = params[:id].split('-').first
+    redirect_to :root unless @post = Post.find(post_id)
     @user = @post.user
   end
 

@@ -38,6 +38,9 @@ class Post < ActiveRecord::Base
     errors.add(:placement, "a comment must have a parent") if !!post_id && !comment?
   end
 
+  def to_param
+    "#{self.id}-#{self.cached_body.gsub(/[\W]/, '-')}"
+  end
 
   #forces 196
   before_create do
