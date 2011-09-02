@@ -4,7 +4,7 @@
 <% cache [:city, @user.born_city.id, :image], :expires_in => 5.minutes do %>
   <% GoogleAjax.referer = request.host %>
   <% url = GoogleAjax::Search.images(@user.born_city.label)[:results].sample[:unescaped_url] %>
-  <%= my_image_tag url, :dimensions => 64 %>
+  <%= my_image_tag url, :dimensions => 210 %>
 <% end %>
 <%#= link_to @user.born_city.name, city_label_path(@user.born_city.label) %>
 <%= link_to @user.born_city.l_,   city_label_path(@user.born_city.label) %>
@@ -18,7 +18,7 @@
 <% cache [:city, @user.living_city.id, :image], :expires_in => 5.minutes do %>
   <% GoogleAjax.referer = request.host %>
   <% url = GoogleAjax::Search.images(@user.living_city.label)[:results].sample[:unescaped_url] %>
-  <%= my_image_tag url, :dimensions => 64 %>
+  <%= my_image_tag url, :dimensions => 210 %>
 <% end %>
 <%#= link_to @user.living_city.name, city_label_path(@user.living_city.label) %>
 <%= link_to @user.living_city.l_,   city_label_path(@user.living_city.label) %>
