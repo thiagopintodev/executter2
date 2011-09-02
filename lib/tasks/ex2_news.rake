@@ -11,11 +11,19 @@ namespace :news do
                                 .group('post_id, reason_why, reason_trigger')
                                 .order('created_at DESC')
                                 .limit(6)
-=end
+
+                                
     pun_grouping_following = PUN.where('post_id IS NULL')
                                 .where(:is_read=>false, :is_mailed=>false)
                                 .select('user_id, user_id_from, reason_why, reason_trigger, count(*)')
                                 .group( 'user_id, user_id_from, reason_trigger, reason_why')
+=end
+
+    pun_grouping_following = PUN.where('post_id IS NULL')
+                                .where(:is_mailed=>false)
+                                .select('user_id, user_id_from, reason_why, reason_trigger, count(*)')
+                                .group( 'user_id, user_id_from, reason_trigger, reason_why')
+                                .limit(150)
     puts "sending #{pun_grouping_following.length} notifications about following"
     pun_grouping_following.each do |pun|
       I18n.locale = pun.user.locale
