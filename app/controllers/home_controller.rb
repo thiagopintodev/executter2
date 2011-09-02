@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     @pun_list_unread_count = cu.post_user_news.where(:is_read => false).count
     pun_list = cu.post_user_news.order("id DESC")
     #@pun_list = pun_list.limit(6)
-    @pun_grouping = cu.post_user_news.where(:is_read=>false).where('post_id IS NOT NULL').select('post_id, reason_why, reason_trigger, max(user_id_from) as user_id_from, max(created_at) as created_at, count(*)').group('post_id, reason_why, reason_trigger').limit(6)
+    @pun_grouping = cu.post_user_news.where('post_id IS NOT NULL').select('post_id, reason_why, reason_trigger, max(user_id_from) as user_id_from, max(created_at) as created_at, count(*)').group('post_id, reason_why, reason_trigger').limit(6).order('created_at DESC')
     @users_from = User.where(:id=>@pun_grouping.map(&:user_id_from))
     render :layout=>false
   end
