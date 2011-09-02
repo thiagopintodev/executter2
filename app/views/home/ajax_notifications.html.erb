@@ -1,4 +1,4 @@
-<% cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-'), :expires_in=>5.minutes] do %>
+<%# cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-'), :expires_in=>5.minutes] do %>
 
 <script type="text/javascript">
 <% if @pun_list_unread_count > 0 %>
@@ -8,7 +8,28 @@
 </script>
 <%= bitly %>
 
-<% if @pun_list.size > 0 %>
+<% @pun_grouping.each do |pun| %>
+  <% user_from = User.kv_find(pun.user_id_from) %>
+  <% pun_path_to = post_path(pun.post_id) %>
+  <div class="anchor" href="<%= pun_path_to %>">
+    <%= image_tag user_from.p_, :width=>45, :height=>45 %>
+    <span>
+      <strong>
+        <%= user_from.fn_ %>
+        <%= "and other #{pun.count} users" if pun.count.to_i > 1 %>
+      </strong>
+      <%= reason = T.t "notifications.simple.trigger_#{pun.reason_trigger}_why_#{pun.reason_why}" %>
+      <br/>
+      <%= post_actions_link l(pun.created_at, :format => :short),
+                            pun_path_to,
+                            'source-site',
+                            :class=>'time', :'data-time'=>pun.created_at.to_i %>
+    </span>
+  </div>
+<% end %>
+
+<%# if @pun_list.size > 0 %>
+<% if false %>
 
   <% @pun_list.each do |pun| %>
     <% user_from = User.kv_find(pun.user_id_from) %>
@@ -28,4 +49,4 @@
   <% end %>
 <% end %>
 
-<% end %>
+<%# end %>
