@@ -29,6 +29,7 @@ namespace :news do
       I18n.locale = pun.user.locale
       MyM.notification(pun).deliver
       PUN.update_all({:is_mailed=>true}, { :user_id => pun.user_id, :user_id_from => pun.user_id_from, :reason_why => pun.reason_why})
+      puts pun.user.email
     end  
     #@users_from = User.where(:id=>@pun_grouping.map(&:user_id_from))
 
