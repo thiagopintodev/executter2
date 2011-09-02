@@ -6,10 +6,11 @@
   #executter p { padding: 5px 0;margin:0; }
 #executter
   %p
+    = image_tag @pun.user_from.p_, :alt=>@pun.user_from.fn_, :width=>32
     = @pun.user_from.fn_
     = link_to @pun.user_from.u_.downcase, profile_url(@pun.user_from.username)
   - if @pun.count.to_i > 1
-    %h4= "and other #{@pun.count} users"
+    %p= "and other #{@pun.count} users"
   %p
     = @pun.reason
   - if @pun.has_post?

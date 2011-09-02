@@ -16,6 +16,7 @@ namespace :news do
                                 .where(:is_read=>false, :is_mailed=>false)
                                 .select('user_id, user_id_from, reason_why, reason_trigger, count(*)')
                                 .group( 'user_id, user_id_from, reason_trigger, reason_why')
+    puts "sending #{pun_grouping_following.length} notifications about following"
     pun_grouping_following.each do |pun|
       I18n.locale = pun.user.locale
       MyM.notification(pun).deliver
@@ -24,7 +25,7 @@ namespace :news do
     #@users_from = User.where(:id=>@pun_grouping.map(&:user_id_from))
 
     #PUN.update_all({:is_mailed=>true}, {:user_id=>cu.id, :user_id_from=>@pun_grouping.map(&:user_id_from)})
-    
+    puts "done"
   end
   
 end
