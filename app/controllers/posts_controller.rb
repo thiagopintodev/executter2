@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.create :remote_ip  => request.remote_ip,
                                       :body       => params[:body]
     
-    #@post.save #|| puts(@post.errors)
+    @post.save
 
     att = params[:image] || params[:audio] || params[:other]
     if att
@@ -28,17 +28,10 @@ class PostsController < ApplicationController
       @pfi = @post.post_files.create(:image => params[:image], :category=>c, :extension=>e, :filename=>f) if params[:image]
       @pfa = @post.post_files.create(:audio => params[:audio], :category=>c, :extension=>e, :filename=>f) if params[:audio]
       @pfo = @post.post_files.create(:other => params[:other], :category=>c, :extension=>e, :filename=>f) if params[:other]
-      @post.save #|| puts(@post.errors)
+      #it changed 2 properties up in this code
+      @post.save
     end
     current_user.recount_posts
-=begin
-    @post.has_image  = !!params[:image]
-    @post.has_audio  = !!params[:audio]
-    @post.has_other  = !!params[:other]
-    @post.has_status = !(params[:image] || params[:audio] || params[:other])
-=end
-    #render :js=>"alert('sucesso: p: #{@post.id} pf: #{@pf.try(:id)}')"
-    #render :js=>"alert('servidor erro: #{@post.errors.to_s} #{params[:post]}')" if @post.new_record?
     render :nothing=>true
   end
 
