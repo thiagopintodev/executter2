@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def ajax_relate_panel
+    return render :nothing=>true if !cu || !@user
     render :layout=>false
   end
 
