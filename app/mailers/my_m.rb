@@ -12,4 +12,13 @@ class MyM < ActionMailer::Base
           :to => user.email,
           :subject => "Sua Senha no Executter"
   end
+
+  def notification(pun)
+    mail_to = My.production? ? pun.user.email : 'test@oficina7.com'
+    @pun = pun
+    mail  :from => "#{pun.reason_why}@executter.com",
+          :to => mail_to,
+          :subject => "#{pun.user_from.fn_} #{pun.reason}"
+    
+  end
 end

@@ -1,0 +1,17 @@
+- pun_path_to = @pun.has_post? ? post_url(@pun.post_id) : profile_url(@pun.user_from.username)
+:css
+  #executter * { color:#999; }
+  #executter a        { color:#f90;text-decoration:none; }
+  #executter a:hover  { color:#f90;text-decoration:underline; }
+  #executter p { padding: 5px 0;margin:0; }
+#executter
+  %p
+    = @pun.user_from.fn_
+    = link_to @pun.user_from.u_.downcase, profile_url(@pun.user_from.username)
+  - if @pun.count.to_i > 1
+    %h4= "and other #{@pun.count} users"
+  %p
+    = @pun.reason
+  - if @pun.has_post?
+    %p
+      = link_to Post.kv_find_id(@pun.post_id).body, pun_path_to

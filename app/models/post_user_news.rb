@@ -6,6 +6,14 @@ class PostUserNews < ActiveRecord::Base
   validates :reason_trigger,  :presence => true
   validates :reason_why,      :presence => true
 
+  def reason
+    T.t "notifications.simple.trigger_#{self.reason_trigger}_why_#{self.reason_why}"
+  end
+
+  def has_post?
+    !!self.attributes['post_id']
+  end
+
   #reason_trigger    # what triggered this PUN creation?  -- the PFo reason
   #REASON_MENTIONED  = 'mentioned'
   #REASON_CREATED    = 'created'

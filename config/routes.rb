@@ -1,5 +1,7 @@
 Ex2::Application.routes.draw do
 
+  get 'n' => "site#test"
+
   get "w/:text" => "google_search#search"
 
   get 'm' => 'mobile#index_posts', :as=>:mobile_root
