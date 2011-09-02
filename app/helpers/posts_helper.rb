@@ -49,12 +49,15 @@ module PostsHelper
     Rails.env.development? ? [] : youtube_links_210( youtube_keys(body) )
   end
 
-  def link_to_username(username, mention_helper=true)
-    username = username.downcase
+  def link_to_username(w, mention_helper=true)
+    a = w.downcase[1..-1]
+    return w unless b = a[User::USERNAME_REGEX]
     #random_id="mention-user-#{rand(99999999)}"
     #link_to("@#{username}", "/#{username}", :class=>:user, :id=>random_id)
-    url = @mobile ? "/m/u/#{username}" : "/#{username}"
-    link_to "@#{username}", url, {:class=>'username', :title=>"Ver Perfil de @#{username}"}
+    c = a.gsub(b,'')
+    url = @mobile ? "/m/u/#{a}" : "/#{a}"
+    d = link_to "@#{a}", url, {:class=>'username', :title=>"Ver Perfil de @#{a}"}
+    "#{d}#{c}"
   end
 
   def link_to_username_mention(username)
@@ -62,22 +65,33 @@ module PostsHelper
     link_to "@#{username}", url, {:class=>'username-mention', :title=>"Mencionar @#{username}"}
   end
 
-  def link_to_search(title)
+  def link_to_search(w)
+    a = w[1..-1]
+    return w unless b = a[User::USERNAME_REGEX]
+    c = a.gsub(b,'')
     #url = @mobile ? "/m/s/#{username}" : "/s/#{title}"
-    url = "/s/#{title}"
-    link_to "##{title}", url, :class=>:search
+    url = "/s/#{a}"
+    d = link_to "##{a}", url, :class=>:search
+    "#{d}#{c}"
   end
   
-  def link_to_city(label)
+  def link_to_city(w)
+    a = w[1..-1]
+    return w unless b = a[City::LABEL_REGEX]
+    c = a.gsub(b,'')
     #url = @mobile ? "/m/c/#{label}" : "/c/#{label}"
-    url = "/c/#{label}"
-    link_to "$#{label}", url, :class=>:city
+    url = "/c/#{a}"
+    d = link_to "$#{a}", url, :class=>:city
+    "#{d}#{c}"
   end
   
-  def link_to_google_search(text)
+  def link_to_google_search(w)
+    a = w[1..-1]
+    return w if a.blank?
+    #"#{link_to_google_search(b)}#{c}"
     #url = @mobile ? "/m/c/#{text}" : "/c/#{text}"
-    url = "/w/#{text}"
-    link_to "!#{text}", url, :class=>:google
+    url = "/w/#{a}"
+    link_to "!#{a}", url, :class=>:web
   end
   
 =begin
@@ -97,26 +111,13 @@ e: '/username'
     google_search_key = "!"
     r = s.split(/\s/).collect do |w|
       if w[0,1]==user_key
-        a = w[1..-1]
-        b = a[User::USERNAME_REGEX]
-        c = a.gsub(b,'')
-        "#{link_to_username(b)}#{c}"
+        link_to_username(w)
       elsif w[0,1]==group_key
-        a = w[1..-1]
-        b = a[User::USERNAME_REGEX]
-        c = a.gsub(b,'')
-        "#{link_to_search(b)}#{c}"
+        link_to_search(w)
       elsif w[0,1]==city_key
-        a = w[1..-1]
-        b = a[City::LABEL_REGEX]
-        c = a.gsub(b,'')
-        "#{link_to_city(b)}#{c}"
+        link_to_city(w)
       elsif w[0,1]==google_search_key
-        a = w[1..-1]
-        b = a[City::LABEL_REGEX]
-        #c = a.gsub(b,'')
-        #"#{link_to_google_search(b)}#{c}"
-        "#{link_to_google_search(b)}"
+        link_to_google_search(w)
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'
