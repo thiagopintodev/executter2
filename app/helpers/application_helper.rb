@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def yield_with_sub_layout(content)
-    controller.sub_layout ? render(:layout => "layouts/#{controller.sub_layout}") { content } : content
+    controller.sub_layout ? render(:layout => "layouts/sub/#{controller.sub_layout}") { content } : content
   end
 
   def li(a)
