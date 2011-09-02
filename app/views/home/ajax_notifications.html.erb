@@ -1,4 +1,4 @@
-<%# cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-'), :expires_in=>5.minutes] do %>
+<% cache [:ajax_notifications, :unread_count, @pun_list_unread_count, :list, @pun_list.map(&:id).join('-'), :expires_in=>5.minutes] do %>
 
 <script type="text/javascript">
 <% if @pun_list_unread_count > 0 %>
@@ -9,7 +9,11 @@
 <%= bitly %>
 
 <% @pun_grouping.each do |pun| %>
-  <% user_from = User.kv_find(pun.user_id_from) %>
+  <% user_from = nil %>
+  <% @users_from.each do |u| %>
+    <% user_from = u if u.id == pun.user_id_from %>
+  <% end %>
+  
   <% pun_path_to = post_path(pun.post_id) %>
   <div class="anchor" href="<%= pun_path_to %>">
     <%= image_tag user_from.p_, :width=>45, :height=>45 %>
@@ -49,4 +53,4 @@
   <% end %>
 <% end %>
 
-<%# end %>
+<% end %>

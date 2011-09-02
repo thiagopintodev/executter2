@@ -45,6 +45,7 @@ class HomeController < ApplicationController
                       .select('post_id, reason_why, reason_trigger, max(user_id_from) as user_id_from, max(created_at) as created_at, count(*)')
                       .group('post_id, reason_why, reason_trigger')
                       .limit(6)
+    @users_from = User.where(:id=>@pun_grouping.map(&:user_id_from))
     render :layout=>false
   end
 
