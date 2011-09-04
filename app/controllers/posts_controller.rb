@@ -47,6 +47,7 @@ class PostsController < ApplicationController
                                   :is_repost  => params[:post][:is_repost]=='1',
                                   :files_categories => parent.files_categories,
                                   :files_extensions => parent.files_extensions
+    end
     render :nothing=>true
   end
 
