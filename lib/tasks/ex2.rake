@@ -1,5 +1,4 @@
 namespace :ex2 do
-
   desc "caches all users main photo into user model"
   task :cache_photos => :environment do
     User.update_all :cached_photo_url => UserPhoto.new.image.url(:thumb)
@@ -13,13 +12,13 @@ namespace :ex2 do
     end
     puts 'done'
   end
-
-  task :words, :i, :needs => :environment do |t, args|
+  
+  task :words, [:i] => [:environment] do |t, args|
     10000.times do
       Post.where(:generated_words=>false).limit(10).offset(args[:i]).map &:create_words
     end
   end
-  task :news, :i, :needs => :environment do |t, args|
+  task :words, [:i] => [:environment] do |t, args|
     10000.times do
       Post.where(:generated_notifications=>false).limit(10).offset(args[:i]).each &:assign_notifications
     end

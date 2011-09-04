@@ -52,7 +52,7 @@ namespace :locale do
   #
 
   desc "creates a new locale (or reviews an existing) from dblocale.yml file"
-  task :check, :locale, :needs => :environment do |t, args|
+  task :check, [:locale] => [:environment] do |t, args|
     locale = args[:locale] || 'en'
     create_locale(locale)
     puts "all keys to locale '#{locale}' have been checked :)"
