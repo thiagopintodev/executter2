@@ -36,7 +36,6 @@ Ex2::Application.routes.draw do
   resources :cities, :only=>[:show] do
     collection do
       get 'base_search'
-      get 'search'
     end
   end
 

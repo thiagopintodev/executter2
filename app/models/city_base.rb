@@ -1,6 +1,10 @@
 class CityBase < ActiveRecord::Base
 
   has_many :cities
+  
+  def self.search_cached(words)
+    Rails.cache.fetch([:city_base_search, words]) { search(words) }
+  end
 
   def self.search(words)
     query = CityBase.limit(10).order('length(label)').select([:name, :country, :id])

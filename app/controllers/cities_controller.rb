@@ -4,24 +4,8 @@ class CitiesController < ApplicationController
   before_filter :fill_city, :only=>[:show, :edit, :destroy]
 
   def base_search
-    q = params[:q].try(:downcase)
-    cache_key = [:city_base_search, q]
-    r = Rails.cache.read(cache_key)
-    return r if r
-    r = render (q ? {:json => CityBase.search(q)} : {:json => []})
-    Rails.cache.write(cache_key, r)
-  end
-
-  def search
-    q = params[:q].try(:downcase)
-    cache_key = [:city_search, q]
-    r = Rails.cache.read(cache_key)
-    unless r
-      r = render (q ? {:json => City.search(q)} : {:json => []})
-      Rails.cache.write(cache_key, r)
-      puts "WROTE #{cache_key}"
-    end
-    r
+    return render :json=>[] unless words = params[:q].try(:downcase)
+    render :json => CityBase.search_cached(words)
   end
 
   # GET /cities/1
