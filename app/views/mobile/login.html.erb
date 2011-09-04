@@ -1,2 +1,24 @@
-<h1>Mobile#login</h1>
-<p>Find me in app/views/mobile/login.html.erb</p>
+<%= form_for(@user_session, :html=>{:style=>"margin:30px;font-size:15px;"}) do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username, "#{T.t('subheader.login.field1')}:" %><br />
+    <%= f.text_field :key, :style=>'padding:10px;border-width:1px;' %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "#{T.t('subheader.login.field2')}:" %><br />
+    <%= f.password_field :password, :style=>'padding:10px;border-width:1px;' %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign In", :class=>"ui-button", :style=>'padding:10px;border-width:1px;' %>
+  </div>
+<% end %>
+

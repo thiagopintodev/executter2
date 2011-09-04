@@ -89,7 +89,8 @@ class ApplicationController < ActionController::Base
   private
 
   def not_allowed
-    request.xhr? ? render(:nothing=>true) : redirect_to(:new)
+    return render(:nothing=>true) if request.xhr?
+    controller_name=='mobile' ? redirect_to(:mobile_login) : redirect_to(:new)
   end
 =begin
   def my_admin_only

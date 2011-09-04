@@ -8,9 +8,19 @@ class MobileController < ApplicationController
   end
   
   def login
+    @user_session = UserSession.new
   end
 
   def post_login
+    p = params[:user_session]
+    @user = User.findk(p[:key])
+    if @user and @user.check_password?(p[:password])
+      @user.login
+      session[:user_session] = {:id=>@user.id, :auth_token =>@user.authentication_token}
+      UserAgent.note(request.user_agent)
+      return redirect_to(:root)
+    end
+    @user_session = UserSession.new :key => p[:key]
     render :login
   end
 =begin
