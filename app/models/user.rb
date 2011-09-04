@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
   alias :u_ :username_at
   alias :fn_ :fullname
   def p_
-    self.attributes['cached_photo_url'] || photo.image.url(:thumb)
+    self.attributes['cached_photo_url'] #|| photo.image.url(:thumb)
   end
   
 end
