@@ -18,6 +18,7 @@ gem 'pg'
 gem 'hirb'
 gem 'haml'
 gem 'googleajax'
+gem "aws-ses", "~> 0.4.3", :require => 'aws/ses'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
