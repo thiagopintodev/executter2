@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return @cu if @cu
     sus = session[:user_session]
-    return nil unless sus && user = User.where(:id=>sus[:id]).first
+    return nil unless sus && user = User.find_rescue(sus[:id])
     return  @cu = user if user.authentication_token == sus[:auth_token]
     nil
   end

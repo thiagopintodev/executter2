@@ -85,6 +85,9 @@ class User < ActiveRecord::Base
     end
 
     #CUSTOM METHODS
+    def find_rescue(id)
+      find(id) rescue nil
+    end
     def findi(param_id)
       where(:id=>param_id).first
     end
