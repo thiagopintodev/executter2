@@ -11,8 +11,11 @@ class MyF
       my_env == 'production'
     end
       
+    def aws
+      Rails.env.production? ? "#{RAILS_ROOT}/config/aws.yml" : nil
+    end
     def s3_credentials
-      Rails.env.production? ? "#{RAILS_ROOT}/config/s3.yml" : nil
+      aws
     end
     
     def adapter_name
