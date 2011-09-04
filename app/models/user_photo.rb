@@ -8,8 +8,9 @@ class UserPhoto < ActiveRecord::Base
     r[:styles] = styles
     path = "/#{MyF.my_env}/:class_:attachment/:id_partition.:style.:extension"
     
-    if Rails.env.production?
+    if MyF.s3_credentials
       r[:storage] = :s3
+      r[:s3_credentials] = MyF.s3_credentials
       r[:bucket] = "executter.com"
       r[:path] = path
     else
