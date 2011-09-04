@@ -13,7 +13,7 @@ module UserModuleAuthentication
       validates :username,
                 #:on => :create,
                 :presence => true, :length => { :in => 2..16 },
-                :uniqueness => {:case_sensitive => false},
+                :uniqueness => true,
                 :username => true
       validates :email,
                 #:on => :create,
@@ -27,8 +27,7 @@ module UserModuleAuthentication
                 :presence => true
       validates :password_salt,
                 :presence => true
-=begin
-=end
+                
       validates :new_password,
                 :presence => true,
                 :length => { :in => 4..16 }, :if=>:new_password_confirmation
@@ -37,6 +36,11 @@ module UserModuleAuthentication
                 :length => { :in => 4..16 }, :if=>:new_password
       #validates :new_password,
       #          :confirmation => true, :if => :new_password
+      
+      before_save do
+        self.email = self.email.downcase
+        self.username = self.username.downcase
+      end
     end
   end
   
@@ -50,7 +54,7 @@ module UserModuleAuthentication
     def findk(key)
       return nil if key.length < 3
       column = key.rindex("@") ? 'email' : 'username'
-      where("LOWER(#{column})=?", key.downcase).first
+      where(column => key.downcase).first
     end
     def find_for_database_authentication(key)
       findk(key)

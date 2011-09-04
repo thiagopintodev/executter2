@@ -89,10 +89,10 @@ class User < ActiveRecord::Base
       where(:id=>param_id).first
     end
     def findu(param_username)
-      where("lower(username)=?", param_username.downcase.delete("@")).first
+      where(:username => param_username.downcase.delete("@")).first
     end
     def finde(param_email)
-      where("lower(email)=?", param_email.downcase).first
+      where(:email => param_email.downcase).first
     end
     
     def is_username_at?(text)
