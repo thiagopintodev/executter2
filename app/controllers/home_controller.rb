@@ -52,7 +52,7 @@ class HomeController < ApplicationController
   end
 
   def mark_notifications_as_read
-    PUN.update_all ["is_read = ?", true], ["user_id = ?", current_user.id]
+    PUN.update_all({:is_read => true}, {:user_id => current_user.id})
     render :nothing=>true
   end
 
