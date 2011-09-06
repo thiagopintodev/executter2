@@ -4,7 +4,6 @@ gem 'rails', '3.0.6'
 
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'silent-postgres'
 end
 
