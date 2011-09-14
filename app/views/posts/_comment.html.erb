@@ -1,7 +1,7 @@
 <% user = User.kv_find(comment.user_id) %>
 <div class="comment">
   <div class="comment-left">
-    <%= my_image_tag user.p_, :dimensions=>32 %>
+    <%= link_to my_image_tag(user.p_, :dimensions=>32), profile_path(user.username) %>
   </div>
   <div class="comment-right">
     <div class="comment-text">

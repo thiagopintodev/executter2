@@ -10,7 +10,7 @@
   data-comments-target="#post-<%= post.id %>-comments"
   >
   <div class="post-left">
-    <%= my_image_tag user.p_, :dimensions=>64 %>
+    <%= link_to my_image_tag(user.p_, :dimensions=>64), profile_path(user.username) %>
   </div>
   <div class="post-right">
     <div class="who">
@@ -28,7 +28,7 @@
 
       <div class="repost">
         <div style="float:left;width:32px;margin-right:5px;">
-          <%= my_image_tag user.p_, :dimensions=>32 %>
+          <%= link_to my_image_tag(user.p_, :dimensions=>32), profile_path(user.username) %>
         </div>
         <div style="float:left;width:440px;">
           <div class="repost-text">
