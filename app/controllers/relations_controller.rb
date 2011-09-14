@@ -1,5 +1,5 @@
 class RelationsController < ApplicationController
-  sub_layout 'double'
+  sub_layout 'triple'
   before_filter :fill_user, :only => [:followings, :followers, :friends]
   
   # GET /relations
