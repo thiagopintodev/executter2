@@ -1,0 +1,27 @@
+<h1>Listing smiles</h1>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Image</th>
+    <th>Is visible</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @smiles.each do |smile| %>
+  <tr>
+    <td><%= smile.key %></td>
+    <td><%= image_tag smile.image.url %></td>
+    <td><%= "visible" if smile.is_visible %></td>
+    <td><%= link_to 'Show', smile %></td>
+    <td><%= link_to 'Edit', edit_smile_path(smile) %></td>
+    <td><%= link_to 'Destroy', smile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Smile', new_smile_path %>

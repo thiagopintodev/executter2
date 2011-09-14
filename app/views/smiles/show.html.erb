@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @smile.key %>
+</p>
+
+<p>
+  <b>Is visible:</b>
+  <%= @smile.is_visible %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag @smile.image.url %>
+</p>
+
+<%= link_to 'Edit', edit_smile_path(@smile) %> |
+<%= link_to 'Back', smiles_path %>

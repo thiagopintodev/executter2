@@ -1,0 +1,32 @@
+<%= form_for(@smile, :html=>{:multipart=>true}) do |f| %>
+  <% if @smile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@smile.errors.count, "error") %> prohibited this smile from being saved:</h2>
+
+      <ul>
+      <% @smile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :key %><br />
+    <%= f.text_field :key %>
+  </div>
+  <div class="field">
+    <%= f.label :is_visible %><br />
+    <%= f.check_box :is_visible %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %><br/>
+    <%= image_tag @smile.image.url if @smile.image? %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110829222128) do
+ActiveRecord::Schema.define(:version => 20110914021040) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -154,6 +154,17 @@ ActiveRecord::Schema.define(:version => 20110829222128) do
 
   add_index "relations", ["user_id", "user2_id", "is_followed"], :name => "index_relations_on_user_id_and_user2_id_and_is_followed"
   add_index "relations", ["user_id", "user2_id", "is_follower"], :name => "index_relations_on_user_id_and_user2_id_and_is_follower"
+
+  create_table "smiles", :force => true do |t|
+    t.string   "key"
+    t.boolean  "is_visible",         :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "suggestions", :force => true do |t|
     t.integer  "user_id"

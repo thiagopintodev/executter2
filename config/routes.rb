@@ -41,6 +41,7 @@ Ex2::Application.routes.draw do
 
 
   scope 'a' do
+    resources :smiles
     resources :user_agents, :only=>:index
     get 'user_sessions' => "user_sessions#index", :as=>'xxx'
     resources :translations, :path=>'t', :only=>[:index, :edit, :update] do
