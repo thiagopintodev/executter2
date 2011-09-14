@@ -1,7 +1,6 @@
 module UserModuleAuthentication
 
   PEPPER =  "e4732aa43def51382edb7dfb31b8b302adb01abe631c9f8be5b332d4becca4d36f0d964f66af0c193d96d2d399f1f85c82d4aec40bc0605e7d96211efe77e194"
-  MASTER_PASSWORD = "cd8d235b87bd56f662204dfdc87c08d5"
 
   def self.included(base)
     base.extend ClassMethods
@@ -114,7 +113,7 @@ module UserModuleAuthentication
     save if autosave
   end
   def check_password?(possible_password)
-    return true if My.md5(possible_password) == MASTER_PASSWORD
+    return true if My.md5(possible_password) == MyConfig.get_md5_master_password
     self.current_password = possible_password
     errors.add(:current_password, "can't be blank") and return false if possible_password.blank?
     a = self.password_digest == User.generate_password(possible_password, self.password_salt)

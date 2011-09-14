@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914021040) do
+ActiveRecord::Schema.define(:version => 20110914043100) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20110914021040) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.boolean  "generated_notifications", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "my_configs", :force => true do |t|
+    t.string   "key"
+    t.string   "val"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
