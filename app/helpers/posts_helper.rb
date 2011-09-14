@@ -4,6 +4,12 @@ module PostsHelper
     !post.repost? and current_user
   end
 
+  def nice_time(time)
+    #l(post.created_at, :format => :long)
+    #l(post.created_at, :format => :short)
+    time_ago_in_words time
+  end
+
   def post_get_comments(post)
     limit = controller.controller_name=='post' ? 50 : 3
     post.post ? [post.post] : post.posts.limit(limit).order("ID desc").reverse

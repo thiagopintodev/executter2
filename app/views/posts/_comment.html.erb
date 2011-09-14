@@ -9,7 +9,7 @@
       <%= my_post_links Post.kv_find_id(comment.id).body %>
     </div>
     <div class="comment-actions">
-      <%= content_tag :span, l(comment.created_at, :format => :long), :class=>'comment-time' %>
+      <%= content_tag :span, nice_time(comment.created_at), :class=>'comment-time' %>
       <% if cu_ro %>
         <%= post_actions_link T.t('page.post.actions.like'),
                               post_like_path(comment),

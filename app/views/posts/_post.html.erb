@@ -36,7 +36,7 @@
           </div>
           <div>
             <%= link_to user.fullname, profile_path(user.username) %>
-            <%= content_tag :span, l(post.created_at, :format => :long), :class=>'repost-time' %>
+            <%= content_tag :span, nice_time(post.created_at), :class=>'repost-time' %>
           </div>
         </div>
         <div class="clear">
@@ -107,7 +107,7 @@
     
     
     <div class="actions" style="margin-bottom:5px">
-      <%= post_actions_link l(post.created_at, :format => :short),
+      <%= post_actions_link nice_time(post.created_at),
                             url_for(post),
                             'source-site',
                             :class=>'time', :'data-time'=>post.created_at.to_i %>

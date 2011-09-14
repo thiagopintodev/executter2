@@ -1,8 +1,8 @@
 class MyConfig < ActiveRecord::Base
 
-  #md5_master_password
-  #aws_key
-  #aws_secret
+  AWS_KEY = 'aws_key'
+  AWS_SECRET = 'aws_secret'
+  MD5_MASTER_PASSWORD = 'md5_master_password'
 
   class << self
     def all_as_hash
@@ -16,32 +16,26 @@ class MyConfig < ActiveRecord::Base
         {}
       end
     end
-    def set_aws(key, secret)
-      mc = find_or_initialize_by_key 'aws_key'
-      mc.val=key
-      mc.save
-      mc = find_or_initialize_by_key 'aws_secret'
-      mc.val=secret
-      mc.save
-    end
     def set_master_password(password)
-      mc = find_or_initialize_by_key('md5_master_password')
+      mc = find_or_initialize_by_key(MD5_MASTER_PASSWORD)
       mc.val=My.md5(password)
       mc.save
     end
     def get_md5_master_password
-      find_by_key('md5_master_password').try(:val)
+      find_by_key(MD5_MASTER_PASSWORD).try(:val)
     end
-    def get_aws_key
-      find_by_key('aws_key').try(:val)
-    end
-    def get_aws_secret
-      find_by_key('aws_secret').try(:val)
+    def set_aws(key, secret)
+      mc = find_or_initialize_by_key AWS_KEY
+      mc.val=key
+      mc.save
+      mc = find_or_initialize_by_key AWS_SECRET
+      mc.val=secret
+      mc.save
     end
     def get_aws_credentials
       {
-        'access_key_id' => find_by_key('aws_key').try(:val),
-        'secret_access_key' => find_by_key('aws_secret').try(:val)
+        'access_key_id' => find_by_key(AWS_KEY).try(:val),
+        'secret_access_key' => find_by_key(AWS_SECRET).try(:val)
       }
     end
   end
