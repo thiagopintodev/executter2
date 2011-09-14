@@ -10,11 +10,11 @@ class PostFile < ActiveRecord::Base
     r = {}
     r[:default_url] = "/images/default/:class_:attachment/:style.png"
     r[:styles] = styles
-    path = "/#{MyF.my_env}/:class_:attachment/:id_partition/:normalized_filename_with_extension"
+    path = "/#{My.my_env}/:class_:attachment/:id_partition/:normalized_filename_with_extension"
     
-    if MyF.s3_credentials
+    if My.production?
       r[:storage] = :s3
-      r[:s3_credentials] = MyF.s3_credentials
+      r[:s3_credentials] = MyConfig.get_aws_credentials
       r[:bucket] = "executter.com"
       r[:path] = path
     else

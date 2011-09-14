@@ -6,10 +6,14 @@ class MyConfig < ActiveRecord::Base
 
   class << self
     def all_as_hash
-      Rails.cache.fetch(:my_config_hash) do
-        h = {}
-        all.each { |m| h[m.key] = m.val }
-        h
+      begin
+        Rails.cache.fetch(:my_config_hash) do
+          h = {}
+          all.each { |m| h[m.key] = m.val }
+          h
+        end
+      rescue
+        {}
       end
     end
     def set_aws(key, secret)
@@ -33,6 +37,12 @@ class MyConfig < ActiveRecord::Base
     end
     def get_aws_secret
       find_by_key('aws_secret').try(:val)
+    end
+    def get_aws_credentials
+      {
+        'access_key_id' => find_by_key('aws_key').try(:val),
+        'secret_access_key' => find_by_key('aws_secret').try(:val)
+      }
     end
   end
 

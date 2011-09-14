@@ -5,11 +5,11 @@ class UserTheme < ActiveRecord::Base
     #r[:default_url] = "/images/default/:class_:attachment/:style.png"
     r[:default_url] = "/images/default/:class_:attachment/original.png"
     r[:styles] = styles
-    path = "/#{MyF.my_env}/:class_:attachment/:id_partition.:style.:extension"
+    path = "/#{My.my_env}/:class_:attachment/:id_partition.:style.:extension"
     
-    if MyF.s3_credentials
+    if My.production?
       r[:storage] = :s3
-      r[:s3_credentials] = MyF.s3_credentials
+      r[:s3_credentials] = MyConfig.get_aws_credentials
       r[:bucket] = "executter.com"
       r[:path] = path
     else

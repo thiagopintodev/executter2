@@ -1,7 +1,5 @@
-if My.aws
-  aws = YAML.load_file(My.aws)
+if My.production?
   ActionMailer::Base.add_delivery_method  :ses,
                                           AWS::SES::Base,
-                                          :access_key_id     => aws["access_key_id"],
-                                          :secret_access_key => aws["secret_access_key_id"]
+                                          MyConfig.get_aws_credentials
 end
