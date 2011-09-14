@@ -9,23 +9,14 @@ class Translation < ActiveRecord::Base
 
   class << self
     def get_all_cache
-      Rails.cache.read('translations_all_attributes') || set_all_cache(all.map &:attributes)
-      #Rails.cache.read('translations_all') || set_all_cached(all)
-    end
-    def set_all_cache(v)
-      Rails.cache.write('translations_all_attributes', v) and v
+      Rails.cache.fetch('translations_all_attributes') { all.map &:attributes }
     end
     def clear_cache
-      Rails.cache.write('translations_all_attributes', nil)
-    end
-    def fill_cache
-      set_all_cache(all) and true
+      Rails.cache.delete('translations_all_attributes')
     end
     def t(key, args={})
-      #where(:locale=>I18n.locale, :key=>key).first.try :text
       l = I18n.locale.to_s
       s = nil
-      fill_cache if get_all_cache.size == 0
       get_all_cache.each do |t1|
         if t1['locale'] == l and t1['key'] == key
           s = t1['text']
@@ -36,8 +27,6 @@ class Translation < ActiveRecord::Base
         args.each { |k,v| s = s.gsub("%{#{k}}", v.to_s) }
       end
       s
-      #get_all_cache.each { |t1| return t1.text if t1.locale == l and t1.key == key }
-      #all.each { |t1| return t1.text if t1.locale == l and t1.key == key }
     end
     def available_locales
       select("DISTINCT(locale)").map &:locale
