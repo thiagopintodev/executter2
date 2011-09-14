@@ -151,7 +151,10 @@ Ex2::Application.routes.draw do
     get "ajax_comments"
     collection do
       get "generate_notifications"
-      post "create_post"
+      post "create_status"
+      post "create_image"
+      post "create_audio"
+      post "create_other"
       post "create_comment"
     end
   end
