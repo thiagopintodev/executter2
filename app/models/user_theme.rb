@@ -20,11 +20,7 @@ class UserTheme < ActiveRecord::Base
   end
 
   has_attached_file :image, paperclip_options
-=begin
-  (  :original => ["700x2800>", :jpg],
-                                                :thumb => ["250x250#", :jpg]
-                                             )
-=end                                           
+  
   belongs_to :user#, :counter_cache=>true
   
   validates :user_id, :presence => true
