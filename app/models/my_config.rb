@@ -13,15 +13,15 @@ class MyConfig < ActiveRecord::Base
       end
     end
     def set_aws(key, secret)
-      mc = find_or_initalize_by_key 'aws_key'
+      mc = find_or_initialize_by_key 'aws_key'
       mc.val=key
       mc.save
-      mc = find_or_initalize_by_key 'aws_secret'
+      mc = find_or_initialize_by_key 'aws_secret'
       mc.val=secret
       mc.save
     end
     def set_master_password(password)
-      mc = find_or_initalize_by_key('md5_master_password')
+      mc = find_or_initialize_by_key('md5_master_password')
       mc.val=My.md5(password)
       mc.save
     end
