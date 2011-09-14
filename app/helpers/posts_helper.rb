@@ -124,7 +124,7 @@ e: '/username'
       elsif smile_url = Smile.all_as_hash[w]
         image_tag smile_url
       else
-        w
+        h w
       end
     end
     raw r.join(" ")
