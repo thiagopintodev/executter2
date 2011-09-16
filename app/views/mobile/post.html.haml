@@ -14,6 +14,8 @@
               = my_image_tag comment.user.p_, :dimensions=>32
             %td
               = my_post_links comment.body
+              %br
+              %span= nice_time(comment.created_at)
         %tr
           %td
             = my_image_tag cu_ro.p_, :dimensions=>32
