@@ -65,7 +65,7 @@ class MobileController < ApplicationController
 
   def post
     @post = Post.find(params[:id])
-    @comments = @post.posts.limit(50).order('id DESC')
+    @comments = @post.posts.limit(50).order('id DESC').reverse
   end
 
   def post_comment_create
