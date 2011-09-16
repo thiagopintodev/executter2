@@ -112,7 +112,7 @@ class Post < ActiveRecord::Base
 
 
   scope :select_cacheable_fields,   select(['id','body'])
-  scope :select_uncacheable_fields, select(['id', "user_id", "post_id", "placement", "on_timeline", "files_categories", "files_extensions", "generated_notifications", "remote_ip", "likes_count", "posts_count", "post_files_count", "created_at", "updated_at"])
+  scope :select_uncacheable_fields, select(['id', "user_id", "post_id", "placement", "on_timeline", "files_categories", "files_extensions", "generated_notifications", "remote_ip", "origin", "likes_count", "posts_count", "post_files_count", "created_at", "updated_at"])
 
     
 
