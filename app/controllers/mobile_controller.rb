@@ -69,15 +69,18 @@ class MobileController < ApplicationController
   end
 
   def post_comment_create
-    @post = Post.find(params[:post_id])
-    @comment = current_user.posts.create  :remote_ip  => request.remote_ip,
-                                          :body       => params[:body],
-                                          :post_id    => @post.id,
-                                          :is_repost  => false,
-                                          :origin     => Post::ORIGIN_MOBILE,
-                                          :files_categories => @post.files_categories,
-                                          :files_extensions => @post.files_extensions
-    redirect_to mobile_post_path(@post)
+    if @post = Post.find(params[:post_id]) rescue nil
+      @post ||= @post.post
+      @comment = current_user.posts.create  :remote_ip  => request.remote_ip,
+                                            :body       => params[:body],
+                                            :post_id    => @post.id,
+                                            :is_repost  => false,
+                                            :origin     => Post::ORIGIN_MOBILE,
+                                            :files_categories => @post.files_categories,
+                                            :files_extensions => @post.files_extensions
+      return redirect_to mobile_post_path(@post)
+    end
+    redirect_to :mobile_root
   end
 
   def post_posts_new

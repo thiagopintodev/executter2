@@ -71,16 +71,14 @@ class PostsController < ApplicationController
 
   # POST /posts/create_comment
   def create_comment
-    parent = Post.find(params[:post][:post_id]) rescue nil
-    
-    if parent
-      @post = current_user.posts
-                          .create :remote_ip  => request.remote_ip,
-                                  :body       => params[:post][:body],
-                                  :post_id    => parent.id,
-                                  :is_repost  => params[:post][:is_repost]=='1',
-                                  :files_categories => parent.files_categories,
-                                  :files_extensions => parent.files_extensions
+    if @post = Post.find(params[:post][:post_id]) rescue nil
+      @post ||= @post.post
+      @comment = current_user.posts.create  :remote_ip  => request.remote_ip,
+                                            :body       => params[:post][:body],
+                                            :post_id    => @post.id,
+                                            :is_repost  => params[:post][:is_repost]=='1',
+                                            :files_categories => @post.files_categories,
+                                            :files_extensions => @post.files_extensions
     end
     render :nothing=>true
   end
