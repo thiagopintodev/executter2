@@ -63,9 +63,19 @@ class MobileController < ApplicationController
   end
 
   def post
+    @post = Post.find(params[:id])
+    @comments = @post.posts.limit(50).order('id DESC')
   end
 
-  def post_posts
+  def post_comment_create
+    @post = Post.find(params[:post_id])
+    @comment = current_user.posts.create  :remote_ip  => request.remote_ip,
+                                          :body       => params[:body],
+                                          :post_id    => @post.id,
+                                          :is_repost  => false,
+                                          :files_categories => @post.files_categories,
+                                          :files_extensions => @post.files_extensions
+    redirect_to mobile_post_path(@post)
   end
 
   def post_posts_new

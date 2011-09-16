@@ -21,10 +21,8 @@ Ex2::Application.routes.draw do
     #  get 'posts' => 'mobile#user_posts', :as=>:user_posts
     #end
     #post
-    get "p/:id"     => 'mobile#post', :as=>:post
-    #scope "p/:id", :as=>:post do
-    #  get 'comments' => 'mobile#post_posts'
-    #end
+    get "p/:id"            => 'mobile#post', :as=>:post
+    post 'p/comment_create' => 'mobile#post_comment_create', :as=>:post_comment_create
     #city
     get "c/:label"  => 'mobile#city'
     #scope "c/:label" do

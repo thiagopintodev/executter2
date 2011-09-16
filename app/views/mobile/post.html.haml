@@ -1,0 +1,25 @@
+- original_post = @post.post || @post
+.post
+  .post-left
+    = my_image_tag @post.user.p_, :dimensions=>32
+  .post-right
+    %p
+      = raw link_to_username @post.user.u_
+      = my_post_links @post.cached_body
+    %table
+      %tbody
+        - @comments.each do |comment|
+          %tr
+            %td
+              = my_image_tag comment.user.p_, :dimensions=>32
+            %td
+              = my_post_links comment.body
+        %tr
+          %td
+            = my_image_tag cu_ro.p_, :dimensions=>32
+          %td
+            = form_tag :mobile_post_comment_create do
+              = hidden_field_tag :post_id, @post.id
+              = text_area_tag :body
+              %br
+              = submit_tag "comment!"
