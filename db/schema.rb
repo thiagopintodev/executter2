@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914043100) do
+ActiveRecord::Schema.define(:version => 20110916191003) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20110914043100) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "generated_words",         :default => false
+    t.string   "origin",                  :default => "web"
   end
 
   add_index "posts", ["post_id"], :name => "index_posts_on_post_id"

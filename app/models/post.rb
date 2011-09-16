@@ -90,6 +90,9 @@ class Post < ActiveRecord::Base
   REASON_COMMENTED  = 'commented'
   REASON_REPOSTED   = 'reposted'
   REASON_NEW_FOLLOWER = 'new_follower'
+
+  ORIGIN_MOBILE = 'mobile'
+  ORIGIN_WEB    = 'web'
 =begin
   REASONS = [
     REASON_MENTIONED,

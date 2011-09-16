@@ -40,6 +40,7 @@ class MobileController < ApplicationController
   
   def index_new_post
     @post = current_user.posts.create :remote_ip  => request.remote_ip,
+                                      :origin     => Post::ORIGIN_MOBILE,
                                       :body       => params[:body]
     User.update(cu_ro.id, :last_read_post_id => @post.id) if @post
     redirect_to :action => :index_posts
@@ -73,6 +74,7 @@ class MobileController < ApplicationController
                                           :body       => params[:body],
                                           :post_id    => @post.id,
                                           :is_repost  => false,
+                                          :origin     => Post::ORIGIN_MOBILE,
                                           :files_categories => @post.files_categories,
                                           :files_extensions => @post.files_extensions
     redirect_to mobile_post_path(@post)
