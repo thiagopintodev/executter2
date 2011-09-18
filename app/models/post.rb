@@ -18,17 +18,11 @@ class Post < ActiveRecord::Base
   
   before_validation do
     return true unless new_record?
-
-    if !!self.post_id && !!self.is_repost
-      #self.on_comments = true
-      self.on_timeline = true
-      self.placement = PLACEMENT_REPOST
-    elsif !!self.post_id
-      #self.on_comments = true
+    
+    if self.post_id
       self.on_timeline = false
       self.placement = PLACEMENT_COMMENT
     else
-      #self.on_comments = false
       self.on_timeline = true
       self.placement = PLACEMENT_TOPIC
     end

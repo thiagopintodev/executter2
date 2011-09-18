@@ -16,9 +16,6 @@
         <%= f.hidden_field :post_id %>
         <%= f.text_area :body, :rows=>2 %>
         <div style="width:90%;">
-          <%= f.check_box :is_repost, :id=>"post_is_repost_of_#{post.id}" %>
-          <%= f.label :is_repost, "re-executter", :for=>"post_is_repost_of_#{post.id}" %>
-          <%#= f.submit %>
           <%= content_tag :span, 196, :class=>"counter" %>
         </div>
       <% end %>

@@ -1,5 +1,5 @@
 <% user = User.kv_find(post.user_id) %>
-<% original_post = post.post || post %>
+<%# original_post = post.post || post %>
 
               <%#= raw "<span style='color:#fff;font-weight:bold;'>R</span>" if comment.repost? %>
 
@@ -21,31 +21,6 @@
       <%= my_post_links post.cached_body %>
     </div>
 
-    <% if post.post %>
-      <% user = User.kv_find(post.post.user_id) %>
-      <div class="line-reposts">
-      </div>
-
-      <div class="repost">
-        <div style="float:left;width:32px;margin-right:5px;">
-          <%= link_to my_image_tag(user.p_, :dimensions=>32), profile_path(user.username) %>
-        </div>
-        <div style="float:left;width:440px;">
-          <div class="repost-text">
-            <%= my_post_links post.post.cached_body %>
-          </div>
-          <div>
-            <%= link_to user.fullname, profile_path(user.username) %>
-            <%= content_tag :span, "#{nice_time(post.created_at)} via #{post.origin}", :class=>'repost-time' %>
-          </div>
-        </div>
-        <div class="clear">
-        </div>
-      </div>
-
-    <% end %>
-
-
 <%#  YOUTUBE IS EQUAL TO POST FILES   %>
 
 
@@ -63,8 +38,8 @@
 <%#  YOUTUBE IS EQUAL TO POST FILES   %>
     
 
-    <% if original_post.post_files.size > 0 %>
-      <% original_post.post_files.each do |pf| %>
+    <% if post.post_files.size > 0 %>
+      <% post.post_files.each do |pf| %>
         <% if pf.image? %>
           <div class="line-files">
           </div>
