@@ -69,10 +69,6 @@
                             'action-like',
                             :remote=>true, :'data-method'=>:post, :class=>'like_it' %>
                             <%# and !cu_ro.likes?(post.id) %>
-      <%= post_actions_link T.t('page.post.actions.repost').capitalize,
-                            '#',
-                            'action-repost',
-                            :class=>'toggle_comment' if can_comment?(post) %>
       <%= post_actions_link T.t('page.post.actions.comment').capitalize,
                             '#',
                             'action-comment',

@@ -5,9 +5,7 @@ class PostsController < ApplicationController
 #  caches_action  :generate_notifications, :expires_in => 1.minutes
 
   before_filter :before_post_creation, :only =>  [:create_status,
-                                                  :create_image,
-                                                  :create_audio,
-                                                  :create_other]
+                                                  :create_image]
  
   private
  
@@ -39,34 +37,6 @@ class PostsController < ApplicationController
     end
     render :nothing=>true
   end
-
-  # POST /posts/create_post_audio
-  def create_audio
-    if att = params[:audio]
-      f = att.original_filename
-      e = @post.files_extensions = f.split('.').last
-      c = @post.files_categories = Post::CATEGORY_AUDIO
-      
-      @post.post_files.create!(:audio => params[:audio], :category=>c, :extension=>e, :filename=>f)
-      @post.save
-    end
-    render :nothing=>true
-  end
-
-  # POST /posts/create_post_other
-  def create_other
-    if att = params[:other]
-      f = att.original_filename
-      e = @post.files_extensions = f.split('.').last
-      c = @post.files_categories = Post::CATEGORY_OTHER
-      
-      @post.post_files.create!(:other => params[:other], :category=>c, :extension=>e, :filename=>f)
-      @post.save
-    end
-    render :nothing=>true
-  end
-
-
   
 
   # POST /posts/create_comment
