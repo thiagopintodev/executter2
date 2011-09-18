@@ -57,23 +57,15 @@
     <%= user_post_tabs_item T.t('page.user.show.post_tabs.all'),
                             @user.pch[:all],
                             user_ajax_posts_all_url(@user),    
-                            'action-like' %>
-    <%= user_post_tabs_item T.t('page.user.show.post_tabs.status'),
+                            'post-text' %>
+    <%# = user_post_tabs_item T.t('page.user.show.post_tabs.status'),
                             @user.pch[:status],
                             user_ajax_posts_status_url(@user),
                             'post-text' %>
-    <%= user_post_tabs_item T.t('page.user.show.post_tabs.image'),
+    <%# = user_post_tabs_item T.t('page.user.show.post_tabs.image'),
                             @user.pch[:images],
                             user_ajax_posts_image_url(@user),
                             'post-image' %>
-    <%= user_post_tabs_item T.t('page.user.show.post_tabs.audio'),
-                            @user.pch[:audios],
-                            user_ajax_posts_audio_url(@user),
-                            'post-audio' %>
-    <%= user_post_tabs_item T.t('page.user.show.post_tabs.file'),
-                            @user.pch[:others],
-                            user_ajax_posts_other_url(@user),
-                            'post-file' %>
     <%= user_post_tabs_item @user.u_,
                             @user.pch[:mentions],
                             user_ajax_posts_mention_url(@user),

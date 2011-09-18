@@ -64,41 +64,18 @@
     
 
     <% if original_post.post_files.size > 0 %>
-    <% original_post.post_files.each do |pf| %>
-      <div class="line-files">
-      </div>
-      <% if pf.image? %>
-        <%= link_to image_tag(pf.image.url), pf.image.url, :class=>'thumbnail', :rel=>'thumbnail' %>
-        <div class="file-get">
-          <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
-          <%= link_to T.t('page.post.file.download').downcase, pf.image.url, :target=>'_blank' %>
-          <%= link_to T.t('page.post.file.view_all').downcase, '/' %>
-        </div>
-      <% elsif pf.audio? || pf.other? %>
-        <% puts other = pf.audio? ? pf.audio : pf.other %>
-        <% other_size = pf.audio.try(:size) || pf.other.try(:size) %>
-        <div class="file">
-          <div style="float:left;width:32px;margin-right:5px;">
-            <img width="32" height="32" src="http://ogas.com.my/Image/pdf-icon.png"/>
+      <% original_post.post_files.each do |pf| %>
+        <% if pf.image? %>
+          <div class="line-files">
           </div>
-          <div style="float:left;width:440px;">
-            <div class="file-name">
-              <%= pf.filename %>
-              <%= content_tag :span, "(#{number_to_human_size other_size})" %>
-            </div>
-            <div class="file-get">
-              <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
-              <%= link_to T.t('page.post.file.download').downcase, other.url, :target=>'_blank' %>
-            </div>
+          <%= link_to image_tag(pf.image.url), pf.image.url, :class=>'thumbnail', :rel=>'thumbnail' %>
+          <div class="file-get">
+            <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
+            <%= link_to T.t('page.post.file.download').downcase, pf.image.url, :target=>'_blank' %>
+            <%= link_to T.t('page.post.file.view_all').downcase, '/' %>
           </div>
-          <div class="clear">
-          </div>
-        </div>
-      <% else %>
-        UNESPECTED
+        <% end %>
       <% end %>
-      
-    <% end %>
       <div class="line-last">
       </div>
     <% end %>

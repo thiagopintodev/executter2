@@ -63,10 +63,10 @@ module UserModuleCustomize
   
   def recount_posts
     h = { :all      => posts.count,
-          :status   => posts.only_status.count,
-          :images   => posts.only_images.count,
-          :audios   => posts.only_audios.count,
-          :others   => posts.only_others.count,
+          #:status   => posts.only_status.count,
+          #:images   => posts.only_images.count,
+          #:audios   => posts.only_audios.count,
+          #:others   => posts.only_others.count,
           :mentions => Post.mentions_count(u_)
         }
     update_attribute :posts_count_string, h.collect { |k,v| "#{k}:#{v}" }.join(',')

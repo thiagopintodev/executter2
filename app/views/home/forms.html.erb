@@ -21,15 +21,6 @@
       <span class="ui-icon icon-color post-image"/>
 		  <%= T.t('page.home.form_tabs.image').capitalize %>
 		</a></li>
-		<li><a href="#tabs-3">
-      <span class="ui-icon icon-color post-audio"/>
-		  <%= T.t('page.home.form_tabs.audio').capitalize %>
-		</a></li>
-		<li><a href="#tabs-4">
-      <span class="ui-icon icon-color post-file"/>
-		  <%= T.t('page.home.form_tabs.file').capitalize %>
-		  
-		</a></li>
 	</ul>
 	<div id="tabs-1">
 
@@ -61,41 +52,6 @@
   <%= file_field_tag :image %>
 <% end %>
 
-		
-	</div>
-	<div id="tabs-3">
-
-
-<%= form_tag create_audio_posts_url, :multipart=>true, :class=>'new_topic' do %>
-  <div class="field">
-    <%= text_area_tag :body, '', :rows=>3, :maxlength=>196 %>
-    <span class="chars">196</span>
-    <%= submit_tag "Executter" %>
-    <div class="clear">
-    </div>
-  </div>
-  <strong><%= T.t('page.home.form_tabs.audio').upcase %>: </strong>
-  <%= file_field_tag :audio %>
-<% end %>
-
-		
-	</div>
-	<div id="tabs-4">
-
-
-<%= form_tag create_other_posts_url, :multipart=>true, :class=>'new_topic' do %>
-  <div class="field">
-    <%= text_area_tag :body, '', :rows=>3, :maxlength=>196 %>
-    <span class="chars">196</span>
-    <%= submit_tag "Executter" %>
-    <div class="clear">
-    </div>
-  </div>
-  <strong><%= T.t('page.home.form_tabs.file').upcase %>: </strong>
-  
-  <%= file_field_tag :other %>
-<% end %>
-		
 		
 	</div>
 </div>
