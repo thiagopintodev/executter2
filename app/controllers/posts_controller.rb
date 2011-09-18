@@ -4,32 +4,29 @@ class PostsController < ApplicationController
   before_filter :must_login, :except => [:show, :generate_notifications]
 #  caches_action  :generate_notifications, :expires_in => 1.minutes
 
-  before_filter :before_post_creation, :only =>  [:create_status,
-                                                  :create_image]
- 
-  private
- 
-  def before_post_creation
+  # POST /posts/create_post_status
+  def create_status
     @post = current_user.posts.create!  :remote_ip  => request.remote_ip,
                                         :body       => params[:body],
                                         :files_categories => Post::CATEGORY_STATUS
     current_user.recount_posts
-  end
-
-  public
-
-  # POST /posts/create_post_status
-  def create_status
     render :nothing=>true
   end
 
   # POST /posts/create_post_image
   def create_image
-    if att = params[:image]
+    att = params[:image]
+    category = att ? Post::CATEGORY_IMAGE : Post::CATEGORY_STATUS
+    
+    @post = current_user.posts.create!  :remote_ip  => request.remote_ip,
+                                        :body       => params[:body],
+                                        :files_categories => category
+    current_user.recount_posts
+    
+    if att
       f = att.original_filename
-      e = @post.files_extensions = f.split('.').last
-      c = @post.files_categories = Post::CATEGORY_IMAGE
-      
+      e = f.split('.').last
+      c = category
       @post.post_files.create!(:image => params[:image], :category=>c, :extension=>e, :filename=>f)
       @post.save
     end
