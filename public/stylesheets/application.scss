@@ -400,25 +400,29 @@ body.c-registration.not-logged-in .body { margin: 120px auto 0; }
 
 
 
+  #home-form-tabs {
+    border:none !important;
+    
+    ul li { border:none;background:none;font-weight:bold; }
+    ul li a { color:$color1; }
+    ul li.ui-tabs-selected a { color:$color3; }
+    ul li.disabled { color:$color4 !important;cursor:text;padding:6px 13px 6px 0; }
+    ul li a { padding-left:0; }
+
+    ul li span { float:left;margin-right: 5px; }
+    .ui-tabs-panel { padding:0;margin-top:10px; }
+
+    .field { width:485px; }
+    textarea { width:100%; }
+    .chars { font-size:24px;color:#ccc;margin-top:5px; }
+    .ui-button { float:right;margin-right:0;font-weight:bold;color:#666;font-size:15px; }
+  }
+
+
+
 body.c-home.a-index #col1 {
-  #home-form-tabs { border:none !important; }
-  #home-form-tabs ul li { border:none;background:none;font-weight:bold; }
-  #home-form-tabs ul li a { color:$color1; }
-  #home-form-tabs ul li.ui-tabs-selected a { color:$color3; }
-  #home-form-tabs ul li.disabled { color:$color4 !important;cursor:text;padding:6px 13px 6px 0; }
-  #home-form-tabs ul li a { padding-left:0; }
-
-  #home-form-tabs ul li span { float:left;margin-right: 5px; }
-  #home-form-tabs .ui-tabs-panel { padding:0;margin-top:10px; }
-
-  #home-form-tabs .field { width:485px; }
-  #home-form-tabs textarea { width:100%; }
-  #home-form-tabs .chars { font-size:24px;color:#ccc;margin-top:5px; }
-  #home-form-tabs .ui-button { float:right;margin-right:0;font-weight:bold;color:#666;font-size:15px; }
-
   #home-post-tabs  { padding:0;border:none; }
   #home-post-tabs .ui-tabs-panel { padding:0;border-top: #ccc solid 1px;border-radius:0; }/*css3*/
-
   #home-news-holder { margin:10px 0;height:40px; }
 }
 
