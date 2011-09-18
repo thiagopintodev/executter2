@@ -152,6 +152,7 @@ Ex2::Application.routes.draw do
       post "create_status"
       post "create_image"
       post "create_comment"
+      get "ajax_search"
     end
   end
 =begin
@@ -167,9 +168,6 @@ Ex2::Application.routes.draw do
     get :ajax_posts_all
     get :ajax_posts_status,  :filter => :status
     get :ajax_posts_image,   :filter => :image
-    get :ajax_posts_audio,   :filter => :audio
-    get :ajax_posts_other,   :filter => :other
-    get :ajax_posts_mention
 
 
     get :ajax_relations_following,  :filter => :following

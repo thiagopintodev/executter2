@@ -23,9 +23,11 @@
 
   <div id="home-post-tabs" style="display:none">
     <ul class="in-h">
-      <li><%= link_to T.t('page.home.post_tabs.home'),          :h_posts_followings_all %></li>
-      <li><%= link_to T.t('page.home.post_tabs.image'),         :h_posts_followings_image %></li>
-      <li><%= link_to "@ #{@user.pch[:mentions]}",              user_ajax_posts_mention_url(cu_ro) %></li>
+      <%= li link_to T.t('page.home.post_tabs.home'),  h_posts_followings_all_url %>
+      <%= li link_to T.t('page.home.post_tabs.image'), h_posts_followings_image_url %>
+      
+      <%= li link_to "@ #{@user.pch[:mentions]}",  ajax_search_posts_url(:search=>@user.u_) %>
+      <%= li link_to @user.living_city.l_,         ajax_search_posts_url(:search=>@user.living_city.l_) if @user.living_city %>
       <% if false %>
       <li><%= link_to T.t('page.home.post_tabs.status'),        :h_posts_followings_status %></li>
       <li><%= link_to T.t('page.home.post_tabs.my_followers'),  :h_posts_followers %></li>

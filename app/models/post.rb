@@ -63,8 +63,8 @@ class Post < ActiveRecord::Base
   #CONSTANTS
   DEFAULT_LIMIT = 10
   DEFAULT_COMMENT_LIMIT = 3
-  #WORD_REGEX_NOT = /[^\w@#$]/
-  WORD_REGEX_NOT = /[^\w@]/
+  WORD_REGEX_NOT = /[^\w@#\$]/
+  #WORD_REGEX_NOT = /[^\w@]/
 
   
   CATEGORY_STATUS= "status"

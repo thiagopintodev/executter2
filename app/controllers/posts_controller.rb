@@ -18,11 +18,9 @@ class PostsController < ApplicationController
 
   public
 
-
-
-
   # POST /posts/create_post_status
   def create_status
+    render :nothing=>true
   end
 
   # POST /posts/create_post_image
@@ -75,6 +73,14 @@ class PostsController < ApplicationController
       users.each { |u| @users_hash[u.id] = u }
     end
     render :layout => false
+  end
+
+  # GET /posts/ajax_posts_search
+  def ajax_search
+    string = params[:search].try(:downcase)
+    options = {:before => params[:before]}
+    @posts = Post.from_search(string, options)
+    render('/posts/index', :layout=>false)
   end
 
   # POST /posts/1/like

@@ -39,23 +39,12 @@ class UsersController < ApplicationController
     render "/likes/index", :layout=>false
   end
 
-
-  #can't be cached
-  def ajax_posts_mention
-    @posts = Post.from_search(@user.u_, get_post_options)
-    render('/posts/index', :layout=>false)
-  end
-
-  
-
   helper_method :user_cache_key
   
   before_filter :post_fill_hashes_from_profile,
                 :only =>  [:ajax_posts_all,
                            :ajax_posts_status,
-                           :ajax_posts_image,
-                           :ajax_posts_audio,
-                           :ajax_posts_other
+                           :ajax_posts_image
                            ]
                                              
   def ajax_posts_all
@@ -65,12 +54,6 @@ class UsersController < ApplicationController
   end
 
   def ajax_posts_image
-  end
-
-  def ajax_posts_audio
-  end
-
-  def ajax_posts_other
   end
 
   def ajax_relations_following
