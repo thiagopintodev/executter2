@@ -1,5 +1,7 @@
 class RemovePostFileAudioAndOther < ActiveRecord::Migration
   def self.up
+    Post.where(:files_categories=>[Post::CATEGORY_AUDIO, Post::CATEGORY_OTHER]).each(&:destroy)
+    #
     remove_column :post_files, :audio_file_name
     remove_column :post_files, :audio_content_type
     remove_column :post_files, :audio_file_size
@@ -8,8 +10,6 @@ class RemovePostFileAudioAndOther < ActiveRecord::Migration
     remove_column :post_files, :other_content_type
     remove_column :post_files, :other_file_size
     remove_column :post_files, :other_updated_at
-    #
-    Post.where(:files_categories=>[Post::CATEGORY_AUDIO, Post::CATEGORY_OTHER]).each(&:destroy)
   end
 
   def self.down
