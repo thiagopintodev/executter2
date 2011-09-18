@@ -1,4 +1,11 @@
+<% content_for :jsload do %>
+  $(".posts").load("<%= ajax_search_posts_url(:search=>@city.l_) %>");
+<% end %>
+
 <%= content_tag :h2, @city.name, :style=>'color:#999' %>
 
 
 <p><center><%= image_tag @city.image_url %></center></p>
+
+<div class="posts">
+</div>
