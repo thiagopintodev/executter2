@@ -19,6 +19,9 @@ textarea {
 a img {
   border: none; }
 
+img.youtube {
+  cursor: pointer; }
+
 a {
   text-decoration: none; }
   a:hover {

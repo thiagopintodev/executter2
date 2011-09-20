@@ -65,6 +65,7 @@
   MY_ENV = "<%= My.env %>";
   
   $(function() {
+    functions.application.youtube.append_behaviour();
 	  <%= yield :jsload %>
   });
 </script>

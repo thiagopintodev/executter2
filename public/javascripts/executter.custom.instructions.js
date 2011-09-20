@@ -1,5 +1,14 @@
 mention_username=false;
 
+YOUTUBE_OBJECT = "<object width='425' height='349'><param name='movie' value='http://www.youtube.com/v/:key?version=3&amp;hl=pt_BR&amp;rel=0'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><param name='wmode' value='transparent'><embed src='http://www.youtube.com/v/:key?version=3&amp;hl=pt_BR&amp;rel=0' type='application/x-shockwave-flash' width='425' height='349' allowscriptaccess='always' allowfullscreen='true' wmode='transparent'></embed></object>";
+
+function replaceAll(string, token, newtoken) {
+	while (string.indexOf(token) != -1) {
+ 		string = string.replace(token, newtoken);
+	}
+	return string;
+}
+
 function bitly() {
   $('.bitly').remove();
   $('body').append("<img class='bitly' src='http://bit.ly/executter' style='display:none' />");

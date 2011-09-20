@@ -22,7 +22,14 @@ functions.application.search.append_behaviour = function() {
   });
 
 }
-
+functions.application.youtube = {}
+functions.application.youtube.append_behaviour = function() {
+  $(".post img[data-youtube]").live("click", function(){
+    var token = $(this).data('youtube');
+    var tag = replaceAll(YOUTUBE_OBJECT, ':key', token);
+    $(this).replaceWith(tag);
+  });
+}
 
 
 /*
