@@ -26,8 +26,8 @@ class PostFile < ActiveRecord::Base
   
 
   has_attached_file :image, paperclip_options({ :original=>["700x2800>", :jpg] })
-  has_attached_file :audio, paperclip_options
-  has_attached_file :other, paperclip_options
+  #has_attached_file :audio, paperclip_options
+  #has_attached_file :other, paperclip_options
 
   def cod
     count_of_downloads 
