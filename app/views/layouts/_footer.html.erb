@@ -1,12 +1,23 @@
 <div class="footer">
   <div class="left" style="margin:5px 20px;">
     <%= content_tag :span,    "Executter 2011 #{I18n.locale}" %>
-    <%= link_to "Portugues",  :locale => 'pt-br' %>
-    <%= link_to "English",    :locale => 'en' %>
-    <%= link_to "Español",    :locale => 'es' %>
+    <%= content_tag :span, link_to("Portugues", :locale => 'pt-br') %>
+    <%= content_tag :span, link_to("English",   :locale => 'en') %>
+    <%= content_tag :span, link_to("Español",   :locale => 'es') %>
   </div>
   <div class="right" style="margin:5px 20px;">
-    <%= link_to "Blog", 'http://executter-pt.blogspot.com/' %>
+    <span>
+      layout:
+      <%= raw link_to_username '@edgala' %>
+    </span>
+    <span>
+      tech:
+      <%= raw link_to_username '@thiago' %>
+    </span>
+    <span>
+      blog:
+      <%= link_to "Blog", 'http://executter-pt.blogspot.com/', :target => '_blank' %>
+    </span>
     <%#= link_to T.t('footer.suggest'), :s_suggest %>
     <%#= link_to T.t('footer.who'), :s_who %>
   </div>

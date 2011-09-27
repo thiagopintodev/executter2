@@ -382,8 +382,7 @@ body.c-registration.not-logged-in .body {
   .footer .right {
     float: right; }
   .footer span {
-    color: #999999; }
-  .footer a {
+    color: #999999;
     margin-left: 10px; }
 
 /*footer end*/
