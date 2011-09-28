@@ -3,6 +3,11 @@
   functions.posts.more.append_behaviour();
   <%= "mention_username = ':mention';".gsub(':mention', params[:mention]) if params[:mention] %>
 <% end %>
+<style>
+  #smiles {}
+  #smiles ul {}
+  #smiles li {float:left;width:48px;height:36px;}
+</style>
 
 <% if cu_ro.admin? %>
   <div class="in">
@@ -16,6 +21,19 @@
         data-ajaxload-nocache="true"
         data-ajaxload-target="#home-form-tabs-holder"
         >
+  </div>
+
+  <%#= image_tag Smile.first.image.url, :rel=>"#smiles" %>
+
+  <div id="smiles">
+    <ul>
+      <% Smile.where(:is_visible=>true).each do |smile| %>
+        <li>
+          <%= smile.key %>
+          <%= image_tag smile.image.url, :alt=>smile.key %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div id="home-news-holder">
