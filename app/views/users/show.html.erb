@@ -58,6 +58,10 @@
                             @user.pch[:all],
                             user_ajax_posts_all_url(@user),    
                             'post-text' %>
+    <%= user_post_tabs_item T.t('page.user.show.post_tabs.image'),
+                            '',
+                            user_ajax_posts_image_url(@user),    
+                            'post-text' %>
                             
     <%= user_post_tabs_item @user.u_,
                             @user.pch[:mentions],
