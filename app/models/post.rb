@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   has_many :post_words#, :dependent => :destroy
   has_many :post_files, :dependent => :destroy
   
+  has_many :likes_users, :through => :likes, :source=>:user
+  
   
   has_many :post_followers, :dependent => :destroy
   has_many :post_user_news, :dependent => :destroy

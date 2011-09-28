@@ -3,11 +3,6 @@
   functions.posts.more.append_behaviour();
   <%= "mention_username = ':mention';".gsub(':mention', params[:mention]) if params[:mention] %>
 <% end %>
-<style>
-  #smiles { clear:both }
-  #smiles ul {}
-  #smiles li {float:left;width:48px;height:48px;margin-bottom:8px;}
-</style>
 
 <% if cu_ro.admin? %>
   <div class="in">

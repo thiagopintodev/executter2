@@ -1,0 +1,16 @@
+<% content_for :html do %>
+<div class="likes">
+  <ul>
+    <% @likes_users.each do |like_user| %>
+      <li>
+        <%= link_to my_image_tag(like_user.p_, :dimensions=>25), profile_path(like_user.username) %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="clear">
+  </div>
+</div>
+<% end %>
+<% r = raw escape_javascript yield :html %>
+s = "<%= r %>";
+$("#<%= params[:update] %>").html(s);

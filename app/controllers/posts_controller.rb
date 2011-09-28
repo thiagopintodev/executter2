@@ -88,11 +88,11 @@ class PostsController < ApplicationController
     #render :js=>"alert('servidor recebeu    thats the way!          Aham Aham...              I like it!')"
   end
   
-  # GET /posts/1/likes
-  def likes
-    return redirect_to :root unless @post = Post.find(params[:post_id])
-    @likes = @post.likes
-    @user = @post.user
+  # GET /posts/1/ajax_likes
+  def ajax_likes
+    return render :nothing=>true unless @post = Post.find(params[:post_id])
+    @likes_users = @post.likes_users.select([:username, :cached_photo_url])
+    render :layout=>false
   end
 
   # DELETE /posts/1

@@ -144,7 +144,7 @@ Ex2::Application.routes.draw do
   #resources :likes
 
   resources :posts, :path => "p", :only => [:show, :destroy] do
-    get "likes"
+    get "ajax_likes"
     post "like"
     get "ajax_comments"
     collection do

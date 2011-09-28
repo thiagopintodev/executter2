@@ -31,6 +31,14 @@ $color4: #999;
 $color_line: #efefef;
 
 
+#smiles {
+  clear:both;
+  li { float:left;width:48px;height:48px;margin-bottom:8px; }
+}
+.likes {
+  clear:both;
+  li { float:left;margin:5px; }
+}
 
 
 .c-edit {

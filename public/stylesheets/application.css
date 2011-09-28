@@ -36,6 +36,20 @@ a {
 .clear {
   clear: both; }
 
+#smiles {
+  clear: both; }
+  #smiles li {
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px; }
+
+.likes {
+  clear: both; }
+  .likes li {
+    float: left;
+    margin: 5px; }
+
 .c-edit .label {
   float: left;
   display: inline-block;
