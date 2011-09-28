@@ -4,9 +4,9 @@
   <%= "mention_username = ':mention';".gsub(':mention', params[:mention]) if params[:mention] %>
 <% end %>
 <style>
-  #smiles {}
+  #smiles { clear:both }
   #smiles ul {}
-  #smiles li {float:left;width:48px;height:36px;}
+  #smiles li {float:left;width:48px;margin-bottom:16px;}
 </style>
 
 <% if cu_ro.admin? %>
@@ -34,8 +34,10 @@
         </li>
       <% end %>
     </ul>
+    <div class="clear">
+    </div>
   </div>
-
+  
   <div id="home-news-holder">
   </div>
 
