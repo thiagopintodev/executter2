@@ -16,3 +16,17 @@
   </div>
 <% end %>
 </div>
+
+<%= render '/sponsor_col2' %>
+
+<p></p>
+
+<h2>Fotos</h2>
+<% cache [:city, @city.id, :imagelist], :expires_in => 7.days do %>
+  <% GoogleAjax.referer = request.host %>
+  <% GoogleAjax::Search.images(@city.label)[:results].each do |result| %>
+    <% url = result[:unescaped_url] %>
+    <p><%= link_to my_image_tag(url, :dimensions => 210), city_label_path(@city.label) %></p>
+  <% end %>
+<% end %>
+
