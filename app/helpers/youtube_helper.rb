@@ -5,10 +5,14 @@ module YoutubeHelper
     keys = []
     string.split(/\s/).collect do |w|
       next unless w.index('youtube')
-      next unless a = w.index('v=') || w.index('v/')
-      b = w.index('&') || 0
-      i,j = a+2, b-1
-      keys << w[i..j]
+      #next unless a = w.index('v=') #|| w.index('v/')
+      #b = w.index('&') || 0
+      #i,j = a+2, b-1
+      #keys << w[i..j]
+      uri = URI.parse(w)
+      uri_params = CGI.parse(uri.query) # => {"feature"=>["player_embedded"], "v"=>["uRk3scaVBlA"]}
+      key = uri_params['v'].first
+      keys << key if key
     end
     keys
   end
