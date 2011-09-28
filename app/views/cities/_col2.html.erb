@@ -20,7 +20,7 @@
 <%= render '/sponsor_col2' %>
 
 <p></p>
-
+<% if Rails.env.production? %>
 <h2>Fotos</h2>
 <% cache [:city, @city.id, :imagelist], :expires_in => 7.days do %>
   <% GoogleAjax.referer = request.host %>
@@ -28,5 +28,6 @@
     <% url = result[:unescaped_url] %>
     <p><%= link_to my_image_tag(url, :dimensions => 210), city_label_path(@city.label) %></p>
   <% end %>
+<% end %>
 <% end %>
 

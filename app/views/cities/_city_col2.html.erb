@@ -1,3 +1,4 @@
+<% if Rails.env.production? %>
 <% if @user.born_city %>
 <h2>Nasceu Em</h2>
 <% cache [:city, @user.born_city.id, :image], :expires_in => 5.minutes do %>
@@ -20,4 +21,5 @@
 <%#= link_to @user.living_city.name, city_label_path(@user.living_city.label) %>
 <p><%= link_to @user.living_city.l_,   city_label_path(@user.living_city.label) %></p>
 
+<% end %>
 <% end %>
