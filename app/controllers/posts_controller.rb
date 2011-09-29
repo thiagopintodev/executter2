@@ -10,7 +10,7 @@ class PostsController < ApplicationController
                                         :body       => params[:body],
                                         :files_categories => Post::CATEGORY_STATUS
     current_user.recount_posts
-    render :nothing=>true
+    render :text=>"after_post_create_status();"
   end
 
   # POST /posts/create_post_image
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       @post.post_files.create!(:image => params[:image], :category=>c, :extension=>e, :filename=>f)
       @post.save
     end
-    render :nothing=>true
+    redirect_to :root
   end
   
 

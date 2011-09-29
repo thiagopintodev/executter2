@@ -10,13 +10,7 @@
   </div>
 <% end %>
   
-  <div  id="home-form-tabs-holder"
-        data-ajaxload-event="load"
-        data-ajaxload-url="<%= h_forms_path %>"
-        data-ajaxload-nocache="true"
-        data-ajaxload-target="#home-form-tabs-holder"
-        >
-  </div>
+  <%= render 'forms' %>
 
   <%#= image_tag Smile.first.image.url, :rel=>"#smiles" %>
 

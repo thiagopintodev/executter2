@@ -29,6 +29,12 @@ function get_notifications_url() {
 function load_post_news_button() {
   $("#home-news-holder").load('/h/ajax_news_button');
 }
+
+function after_post_create_status() {
+  functions.home.ajax.load_latest_posts_main_tab();
+  $("#home-form-tabs textarea").val('').trigger('keydown');
+}
+
 function registerContextMenu() {
 /*
   var list = $("a.user[data-menucontext!=1]");

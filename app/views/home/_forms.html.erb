@@ -1,30 +1,25 @@
-<script type="text/javascript">
+<%content_for :jsload do %>
   functions.home.ajax.append_behaviour();
-  if (mention_username) {
-    mention(mention_username);
-    mention_username=false;
-  }
-  $("#home-form-tabs textarea:first").focus();
-</script>
+<% end %>
 
-<div id="home-form-tabs" class="in" style="display:none">
+<div id="home-form-tabs" class="in">
 	<ul>
 		<li class="disabled">
-      <span class="ui-icon icon-color action-repost"/>
+      <span class="ui-icon icon-color action-repost"></span>
       <%= T.t('page.home.form_tabs.share').capitalize %>:
 		  </li>
 		<li><a href="#tabs-1">
-      <span class="ui-icon icon-color post-text selected"/>
+      <span class="ui-icon icon-color post-text selected"></span>
 		  <%= T.t('page.home.form_tabs.status').capitalize %>
 		  </a></li>
 		<li><a href="#tabs-2">
-      <span class="ui-icon icon-color post-image"/>
+      <span class="ui-icon icon-color post-image"></span>
 		  <%= T.t('page.home.form_tabs.image').capitalize %>
 		</a></li>
 	</ul>
 	<div id="tabs-1">
 
-<%= form_tag create_status_posts_url, :multipart=>true, :class=>'new_topic' do %>
+<%= form_tag create_status_posts_url, :remote=>true, :class=>'new_topic', :id=>'create_status' do %>
   <div class="field">
     <%= text_area_tag :body, params[:mention], :rows=>3, :maxlength=>196 %>
     <span class="chars">196</span>
@@ -39,7 +34,7 @@
 	<div id="tabs-2">
 
 
-<%= form_tag create_image_posts_url, :multipart=>true, :class=>'new_topic' do %>
+<%= form_tag create_image_posts_url, :multipart=>true, :class=>'new_topic', :id=>'create_image' do %>
   <div class="field">
     <%= text_area_tag :body, '', :rows=>3, :maxlength=>196 %>
     <span class="chars">196</span>

@@ -249,13 +249,12 @@ functions.home.ajax.append_behaviour = function() {
   $("#home-form-tabs").tabs().show().find("*").removeClass("ui-widget-header ui-corner-all");
   $("#home-post-tabs").tabs().show().find("*").removeClass("ui-widget-header ui-corner-all");
   
-  //after submit
-  $('form.new_topic').ajaxForm(function() {
-    $("#home-form-tabs-holder").load( $("#home-form-tabs-holder").data('ajaxload-url') );
-    functions.home.ajax.load_latest_posts_main_tab();
-    //$.get('/p/generate_notifications');
-  });
-
+  if (mention_username) {
+    mention(mention_username);
+    mention_username=false;
+  }
+  $("#home-form-tabs textarea:first").focus();
+  
   functions.home.ajax.append_behaviour_once();
 }
 functions.home.ajax.append_behaviour_once = function() {
@@ -293,7 +292,7 @@ functions.home.ajax.append_behaviour_once = function() {
   });
 
   //before submit
-  $('form.new_topic').live('submit', function(){
+  $('form#create_image').live('submit', function(){
     $("#home-form-tabs input[type='submit']").replaceWith("<img style='float:right' src='/images/ajax_new_post.gif'/>");
   });
 

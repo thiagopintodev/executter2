@@ -129,7 +129,6 @@ Ex2::Application.routes.draw do
   get "h/posts_followings_other"  => "home#posts_followings_other",   :filter => Post::CATEGORY_OTHER
   get "h/posts_followers"         => "home#posts_followers"
   #get "h/posts_mention"           => "home#posts_mention"
-  get 'h/forms'                   => "home#forms"
   get 'h/ajax_notifications'           => "home#ajax_notifications"
   get 'h/ajax_news_button'        => "home#ajax_news_button"
   post 'h/invite'           => "home#invite"
