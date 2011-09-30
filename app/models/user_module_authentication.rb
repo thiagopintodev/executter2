@@ -60,7 +60,7 @@ module UserModuleAuthentication
       findk(key)
     end
     def find_authenticated(id, auth_token)
-      user = find(id)
+      user = User.find(id)
       (user.authentication_token == auth_token) ? user : nil
     end
   end

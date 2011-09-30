@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
+    sus = session[:user_session]
     @cu ||= User.find_authenticated(sus[:id], sus[:auth_token]) rescue nil
   end
   
