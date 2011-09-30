@@ -59,6 +59,10 @@ module UserModuleAuthentication
     def find_for_database_authentication(key)
       findk(key)
     end
+    def find_authenticated(id, auth_token)
+      user = find(id)
+      (user.authentication_token == auth_token) ? user : nil
+    end
   end
   
   def login

@@ -37,25 +37,16 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
-    return @cu if @cu
-    sus = session[:user_session]
-    return nil unless sus && user = User.find_rescue(sus[:id])
-    return  @cu = user if user.authentication_token == sus[:auth_token]
-    nil
+    @cu ||= User.find_authenticated(sus[:id], sus[:auth_token]) rescue nil
   end
   
   def current_user_read_only
-    return @cu_ro if @cu_ro
-    return @cu_ro = @cu if @cu
-    #this one searches from cache
-    sus = session[:user_session]
-    return nil unless sus && user = User.kv_find(sus[:id])
-    return  @cu_ro = user if user.authentication_token == sus[:auth_token]
-    nil
+    current_user
   end
   
-  alias :cu_ro :current_user_read_only
-  alias :cu :current_user
+  alias :current_user_read_only :current_user
+  alias :cu_ro                  :current_user
+  alias :cu                     :current_user
   
   def must_login
     not_allowed unless cu_ro
@@ -90,7 +81,7 @@ class ApplicationController < ActionController::Base
 
   def not_allowed
     return render(:nothing=>true) if request.xhr?
-    controller_name=='mobile' ? redirect_to(:mobile_login) : redirect_to(:new)
+    return controller_name=='mobile' ? redirect_to(:mobile_login) : redirect_to(:new)
   end
 =begin
   def my_admin_only
