@@ -40,10 +40,6 @@ class ApplicationController < ActionController::Base
     @cu ||= User.find_authenticated(sus[:id], sus[:auth_token]) rescue nil
   end
   
-  def current_user_read_only
-    current_user
-  end
-  
   alias :current_user_read_only :current_user
   alias :cu_ro                  :current_user
   alias :cu                     :current_user
