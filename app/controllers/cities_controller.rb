@@ -12,6 +12,7 @@ class CitiesController < ApplicationController
   # GET /cities/1.xml
   def show
     return redirect_to :root unless @city
+    @mention = @city.l_
     redirect_to city_label_path(@city.city.label) if @city.city
   end
 

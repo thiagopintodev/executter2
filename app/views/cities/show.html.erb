@@ -2,17 +2,9 @@
   $(".posts").load("<%= ajax_search_posts_url(:search=>@city.l_) %>");
 <% end %>
 
-<% if cu_ro %>
-  <div  id="home-form-tabs-holder"
-        data-ajaxload-event="load"
-        data-ajaxload-url="<%= h_forms_path(:mention=>@city.l_) %>"
-        data-ajaxload-nocache="false"
-        data-ajaxload-target="#home-form-tabs-holder"
-        >
-  </div>
-<% end %>
-
 <%= content_tag :h2, @city.name, :style=>'color:#999' %>
+
+<%= render '/home/forms' if cu_ro %>
 
 <div class="posts">
 </div>

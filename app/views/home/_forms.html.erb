@@ -21,7 +21,7 @@
 
 <%= form_tag create_status_posts_url, :remote=>true, :class=>'new_topic', :id=>'create_status' do %>
   <div class="field">
-    <%= text_area_tag :body, params[:mention], :rows=>3, :maxlength=>196 %>
+    <%= text_area_tag :body, @mention, :rows=>3, :maxlength=>196 %>
     <span class="chars">196</span>
     <%= submit_tag "Executter" %>
     <div class="clear">
