@@ -6,10 +6,12 @@ class PostsController < ApplicationController
 
   # POST /posts/create_post_status
   def create_status
-    @post = current_user.posts.create!  :remote_ip  => request.remote_ip,
-                                        :body       => params[:body],
-                                        :files_categories => Post::CATEGORY_STATUS
-    current_user.recount_posts
+    @post = current_user.posts.create :remote_ip  => request.remote_ip,
+                                      :body       => params[:body],
+                                      :files_categories => Post::CATEGORY_STATUS
+    unless @post.new_record?
+      current_user.recount_posts
+    end
     render :text=>"after_post_create_status();"
   end
 
@@ -18,17 +20,18 @@ class PostsController < ApplicationController
     att = params[:image]
     category = att ? Post::CATEGORY_IMAGE : Post::CATEGORY_STATUS
     
-    @post = current_user.posts.create!  :remote_ip  => request.remote_ip,
-                                        :body       => params[:body],
-                                        :files_categories => category
-    current_user.recount_posts
-    
-    if att
-      f = att.original_filename
-      e = f.split('.').last
-      c = category
-      @post.post_files.create!(:image => params[:image], :category=>c, :extension=>e, :filename=>f)
-      @post.save
+    @post = current_user.posts.create :remote_ip  => request.remote_ip,
+                                      :body       => params[:body],
+                                      :files_categories => category
+    unless @post.new_record?
+      current_user.recount_posts
+      if att
+        f = att.original_filename
+        e = f.split('.').last
+        c = category
+        @post.post_files.create!(:image => params[:image], :category=>c, :extension=>e, :filename=>f)
+        @post.save
+      end
     end
     redirect_to :root
   end
