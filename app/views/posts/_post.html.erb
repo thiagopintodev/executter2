@@ -91,7 +91,7 @@
         <%= content_tag :small, '', :class=>'icon-color action-like' %>
         <%= content_tag :p do %>
           <%= link_to "#{post.likes.size} #{T.t('page.post.details.user_s')}",
-                      post_ajax_likes_path(post, :update=>"post-#{post.id}-likes"),
+                      post_ajax_likes_path(post, :update=>"post-#{post.id}-likes", :format=>:js),
                       :remote=>true
                       %>
           <%= T.t('page.post.details.liked_this') %>
