@@ -9,10 +9,13 @@ module YoutubeHelper
       #b = w.index('&') || 0
       #i,j = a+2, b-1
       #keys << w[i..j]
-      uri = URI.parse(w)
-      uri_params = CGI.parse(uri.query) # => {"feature"=>["player_embedded"], "v"=>["uRk3scaVBlA"]}
-      key = uri_params['v'].first
-      keys << key if key
+      begin
+        uri = URI.parse(w)
+        uri_params = CGI.parse(uri.query) # => {"feature"=>["player_embedded"], "v"=>["uRk3scaVBlA"]}
+        key = uri_params['v'].first
+        keys << key if key
+      rescue
+      end
     end
     keys
   end
