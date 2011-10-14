@@ -30,7 +30,6 @@ class Post < ActiveRecord::Base
   has_many :posts,      :dependent => :destroy
   has_many :likes,      :dependent => :destroy
   has_many :post_words#, :dependent => :destroy
-  has_many :post_files, :dependent => :destroy
   
   has_many :likes_users, :through => :likes, :source=>:user
   
@@ -75,7 +74,7 @@ class Post < ActiveRecord::Base
 
 
   def i_
-    @i_ ||= self.link_url || self.image.url(:original, false)
+    @i_ ||= self.link_url || self.image? and self.image.url(:original, false)
   end
 
 

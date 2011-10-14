@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014222411) do
+ActiveRecord::Schema.define(:version => 20111014235310) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -65,22 +65,6 @@ ActiveRecord::Schema.define(:version => 20111014222411) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "post_files", :force => true do |t|
-    t.integer  "post_id"
-    t.string   "filename"
-    t.string   "category"
-    t.string   "extension"
-    t.integer  "count_of_downloads", :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  add_index "post_files", ["post_id"], :name => "index_post_files_on_post_id"
 
   create_table "post_followers", :force => true do |t|
     t.integer  "post_id"
