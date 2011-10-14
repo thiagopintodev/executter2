@@ -6,7 +6,8 @@ class AddAttachmentImageToPost < ActiveRecord::Migration
     add_column :posts, :image_updated_at, :datetime
     add_column :posts, :link_url, :string
     PostFile.all.each do |pf|
-      pf.post.update_attribute(:link_url, pf.image.url(:original, false))
+      p = pf.post
+      p.update_attribute(:link_url, pf.image.url(:original, false)) if p and pf.image?
     end
   end
 
