@@ -17,22 +17,17 @@ class PostsController < ApplicationController
 
   # POST /posts/create_post_image
   def create_image
-    att = params[:image]
-    category = att ? Post::CATEGORY_IMAGE : Post::CATEGORY_STATUS
-    
-    @post = current_user.posts.create :remote_ip  => request.remote_ip,
-                                      :body       => params[:body],
-                                      :files_categories => category
-    unless @post.new_record?
-      current_user.recount_posts
-      if att
-        f = att.original_filename
-        e = f.split('.').last
-        c = category
-        @post.post_files.create!(:image => params[:image], :category=>c, :extension=>e, :filename=>f)
-        @post.save
+    post = current_user.posts.create do |post|
+      post.remote_ip  = request.remote_ip
+      post.body       = params[:body]
+      if params[:image]
+        post.image = params[:image]
+        post.files_categories = Post::CATEGORY_IMAGE
+      else
+        post.files_categories = Post::CATEGORY_STATUS
       end
     end
+    current_user.recount_posts unless post.new_record?
     redirect_to :root
   end
   

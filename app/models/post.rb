@@ -48,6 +48,41 @@ class Post < ActiveRecord::Base
   end
 
 
+  Paperclip.interpolates :transliterated_filename do |attachment, style|
+    ActiveSupport::Inflector.transliterate(attachment.original_filename.downcase)
+  end
+
+  def self.paperclip_options(styles={})
+    r = {}
+    r[:default_url] = "/images/default/:class_:attachment/:style.png"
+    r[:styles] = styles
+    path = "/#{My.my_env}/:class_:attachment/:id_partition/:transliterated_filename"
+    
+    if My.production?
+      r[:storage] = :s3
+      r[:s3_credentials] = MyConfig.get_aws_credentials
+      r[:bucket] = "executter.com"
+      r[:path] = path
+    else
+	    r[:path] = ":rails_root/public/assets#{path}"
+	    r[:url] = "/assets#{path}"
+    end
+    r
+  end
+  
+  has_attached_file :image, paperclip_options({ :original=>["700x2800>", :jpg] })
+
+  def i_
+    @i_ ||= self.link_url || self.image.url(:original, false)
+  end
+
+
+
+
+
+  
+
+
   attr_accessor :is_repost
   
   def comment?
@@ -108,8 +143,10 @@ class Post < ActiveRecord::Base
 
 
   scope :select_cacheable_fields,   select(['id','body'])
-  scope :select_uncacheable_fields, select(['id', "user_id", "post_id", "placement", "on_timeline", "files_categories", "files_extensions", "generated_notifications", "remote_ip", "origin", "likes_count", "posts_count", "post_files_count", "created_at", "updated_at"])
+  scope :select_uncacheable_fields, select(['id', "user_id", "post_id", "placement", "on_timeline", "files_categories", "files_extensions", "generated_notifications", "remote_ip", "origin", "likes_count", "posts_count", "post_files_count", "created_at", "updated_at",
+"image_file_name", "image_content_type", "image_file_size", "image_updated_at", "link_url"])
 
+    
     
 
 

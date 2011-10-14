@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918093847) do
+ActiveRecord::Schema.define(:version => 20111014222411) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -137,6 +137,11 @@ ActiveRecord::Schema.define(:version => 20110918093847) do
     t.datetime "updated_at"
     t.boolean  "generated_words",         :default => false
     t.string   "origin",                  :default => "web"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "link_url"
   end
 
   add_index "posts", ["post_id"], :name => "index_posts_on_post_id"
@@ -157,7 +162,7 @@ ActiveRecord::Schema.define(:version => 20110918093847) do
 
   create_table "smiles", :force => true do |t|
     t.string   "key"
-    t.boolean  "is_visible",         :default => false
+    t.boolean  "is_visible",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"

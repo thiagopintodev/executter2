@@ -38,26 +38,21 @@
 <%#  YOUTUBE IS EQUAL TO POST FILES   %>
     
 
-    <% if post.post_files.size > 0 %>
-      <% post.post_files.each do |pf| %>
-        <% if pf.image? %>
-          <div class="line-files">
-          </div>
-          <%= link_to image_tag(pf.image.url), pf.image.url, :class=>'thumbnail', :rel=>'thumbnail' %>
-          <div class="file-get">
-            <%= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
-            <%= link_to T.t('page.post.file.download').downcase, pf.image.url, :target=>'_blank' %>
-            <%= link_to T.t('page.post.file.view_all').downcase, '/' %>
-          </div>
-        <% end %>
-      <% end %>
-      <div class="line-last">
-      </div>
-    <% end %>
+<% if post.i_ %>
+  <div class="line-files">
+  </div>
+  <%= link_to image_tag(post.i_), post.i_, :class=>'thumbnail', :rel=>'thumbnail' %>
+  <div class="file-get">
+    <%#= raw "#{content_tag :strong, pf.cod} #{T.t('page.post.file.views').capitalize}" %>
+    <%= link_to T.t('page.post.file.download').downcase, post.i_, :target=>'_blank' %>
+    <%#= link_to T.t('page.post.file.view_all').downcase, '/' %>
+  </div>
+  <div class="line-last">
+  </div>
+<% end %>
 
-    
-    
-    
+
+
     <div class="actions" style="margin-bottom:5px">
       <%= post_actions_link "#{nice_time(post.created_at)} via #{post.origin}",
                             url_for(post),
