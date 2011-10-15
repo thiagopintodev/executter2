@@ -255,9 +255,8 @@ class Post < ActiveRecord::Base
   #optimize_word_search
   def create_words
     text = body.gsub(WORD_REGEX_NOT, ' ').downcase
-    filenames = post_files.map(&:filename).join(' ')
     
-    words = text.split(' ')+filenames.split(/[\s.]/)
+    words = text.split(' ')
     words.uniq!
     if My.pg?
       inserts = []
