@@ -67,7 +67,6 @@ class Post < ActiveRecord::Base
   end
   before_destroy do
     PUN.delete_all(:post_id=>self.id)
-    PostWord.delete_all(:post_id=>self.id)
   end
 
 
@@ -178,7 +177,7 @@ class Post < ActiveRecord::Base
     #assign mentioned users to be notified for future events
     #notify mentioned users to this event (being mentioned)
 
-    words = body.gsub(WORD_REGEX_NOT, ' ').downcase.split(' ').uniq!
+    words = body.gsub(WORD_REGEX_NOT, ' ').downcase.split(' ').uniq
     usernames = []
     words.each { |word| usernames << word if word[0]=='@' }
     
