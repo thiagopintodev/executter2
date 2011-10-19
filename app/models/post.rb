@@ -29,7 +29,6 @@ class Post < ActiveRecord::Base
   belongs_to :user_info, :foreign_key => "user_id"
   has_many :posts,      :dependent => :destroy
   has_many :likes,      :dependent => :destroy
-  has_many :post_words#, :dependent => :destroy
   
   has_many :likes_users, :through => :likes, :source=>:user
   
@@ -170,7 +169,6 @@ class Post < ActiveRecord::Base
   end
 
   after_create do
-    create_words
     assign_notifications
   end
 
@@ -179,8 +177,13 @@ class Post < ActiveRecord::Base
     my_post_followers = []
     #assign mentioned users to be notified for future events
     #notify mentioned users to this event (being mentioned)
-    post_words.only_usernames.each do |word|
-      next unless user_mentioned = User.findu(word.word.delete('@'))
+
+    words = body.gsub(WORD_REGEX_NOT, ' ').downcase.split(' ').uniq!
+    usernames = []
+    words.each { |word| usernames << word if word[0]=='@' }
+    
+    usernames.each do |username|
+      next unless user_mentioned = User.findu(username.delete('@'))
       
       #assigns user to this post
       my_post_followers << pfo = PFo.find_or_create_by_user_id_and_post_id(user_mentioned.id, id)
@@ -252,25 +255,6 @@ class Post < ActiveRecord::Base
     #save
   end
   
-  #optimize_word_search
-  def create_words
-    text = body.gsub(WORD_REGEX_NOT, ' ').downcase
-    
-    words = text.split(' ')
-    words.uniq!
-    if My.pg?
-      inserts = []
-      words.each { |word| inserts.push(Post.send(:sanitize_sql_array, ["(?, ?)", self.id, word])) if word.length >= 3 }
-      sql = "INSERT INTO \"post_words\" (\"post_id\", \"word\") VALUES #{inserts.join(', ')}"
-      #transaction {  }
-      connection.execute(sql) if inserts.size > 0
-      #INSERT INTO "post_words" ("post_id", "word") VALUES (3, 'aaaaaaaaaaaaaaa')
-    else
-      words.each { |word| post_words.create!(:word=>word) if word.length >= 3 }
-    end
-    update_attribute :generated_words, true
-    true
-  end
 
   def cached_body
     return self.attributes['body'] ||= Post.kv_find_id(self.id).body
@@ -341,22 +325,16 @@ class Post < ActiveRecord::Base
       return [] unless text
       words = text.downcase.split(' ')
       
-      post_ids = PostWord.select('DISTINCT post_id')
-                         .where(:word=>words)
-                         .before(options[:before])
-                         .after(options[:after])
-                         .limit(DEFAULT_LIMIT)
-                         .collect(&:post_id)
-
-      Post.where(:id=>post_ids)
-          .order("id DESC")
-          .select_uncacheable_fields
+      posts = Post.order("id DESC")
+                  .before(options[:before])
+                  .after(options[:after])
+                  .limit(DEFAULT_LIMIT)
+      words.each { |word| posts = posts.where("LOWER(body) LIKE ?", "%#{word}%") }
+      posts.select_uncacheable_fields
     end
 
     def mentions_count(username_at)
-      PostWord.select('DISTINCT post_id')
-              .where(:word=>username_at.downcase)
-              .count
+      where("LOWER(body) LIKE ?", "%#{username_at.downcase}%").count
     end
   end
 end
