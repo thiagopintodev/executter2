@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014235310) do
+ActiveRecord::Schema.define(:version => 20111019011237) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -94,15 +94,6 @@ ActiveRecord::Schema.define(:version => 20111014235310) do
   add_index "post_user_news", ["user_id", "is_read"], :name => "index_post_user_news_on_user_id_and_is_read"
   add_index "post_user_news", ["user_id"], :name => "index_post_user_news_on_user_id"
   add_index "post_user_news", ["user_id_from"], :name => "index_post_user_news_on_user_id_from"
-
-  create_table "post_words", :id => false, :force => true do |t|
-    t.integer "post_id"
-    t.string  "word"
-  end
-
-  add_index "post_words", ["post_id", "word"], :name => "index_post_words_on_post_id_and_word"
-  add_index "post_words", ["post_id"], :name => "index_post_words_on_post_id"
-  add_index "post_words", ["word"], :name => "index_post_words_on_word"
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
