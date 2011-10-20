@@ -172,6 +172,9 @@ class Post < ActiveRecord::Base
   end
 
   def assign_notifications
+    #recount my posts only
+    user.recount_posts_all
+    
     #my_post_news = []
     my_post_followers = []
     #assign mentioned users to be notified for future events
@@ -182,7 +185,10 @@ class Post < ActiveRecord::Base
     words.each { |word| usernames << word if word[0]=='@' }
     
     usernames.each do |username|
-      next unless user_mentioned = User.findu(username.delete('@'))
+      next unless user_mentioned = User.findu(username[1..-1])
+
+      #recount mentions only
+      user_mentioned.recount_posts_mentions
       
       #assigns user to this post
       my_post_followers << pfo = PFo.find_or_create_by_user_id_and_post_id(user_mentioned.id, id)
@@ -223,7 +229,8 @@ class Post < ActiveRecord::Base
     if comment?
       #assigns this user to receive a message when there are events to   PARENT   post, because...
       #my_post_news << pn = PostNews.find_or_create_by_user_id_and_post_id(user.id, post_id)
-      my_post_followers << pfo = PFo.find_or_create_by_user_id_and_post_id(user.id, post_id)
+
+      my_post_followers << pfo = PFo.find_or_initialize_by_user_id_and_post_id(user.id, post_id)
       #user has commented on   PARENT   post
       #pn.send(repost? ? "has_reposted=" : "has_commented=", true)
       pfo.reason = repost? ? Post::REASON_REPOSTED : Post::REASON_COMMENTED
@@ -235,7 +242,8 @@ class Post < ActiveRecord::Base
     else#is a topic
       #assigns this user to receive a message when there are events to   THIS   post, because...
       #my_post_news << pn = PostNews.find_or_create_by_user_id_and_post_id(user.id, id)
-      my_post_followers << pfo = PFo.find_or_create_by_user_id_and_post_id(user.id, id)
+      my_post_followers << pfo = PFo.find_or_initialize_by_user_id_and_post_id(user.id, id)
+
       #... this user has created   THIS   post
       #pn.has_created = true
       pfo.reason = Post::REASON_CREATED
@@ -250,7 +258,7 @@ class Post < ActiveRecord::Base
     #my_post_news.collect &:save!
     my_post_followers.collect &:save!
     
-    update_attribute :generated_notifications, true
+    #update_attribute :generated_notifications, true
     #save
   end
   

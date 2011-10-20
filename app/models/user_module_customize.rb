@@ -60,13 +60,10 @@ module UserModuleCustomize
     end
     @pch = r
   end
-  
+
+  #keep this method because it's the main resort for new users
   def recount_posts
     h = { :all      => posts.count,
-          #:status   => posts.only_status.count,
-          #:images   => posts.only_images.count,
-          #:audios   => posts.only_audios.count,
-          #:others   => posts.only_others.count,
           :mentions => Post.mentions_count(u_)
         }
     update_attribute :posts_count_string, h.collect { |k,v| "#{k}:#{v}" }.join(',')
@@ -78,6 +75,21 @@ module UserModuleCustomize
     posts_count_hash || recount_posts
   end
 
+  def recount_posts_all
+    #it was causing SELECT *, so I'm using this syntax now
+    h = { :all      => Post.where(:user_id=>self.id).count,
+          :mentions => pch[:mentions]
+        }
+    update_attribute :posts_count_string, h.collect { |k,v| "#{k}:#{v}" }.join(',')
+  end
+
+  def recount_posts_mentions
+    h = { :all      => pch[:all],
+          :mentions => Post.mentions_count(u_)
+        }
+    update_attribute :posts_count_string, h.collect { |k,v| "#{k}:#{v}" }.join(',')
+  end
+  
   #privileges array
   def privileges
     self.privileges_string.split(',') rescue []

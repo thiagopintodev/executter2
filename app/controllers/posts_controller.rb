@@ -6,18 +6,15 @@ class PostsController < ApplicationController
 
   # POST /posts/create_post_status
   def create_status
-    @post = current_user.posts.create :remote_ip  => request.remote_ip,
-                                      :body       => params[:body],
-                                      :files_categories => Post::CATEGORY_STATUS
-    unless @post.new_record?
-      current_user.recount_posts
-    end
+    current_user.posts.create  :remote_ip  => request.remote_ip,
+                               :body       => params[:body],
+                               :files_categories => Post::CATEGORY_STATUS
     render :text=>"after_post_create_status();"
   end
 
   # POST /posts/create_post_image
   def create_image
-    post = current_user.posts.create do |post|
+    current_user.posts.create do |post|
       post.remote_ip  = request.remote_ip
       post.body       = params[:body]
       if params[:image]
@@ -27,20 +24,19 @@ class PostsController < ApplicationController
         post.files_categories = Post::CATEGORY_STATUS
       end
     end
-    current_user.recount_posts unless post.new_record?
     redirect_to :root
   end
   
 
   # POST /posts/create_comment
   def create_comment
-    if @post = Post.find(params[:post][:post_id]) rescue nil
-      @post ||= @post.post
-      @comment = current_user.posts.create  :remote_ip  => request.remote_ip,
-                                            :body       => params[:post][:body],
-                                            :post_id    => @post.id,
-                                            :files_categories => @post.files_categories,
-                                            :files_extensions => @post.files_extensions
+    if post = Post.find(params[:post][:post_id]) rescue nil
+      post ||= post.post
+      comment = current_user.posts.create :remote_ip  => request.remote_ip,
+                                          :body       => params[:post][:body],
+                                          :post_id    => post.id,
+                                          :files_categories => post.files_categories,
+                                          :files_extensions => post.files_extensions
     end
     render :nothing=>true
   end
