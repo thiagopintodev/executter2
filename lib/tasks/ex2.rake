@@ -14,7 +14,8 @@ namespace :ex2 do
   end
   
   task :recount_user_mentions, [:i] => [:environment] do |t, args|
-    User.all.map &:recount_posts_mentions
+    Post.find_each &:generate_post_mentions
+    User.find_each &:recount_posts_mentions
   end
   
 end

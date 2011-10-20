@@ -168,7 +168,17 @@ class Post < ActiveRecord::Base
   end
 
   after_create do
+    generate_post_mentions
     assign_notifications
+  end
+
+  def generate_post_mentions
+    starting_letters = ['@','#','$']
+    words = self.body.gsub(WORD_REGEX_NOT, ' ').downcase.split(' ').uniq
+    usernames = []
+    words.each { |word| usernames << word if starting_letters.include? word[0] }
+    usernames.each { |username| PostMention.create :post_id => self.id, :value   => username }
+    true
   end
 
   def assign_notifications
@@ -183,11 +193,7 @@ class Post < ActiveRecord::Base
     words = body.gsub(WORD_REGEX_NOT, ' ').downcase.split(' ').uniq
     usernames = []
     words.each { |word| usernames << word if word[0]=='@' }
-    
     usernames.each do |username|
-      PostMention.create :post_id => self.id,
-                         :value   => username
-      
       next unless user_mentioned = User.findu(username[1..-1])
 
       #recount mentions only
