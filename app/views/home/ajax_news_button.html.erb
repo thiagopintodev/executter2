@@ -1,7 +1,8 @@
 <% count_str = @count >= 10 ? '10+' : @count %>
 <% count_str = "#{pluralize @count, 'novidade'}" %>
 <script type="text/javascript">
-<%= "$title1='#{count_str}';" unless @count.zero? %>
-make_button();
+  <%= "$title1='#{count_str}';" unless @count.zero? %>
+  make_button();
+  setTimeout(load_post_news_button, NOTIFICATIONS_DELAY);
 </script>
 <%= link_to count_str, :root, :style=>'width:100%', :class=>'ui-button' unless @count.zero? %>

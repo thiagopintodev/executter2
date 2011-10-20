@@ -63,6 +63,8 @@
   RAILS_ENV = "<%= Rails.env %>";
   MY_ENV = "<%= My.env %>";
   
+  NOTIFICATIONS_DELAY = <%= Rails.env.production? ? 20000 : 60000 %>;
+  
   $(function() {
     functions.application.youtube.append_behaviour();
 	  <%= yield :jsload %>

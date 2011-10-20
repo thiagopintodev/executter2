@@ -23,11 +23,11 @@ function make_button() {
 function mention(username) {
   $('#home-form-tabs textarea:visible').append(username+' ').focus();
 }
-function get_notifications_url() {
-  return '/h/ajax_notifications?time='+new Date().getTime();
+function load_notifications() {
+  $('#bellbox').load( '/h/ajax_notifications.html?time='+new Date().getTime() );
 }
 function load_post_news_button() {
-  $("#home-news-holder").load('/h/ajax_news_button');
+  $("#home-news-holder").load( '/h/ajax_news_button.html?time='+new Date().getTime() );
 }
 
 function after_post_create_status() {

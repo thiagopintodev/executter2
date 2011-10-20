@@ -6,6 +6,7 @@
   $('#bell').html("<span><%= @pun_list_unread_count %></span>");
   $title2 = "NEW (<%= @pun_list_unread_count %>)";
 <% end%>
+  setTimeout(load_notifications, NOTIFICATIONS_DELAY);
 </script>
 <%= bitly %>
 
