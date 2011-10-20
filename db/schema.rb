@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019011237) do
+ActiveRecord::Schema.define(:version => 20111020004737) do
 
   create_table "cities", :force => true do |t|
     t.integer  "city_base_id"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(:version => 20111019011237) do
 
   add_index "post_followers", ["post_id"], :name => "index_post_followers_on_post_id"
   add_index "post_followers", ["user_id"], :name => "index_post_followers_on_user_id"
+
+  create_table "post_mentions", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_mentions", ["value"], :name => "index_post_mentions_on_value"
 
   create_table "post_user_news", :force => true do |t|
     t.integer  "post_id"

@@ -185,6 +185,9 @@ class Post < ActiveRecord::Base
     words.each { |word| usernames << word if word[0]=='@' }
     
     usernames.each do |username|
+      PostMention.create :post_id => self.id,
+                         :value   => username
+      
       next unless user_mentioned = User.findu(username[1..-1])
 
       #recount mentions only
@@ -341,7 +344,7 @@ class Post < ActiveRecord::Base
     end
 
     def mentions_count(username_at)
-      where("LOWER(body) LIKE ?", "%#{username_at.downcase}%").count
+      PostMention.where(:value => username_at.downcase).count
     end
   end
 end

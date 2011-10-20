@@ -13,15 +13,8 @@ namespace :ex2 do
     puts 'done'
   end
   
-  task :words, [:i] => [:environment] do |t, args|
-    10000.times do
-      Post.where(:generated_words=>false).limit(10).offset(args[:i]).map &:create_words
-    end
-  end
-  task :words, [:i] => [:environment] do |t, args|
-    10000.times do
-      Post.where(:generated_notifications=>false).limit(10).offset(args[:i]).each &:assign_notifications
-    end
+  task :recount_user_mentions, [:i] => [:environment] do |t, args|
+    User.all.map &:recount_posts_mentions
   end
   
 end
