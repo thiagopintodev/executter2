@@ -125,7 +125,7 @@ functions.application.notification.append_behaviour = function() {
       if ($(this).attr('mark-all-as-read')!='1' && $(this).html()) {
         $(this).attr('mark-all-as-read', '1');
         $(this).html('');
-        //$.post('/h/mark_notifications_as_read');
+        $.post('/h/mark_notifications_as_read');
         $title2 = $title;
       }
     }

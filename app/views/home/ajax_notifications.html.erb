@@ -1,5 +1,5 @@
 <% simple_digest = Digest::MD5.hexdigest(@pun_grouping.map(&:created_at).to_s) %>
-<% cache [:ajax_news, :unread, @pun_list_unread_count, :md5, simple_digest], :expires_in=>1.hour do %>
+<% cache [:ajax_news, :unread, @pun_list_unread_count, :md5, simple_digest], :expires_in=>10.minutes do %>
 
 <script type="text/javascript">
 <% if @pun_list_unread_count > 0 %>
