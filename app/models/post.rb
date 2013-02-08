@@ -10,15 +10,8 @@ class Post < ActiveRecord::Base
     r[:styles] = styles
     path = "/#{My.my_env}/:class_:attachment/:id_partition/:transliterated_filename"
     
-    if My.production?
-      r[:storage] = :s3
-      r[:s3_credentials] = MyConfig.get_aws_credentials
-      r[:bucket] = "executter.com"
-      r[:path] = path
-    else
-	    r[:path] = ":rails_root/public/assets#{path}"
-	    r[:url] = "/assets#{path}"
-    end
+    r[:path] = ":rails_root/public/assets#{path}"
+    r[:url] = "/assets#{path}"
     r
   end
   

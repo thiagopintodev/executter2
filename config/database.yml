@@ -4,10 +4,10 @@ development:
   host: localhost
   adapter: postgresql
   encoding: unicode
-  database: ex2_dev
+  database: ex2_development
   pool: 5
   username: postgres
-  password: dfdfdf
+  password: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,7 +19,7 @@ test:
   database: ex2_test
   pool: 5
   username: postgres
-  password: dfdfdf
+  password: postgres
 
 # I have STAGING, QA and PRODUCTION environments on different servers
 # all of them run with postgres and they override this option
@@ -30,4 +30,4 @@ production:
   database: ex2_production
   pool: 5
   username: postgres
-  password: dfdfdf
+  password: postgres
