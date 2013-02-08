@@ -6,6 +6,9 @@ gem 'rails', '3.0.6'
 group :development, :test do
   gem 'silent-postgres'
 end
+group :production do
+  gem 'unicorn'
+end
 
 gem 'jquery-rails', '1.0.11'
 gem 'paperclip'

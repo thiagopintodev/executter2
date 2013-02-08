@@ -51,6 +51,7 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.5.4)
+    kgio (2.8.0)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -80,6 +81,7 @@ GEM
       activesupport (= 3.0.6)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
+    raindrops (0.10.0)
     rake (0.9.2)
     recaptcha (0.3.1)
     silent-postgres (0.0.8)
@@ -87,6 +89,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.28)
+    unicorn (4.6.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     xml-simple (1.0.16)
 
 PLATFORMS
@@ -106,3 +112,4 @@ DEPENDENCIES
   rake (= 0.9.2)
   recaptcha
   silent-postgres
+  unicorn
