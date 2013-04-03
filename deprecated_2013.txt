@@ -1,0 +1,15 @@
+
+  <%#= image_tag Smile.first.image.url, :rel=>"#smiles" %>
+
+  <div id="smiles">
+    <ul>
+      <% Smile.where(:is_visible=>true).each do |smile| %>
+        <li>
+          <%= smile.key %>
+          <%= image_tag smile.image.url, :alt=>smile.key %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="clear">
+    </div>
+  </div>

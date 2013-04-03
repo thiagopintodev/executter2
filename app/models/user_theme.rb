@@ -5,10 +5,10 @@ class UserTheme < ActiveRecord::Base
     #r[:default_url] = "/images/default/:class_:attachment/:style.png"
     r[:default_url] = "/images/default/:class_:attachment/original.png"
     r[:styles] = styles
-    path = "/#{My.my_env}/:class_:attachment/:id_partition.:style.:extension"
+    path = "#{My.my_env}/:class_:attachment/:id_partition.:style.:extension"
     
-    r[:path] = ":rails_root/public/assets#{path}"
-    r[:url] = "/assets#{path}"
+    r[:path] = ":rails_root/public/system/#{path}"
+    r[:url] = "/system/#{path}"
     r
   end
 

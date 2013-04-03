@@ -12,10 +12,10 @@ class Smile < ActiveRecord::Base
     r = {}
     r[:default_url] = "/images/default/:class_:attachment/:style.png"
     r[:styles] = styles
-    path = "/#{My.my_env}/:class_:attachment/:id.:extension"
+    path = "#{My.my_env}/:class_:attachment/:id.:extension"
     
-    r[:path] = ":rails_root/public/assets#{path}"
-    r[:url] = "/assets#{path}"
+    r[:path] = ":rails_root/public/system/#{path}"
+    r[:url] = "/system/#{path}"
     r
   end
 
