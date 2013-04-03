@@ -98,8 +98,8 @@ e: '/username'
       elsif w[0..2] == 'www' || w[0..6]=='http://' || w[0..5]=='ftp://' || w[0..7]=='https://'
         w2 = "http://#{w}" if w[0..2] == 'www'
         link_to w, w2||w, :target=>'_blank'
-      elsif smile_url = Smile.all_as_hash[w]
-        image_tag smile_url
+      # elsif smile_url = Smile.all_as_hash[w]
+      #   image_tag smile_url
       else
         h w
       end
